@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" href="./css/orders.css">
+	<link rel="stylesheet" href="./css/order_details.css">
+	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Your Orders</title>
+</head>
+<body>
+    <header>
+		<nav>
+			<a href="index.html" class="logo">
+				<img src="./images/logo.png" loading="lazy" alt="Lazy">
+			</a>
+
+			<div class="nav_links">
+                <a href="upload.html" class="nav__link">Upload</a>
+                <a href="orders.html" class="nav__link">Orders</a>
+                <a href="#" class="nav__link">English</a>
+            </div>
+
+			<form action="" class="first_form">
+				<input type="text" placeholder="What are you looking for">
+				<div class="form_options">
+					<i class="fa-solid fa-xmark"></i>
+					<p class="divider">|</p>
+					<label for="picture">
+						<i class="fa-solid fa-camera camera_upload"></i>
+					</label>
+				</div>
+				<input id="picture" type="file" accept="image/*" name="">
+				<button><i class="fa-solid fa-magnifying-glass"></i></button>
+				<div class="search_suggestions">
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="#">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+				</div>
+			</form>
+
+			<div class="more_options">
+				<a href="#" class="toggle_big_search_button tooltip">
+					<span class="tooltip_text">Search</span>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</a>
+
+				<div class="notifications_button tooltip">
+					<span class="tooltip_text">Notifications</span>
+					<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					<div class="number_of_notifications">2</div>
+					<div class="notifications_container">
+						<p class="stuff">Your Notifications <span style="font-weight: bold;">5</span></p>
+
+						<div class="mark_all">Mark all as read</div>
+
+						<!-- <p style="padding: 20px;">No messages available</p> -->
+						
+						<div class="all_notifications">
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your order will <span style="color: #D35454">expire</span> </p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+									<div class="response">
+										<p>
+											This is going to be an encouraging text we will send our customers so 
+											they keep working with us
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<a href="notifications.html" class="button">
+							View All Messages
+						</a>
+					</div>
+				</div>
+
+				<a href="./checkout.html" class="tooltip">
+					<span class="tooltip_text">Cart</span>
+					<i class="fa-solid fa-cart-shopping"></i>
+				</a>
+
+				<div class="tooltip">
+					<span class="tooltip_text">Log/Sign in</span>
+					<i class="fa-regular fa-circle-user show_more_nav_icon"></i>
+					<div class="notifications_container profile">
+						<a href="profile.html" class="profile_option">
+							<i class="fa-duotone fa-solid fa-gear"></i>
+							<p>Settings</p>
+						</a>
+
+						<a href="signinnew.html" class="profile_option">
+							<i class="fa-solid fa-user"></i>
+							<p>Sign in</p>
+						</a>
+						
+						<a href="#" class="profile_option">
+							<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							<p>Logout</p>
+						</a>						
+					</div>
+				</div>
+			</div>
+
+			<div class="nav_icon_container">
+	            <div class="show_search_form_button">
+	                <i class="fa-solid fa-magnifying-glass"></i>
+	            </div>
+	            <div class="nav_icon">
+	                <i class="fa fa-bars"></i>
+	            </div>
+	        </div>
+		</nav>
+		<form action="" class="second_form">
+            <input type="text" placeholder="What are you looking for">
+            <div class="form_options">
+				<i class="fa-solid fa-xmark"></i>
+				<p class="divider">|</p>
+				<label for="picture">
+					<i class="fa-solid fa-camera camera_upload"></i>
+				</label>
+			</div>
+			<input id="picture" type="file" accept="image/*" name="">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="search_suggestions">
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+            </div>
+        </form>
+	</header>
+
+	<div class="mobile_screen_sidebar">
+    <i class="close_button fas fa-times"></i>
+
+    <div class="container">
+        <a href="orders.html" class="nav_link">Orders</a>
+        <a href="notifications.html" class="nav_link">Notifications</a>
+        <a href="upload.html" class="nav_link">Upload</a>
+        <a href="checkout.html" class="nav_link">Checkout</a>
+    </div>
+  </div>
+
+    <main>
+		<div class="progress_tab">
+			<h2 style="font-weight: normal;">Order Progress</h2>
+
+			<div class="all_progress_container">
+				<div class="all_progress">
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill"></div>
+							</div>
+						</div>
+						<p>Order Confirming</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill"></div>
+							</div>
+						</div>
+						<p>Packaging</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check" style="opacity: 0;"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill" style="width: 60%;"></div>
+							</div>
+						</div>
+						<p class="ongoing">Shipping</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="pointless">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill" style="width: 0;"></div>
+							</div>
+							<div class="pointless">
+								<i class="fa-solid fa-check"></i>
+							</div>
+						</div>
+						<div class="both">
+							<p class="unfulfilled">Delivery</p>
+							<p class="unfulfilled">Done</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bottom_section">
+				<div class="bottom_double_text">
+					<p>Status:</p>
+					<p id="packaging">Shipping</p>
+				</div>
+				<div class="bottom_double_text">
+					<p>Estimated Completion:</p>
+					<p id="estimate">9 July 2025</p>
+				</div>
+			</div>
+		</div>
+	
+		<div class="table_container" style="margin: 20px 0; margin-bottom: 30px;">
+			<table>
+				<thead>
+					<tr>
+						<th>Item</th>
+						<th>Quantity</th>
+						<th>Status</th>
+						<th>Discount</th>
+						<th>Tax</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/1.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>2</td>
+						<td><span class="status-badge status-pending">Pending</span></td>
+						<td>$200.00</td>
+						<td>3$</td>
+						<td>70$</td>
+					</tr>
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/3.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>4</td>
+						<td><span class="status-badge status-success">Ready</span></td>
+						<td>$220.00</td>
+						<td>2$</td>
+						<td>200$</td>
+					</tr>
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/2.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>1</td>
+						<td><span class="status-badge status-pending">Packaging</span></td>
+						<td>$250.00</td>
+						<td>9$</td>
+						<td>100$</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<a href="order_tracking.html" class="show_more">Track Order</a>
+    </main>
+
+    <footer>
+        <div class="footer_info">
+            <h2>COMPANY INFO</h2>
+
+            <a href="#">About Us</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Career Opportunities</a>
+        </div>
+
+        <div class="footer_info">
+            <h2>POLICIES</h2>
+            <a href="website_t&c_and_privacy_policy.pdf">Terms & Condition</a>
+            <a href="#">Accessibility Statement</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="footer_info">
+            <h2>CUSTOMER CARE</h2>
+            <a href="tel:+447767624362">07767624362</a>
+            <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
+			<a href="#">Vince Vineyard Charity</a>
+        </div>
+    </footer>
+
+    <div class="copyright">
+    	<div class="social_media_icons">
+    		<a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+    	</div>
+    	<div style="text-align: center;">
+    		<p>&copy2025 Vince Vineyard Empire Company Limited</p>
+    	</div>
+    	<div style="text-align: right;">
+    		<a href="#">Terms & Conditions</a>
+    	</div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+
+	<script>
+        var sideBarButton = document.querySelector(".nav_icon");
+
+        var closeButton = document.querySelector(".close_button");
+
+        var sideBar = document.querySelector(".mobile_screen_sidebar");
+
+        sideBarButton.addEventListener("click", (e)=>{
+        	e.preventDefault();
+            sideBar.style.left = "0";
+        });
+
+		closeButton.addEventListener("click", (e)=>{
+            sideBar.style.left = "100%";
+        });
+
+        var toggle_big_search_button = document.querySelector(".toggle_big_search_button");
+
+		var nav_links = document.querySelector(".nav_links");
+
+		var first_header_form = document.querySelector("header").querySelector(".first_form");
+
+		toggle_big_search_button.addEventListener("click", (e)=>{
+			e.preventDefault();
+
+			if(nav_links.classList.contains("hide_nav_links")){
+				first_header_form.style.transition = "all 0s";
+			}else{
+				first_header_form.style.transition = "all 0.5s";
+			}
+			nav_links.classList.toggle("hide_nav_links");
+
+			first_header_form.classList.toggle("show_header");
+		});
+
+        var show_search_form_button = document.querySelector(".show_search_form_button");
+
+        var second_header_form = document.querySelector("header").querySelector(".second_form");
+        
+        show_search_form_button.addEventListener("click", (e)=>{
+            e.preventDefault();
+            second_header_form.classList.toggle("show_header");
+        });
+
+        var all_show_more_nav_icon = document.querySelectorAll(".show_more_nav_icon");
+
+		all_show_more_nav_icon.forEach((show_more_nav_icon)=>{
+			show_more_nav_icon.addEventListener("click", (e)=>{
+				var old_one = document.querySelector(".show_display");
+
+				show_more_nav_icon.parentElement.querySelector(".notifications_container").classList.toggle("show_display");
+
+				if(old_one !== null){
+					old_one.classList.remove("show_display");
+				}
+			});
+		});
+		
+		document.querySelectorAll("tbody tr").forEach((row)=>{
+			row.addEventListener("click", function () {
+                const url = this.getAttribute("data-href");
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+		})
+    </script>
+</body>
+</html>

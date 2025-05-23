@@ -1,0 +1,240 @@
+main{
+    display: flex;
+    gap: 20px;
+}
+
+main .filter_section{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 66vh;
+    position: sticky;
+    top: 0;
+}
+
+main .filter_section .all_drivers{
+    display: flex;
+    flex-direction: column;
+}
+
+.image_container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    transition: all 0.5s;
+    border-left: 3px solid transparent;
+    padding: 10px;
+}
+
+.image_container:hover{
+    border-color: orangered;
+    background-color: #d3d3d3;
+}
+
+.active{
+    border-left: 3px solid #9361bf !important;
+    background-color: #d3d3d3;
+}
+
+.image_container img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.image_container .desc{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.image_container .desc .optional_desc{
+    font-size: 0.9em;
+    color: #6b7280;
+}
+
+.image_container .desc .name_and_status{
+    display: flex;
+    justify-content: space-between;
+}
+
+main .details_section{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+main .details_section .map_container{
+    background: url(../images/placeholder.png) no-repeat center/cover;
+    height: 60vh;
+    width: 100%;
+}
+
+main .details_section .order_details{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .details_section .order_details .order_detail{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* flex: 1; */
+}
+
+main .details_section .order_details .order_detail .first{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+main .details_section .order_details .order_detail .first i{
+    font-size: 1.2em;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+}
+
+main .details_section .order_details .order_detail .first p{
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+main .details_section .order_details .order_detail .first span{
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #6b7280;
+}
+
+main .details_section .both_locations{
+    display: flex;
+    justify-content: space-between;
+}
+
+.total_progress{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+}
+
+.point{
+    padding: 10px;
+    background-color: #28a745;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pointless{
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.hole{
+    position: absolute;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.progress_bar{
+    overflow: hidden;
+    padding: 2px;
+    height: 0;
+    border-radius: 20px;
+    background-color: #ccc;
+    flex: 1;
+    position: relative;
+}
+
+.progress_fill{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #28a745;
+}
+
+.total_progress .timeline{
+    position: absolute;
+    width: 95%;
+    height: 30px;
+}
+
+.total_progress img{
+    width: 30px;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+/*    make left 101% when completed*/
+    left: 85%;
+}
+
+button{
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    background-color: dodgerblue;
+    color: white;
+    transition: background-color 0.5s;
+}
+
+button:hover{
+    background-color: #28a745;   
+}
+
+@media(max-width: 700px){
+    main{
+        flex-direction: column;
+    }
+
+    main .filter_section{
+        position: relative;
+        height: auto;
+    }
+
+    main .details_section .order_details{
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: normal;
+    }
+
+    main .details_section .map_container{
+        height: 40vh;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .image_container:hover, .active{
+        background-color: rgba(255,255,255,0.06);
+    }
+
+    main .details_section .order_details .order_detail .first i{
+        color: white;
+        background-color: rgba(255,255,255,0.06);
+    }
+
+    .progress_bar{
+        background-color: #3a3a3a;
+    }
+
+    .pointless{
+        background-color: #3a3a3a;
+    }
+
+    .hole{
+        background-color: #121212;
+    }
+}

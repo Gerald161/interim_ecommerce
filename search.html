@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/categories.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" href="./css/search.css">
+	  <link rel="shortcut icon" type="image/png" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Welcome to Vince Vineyard International</title>
+</head>
+<body>
+  <header>
+		<nav>
+			<div class="nav_icon">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a href="index.html" class="logo">
+				<img src="./images/logo.png" loading="lazy" alt="Lazy">
+			</a>
+
+			<form action="search.html" class="first_form">
+				<input type="text" placeholder="What are you looking for..." required>
+				<div class="form_options">
+					<i class="fa-solid fa-xmark clear_search"></i>
+					<label for="picture">
+						<i class="fa-solid fa-camera camera_upload"></i>
+					</label>
+					<p class="divider">|</p>
+					<button>
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+				<input id="picture" type="file" accept="image/*" name="">
+				<div class="search_suggestions">
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+				</div>
+				<div class="search_ideas">
+					<h3>Ideas for you</h3>
+
+					<div class="categories_container">
+						
+					</div>
+
+					<h3>Popular on Vince Search</h3>
+
+					<div class="categories_container">
+						
+					</div>
+				</div>
+			</form>
+
+			<!-- <div class="nav_links">
+        <a href="upload.html" class="nav__link">Upload</a>
+        <a href="orders.html" class="nav__link">Orders</a>
+      </div> -->
+
+			<div class="more_options">
+				<a href="#" class="tooltip">
+					<span class="tooltip_text">Favorites</span>
+					<i class="fa-regular fa-heart"></i>
+				  </a>
+
+				<div class="notifications_button tooltip">
+					<span class="tooltip_text">Notifications</span>
+					<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					<div class="number_of_notifications">2</div>
+					<div class="notifications_container">
+						<p class="stuff">Your Notifications <span style="font-weight: bold;">5</span></p>
+
+						<div class="mark_all">Mark all as read</div>
+
+						<!-- <p style="padding: 20px;">No messages available</p> -->
+						
+						<div class="all_notifications">
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your order will <span style="color: #D35454">expire</span> </p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+									<div class="response">
+										<p>
+											This is going to be an encouraging text we will send our customers so 
+											they keep working with us
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<a href="notifications.html" class="button">
+							View All Messages
+						</a>
+					</div>
+				</div>
+
+				<a href="./checkout.html" class="tooltip">
+					<span class="tooltip_text">Cart</span>
+					<i class="fa-solid fa-cart-shopping"></i>
+				</a>
+
+				<div class="tooltip">
+					<span class="tooltip_text">Log/Sign in</span>
+					<i class="fa-regular fa-circle-user show_more_nav_icon"></i>
+					<div class="notifications_container profile">
+						<a href="profile.html" class="profile_option">
+							<i class="fa-duotone fa-solid fa-gear"></i>
+							<p>Settings</p>
+						</a>
+
+						<a href="signinnew.html" class="profile_option">
+							<i class="fa-solid fa-user"></i>
+							<p>Sign in</p>
+						</a>
+						
+						<a href="#" class="profile_option">
+							<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							<p>Logout</p>
+						</a>						
+					</div>
+				</div>
+			</div>
+
+			<div class="nav_icon_container">
+	            <div class="show_search_form_button">
+	                <i class="fa-solid fa-magnifying-glass"></i>
+	            </div>
+				<div>
+					<a href="notifications.html">
+						<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					</a>
+				</div>
+	        </div>
+		</nav>
+		<form action="" class="second_form">
+            <input type="text" placeholder="What are you looking for" required>
+            <div class="form_options">
+				<i class="fa-solid fa-xmark clear_search"></i>
+				<label for="picture">
+					<i class="fa-solid fa-camera camera_upload"></i>
+				</label>
+				<p class="divider">|</p>
+				<button>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+			<input id="picture" type="file" accept="image/*" name="">
+            <div class="search_suggestions">
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+            </div>
+			<div class="search_ideas">
+				<h3>Ideas for you</h3>
+
+				<div class="categories_container">
+					
+				</div>
+
+				<h3>Popular on Vince Search</h3>
+
+				<div class="categories_container">
+					
+				</div>
+			</div>
+        </form>
+	</header>
+
+  <div class="mobile_screen_sidebar">
+        <i class="close_button fas fa-times"></i>
+
+        <div class="container">
+          <a href="profile.html">Profile</a>
+          <a href="categories.html" class="nav_link">Categories</a>
+            <a href="orders.html" class="nav_link">Orders</a>
+            <a href="notifications.html" class="nav_link">Notifications</a>
+            <!-- <a href="upload.html" class="nav_link">Upload</a> -->
+            <a href="checkout.html" class="nav_link">Checkout</a>
+        </div>
+    </div>
+
+  <div class="mobile_filter_options">
+    <div class="option">
+      <p>Filter</p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z"></path></svg>
+    </div>
+
+    <div class="option">
+      <p>Sort</p>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"></path></svg>
+    </div>
+
+    <div class="option">
+      <p>Color</p>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="option">
+      <p>Price Range</p>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="option">
+      <p>Gender</p>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <div class="option">
+      <p>Brand</p>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <div class="bottom_filter_options_container">
+    <h2 style="text-align: center; font-weight: normal; padding-top: 30px;">Filter Option</h2>
+    <i class="fa-solid fa-xmark close_filter"></i>
+  </div>
+
+  <div class="category_classifications">
+    <a href="#">
+      <div class="description">
+        <img src="./images/2.jpg" alt="">
+        Men
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/3.jpg" alt="">
+        Women
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/2.jpg" alt="">
+        Children
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/3.jpg" alt="">
+        Babies
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/2.jpg" alt="">
+        Young Adult
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/3.jpg" alt="">
+        Shoes
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/2.jpg" alt="">
+        Bags & Accessories
+      </div>
+    </a>
+    <a href="#">
+      <div class="description">
+        <img src="./images/3.jpg" alt="">
+        Bracelets
+      </div>
+    </a>
+  </div>
+
+  <main style="margin-top: 0;">
+    <div class="filter_options_section">
+        <div class="filter_section">
+          <div class="filter_text_container">
+            <div class="filter_icon_and_text">
+              <svg class="filter_icon" viewBox="0 0 24 24">
+                <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM4.875 12.75a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0ZM15 18.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0Z"/>
+              </svg>
+              <h2>Filters</h2>
+            </div>
+            <p class="clear_filters">Clear Filters</p>
+          </div>
+
+          <div class="filter_options_section_option">
+            <div class="option">
+              <p>Color</p>
+  
+              <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+
+            <div class="actual_filter_options">
+              <div class="color_options_container">
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #ff5252;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Red</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #448aff;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Blue</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #2ecc71;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Green</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #ffa000;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Orange</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #a855f7;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Purple</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #ff4081;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Pink</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #ffffff;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>White</p>
+                </div>
+
+                <div class="color_options">
+                  <div class="actual_color" style="background-color: #263238;">
+                    <div class="checkmark_container">
+                      <i class="fa-solid fa-check"></i>
+                    </div>
+                  </div>
+                  <p>Gray</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="filter_options_section_option">
+            <div class="option">
+              <p>Price Range</p>
+  
+              <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+
+            <div class="actual_filter_options">
+              <p>Cheap</p>
+              <p>Mid</p>
+              <p>Expensive</p>
+            </div>
+          </div>
+  
+          <div class="filter_options_section_option">
+            <div class="option">
+              <p>Gender</p>
+  
+              <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+
+            <div class="actual_filter_options">
+              <p>Male</p>
+              <p>Female</p>
+            </div>
+          </div>
+  
+          <div class="filter_options_section_option">
+            <div class="option">
+              <p>Brand</p>
+  
+              <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+
+            <div class="actual_filter_options">
+              <p>Gucci</p>
+              <p>Samsung</p>
+              <p>LG</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="apply_clear_options">
+          <button data-id="breakfast">Cancel</button>
+          <button data-id="lunch">Apply</button>
+        </div>
+    </div>
+  
+    <div class="filter_results_section">
+      <h3 class="result_for_text">Results for products...</h3>
+
+      <div class="featured_products">
+
+      </div>
+
+      <p class="page_numbering_section">Viewing page 3 of 7</p>
+
+      <div class="navigation_container" style="justify-content: center;">
+        <div class="pagination_container">
+          <div><i class="fa-solid fa-chevron-left"></i></div>
+          <div>1</div>
+          <div>2</div>
+          <div class="active_page">3</div>
+          <div><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer_info">
+        <h2>COMPANY INFO</h2>
+
+        <a href="#">About Us</a>
+        <a href="#">Investor Relations</a>
+        <a href="#">Career Opportunities</a>
+    </div>
+
+    <div class="footer_info">
+        <h2>POLICIES</h2>
+        <a href="website_t&c_and_privacy_policy.pdf">Terms & Condition</a>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
+    </div>
+
+    <div class="footer_info">
+        <h2>CUSTOMER CARE</h2>
+        <a href="tel:+447767624362">07767624362</a>
+        <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
+  <a href="#">Vince Vineyard Charity</a>
+    </div>
+</footer>
+
+<div class="copyright">
+  <div class="social_media_icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+  </div>
+  <div style="text-align: center;">
+    <p>&copy2025 Vince Vineyard Empire Company Limited</p>
+  </div>
+  <div style="text-align: right;">
+    <a href="#">Terms & Conditions</a>
+  </div>
+</div>
+
+  <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+
+	<script>
+      var sideBarButton = document.querySelector(".nav_icon");
+
+      var closeButton = document.querySelector(".close_button");
+
+      var sideBar = document.querySelector(".mobile_screen_sidebar");
+
+      sideBarButton.addEventListener("click", (e)=>{
+        e.preventDefault();
+          sideBar.style.left = "0";
+      });
+
+      closeButton.addEventListener("click", (e)=>{
+        sideBar.style.left = "100%";
+      });
+
+      var second_header_form = document.querySelector("header").querySelector(".second_form");
+
+      var all_show_more_nav_icon = document.querySelectorAll(".show_more_nav_icon");
+
+      all_show_more_nav_icon.forEach((show_more_nav_icon)=>{
+        show_more_nav_icon.addEventListener("click", (e)=>{
+          var old_one = document.querySelector(".show_display");
+
+          show_more_nav_icon.parentElement.querySelector(".notifications_container").classList.toggle("show_display");
+
+          if(old_one !== null){
+            old_one.classList.remove("show_display");
+          }
+        });
+      });
+
+      var categories_containers = document.querySelectorAll(".categories_container");
+
+		var all_categories = [
+			["Clothes", "Bags", "Jewelry"], ["Shoes",
+			"Cars", "Spare Parts", "Electronics",
+			"Used Items", "Beads and Bead Designs", "Gold", "Diamonds"]
+		]
+
+		categories_containers.forEach((category_container, index)=>{
+			if(index % 2 == 0){
+				all_categories[0].forEach((category)=>{
+					category_container.innerHTML += `
+						<a href="subcategories.html" class="category">
+							<div class="representation"></div>
+							<p>${category}</p>
+						</a>
+					`
+				})
+			}else{
+				all_categories[1].forEach((category)=>{
+					category_container.innerHTML += `
+						<a href="subcategories.html" class="category">
+							<div class="representation"></div>
+							<p>${category}</p>
+						</a>
+					`
+				})
+			}
+		})
+
+      var allImages = [
+        {
+          "image": 1,
+          "name": "Jade Pendant",
+          "price": "45.5"
+        },
+        {
+          "image":2,
+          "name": "Diamond Earrings",
+          "price": "50.0"
+        },
+        {
+          "image": 3,
+          "name": "Jade Necklace",
+          "price": "25.5"
+        },
+        {
+          "image": 4,
+          "name": "Jade Necklace",
+          "price": "25.5"
+        },
+        {
+          "image": 5,
+          "name": "Diamond Ring",
+          "price": "45.5"
+        },
+        {
+          "image": 6,
+          "name": "Jeans",
+          "price": "50.0"
+        },
+        {
+          "image": 7,
+          "name": "Sneakers",
+          "price": "25.5"
+        },
+        {
+          "image": 8,
+          "name": "Gold Necklace",
+          "price": "30.0"
+        },
+      ];
+
+      const featured_products = document.querySelector(".featured_products");
+      
+      allImages.forEach((image, index)=>{
+          featured_products.innerHTML += `
+          <a href="#" class="product">
+              <div class="image_container">
+                <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
+                ${index % 2 == 0 && `<div class="badge">30% off</div>`}
+              </div>
+
+              <i class="fa-regular fa-heart"></i>
+
+              <h3>${image.name}</h3>
+
+              <div class="price_and_discount">
+                <p>£${image.price}</p>
+                <span>${index % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
+              </div>
+          </a>
+          `
+      });
+
+      var options = document.querySelectorAll(".option");
+
+      options.forEach((option)=>{
+        option.addEventListener("click", (e)=>{
+          option.nextElementSibling.classList.toggle("active_filter");
+          option.querySelector("a").classList.toggle("active_arrow");
+        })
+      })
+      
+      var options = document.querySelector(".mobile_filter_options").querySelectorAll(".option");
+
+      var bottom_filter_options_container = document.querySelector(".bottom_filter_options_container");
+
+      options.forEach((option)=>{
+        option.addEventListener("click", (e)=>{
+          bottom_filter_options_container.classList.toggle("active_bottom_filter_container");
+        })
+      })
+
+      var close_filter = document.querySelector(".close_filter");
+
+      close_filter.addEventListener("click", (e)=>{
+        bottom_filter_options_container.classList.remove("active_bottom_filter_container");
+      })
+    </script>
+
+    <script src="./js/homesearch.js"></script>
+    <script src="./js/search_filters.js"></script>
+</body>
+</html>

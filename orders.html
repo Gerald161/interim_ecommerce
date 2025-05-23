@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" href="./css/orders.css">
+	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Your Orders</title>
+</head>
+<body>
+    <header>
+		<nav>
+			<div class="nav_icon">
+				<i class="fa fa-bars"></i>
+			</div>
+			<a href="index.html" class="logo">
+				<img src="./images/logo.png" loading="lazy" alt="Lazy">
+			</a>
+
+			<form action="search.html" class="first_form">
+				<input type="text" placeholder="What are you looking for..." required>
+				<div class="form_options">
+					<i class="fa-solid fa-xmark clear_search"></i>
+					<label for="picture">
+						<i class="fa-solid fa-camera camera_upload"></i>
+					</label>
+					<p class="divider">|</p>
+					<button>
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+				<input id="picture" type="file" accept="image/*" name="">
+				<div class="search_suggestions">
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
+				</div>
+				<div class="search_ideas">
+					<h3>Ideas for you</h3>
+
+					<div class="categories_container">
+						
+					</div>
+
+					<h3>Popular on Vince Search</h3>
+
+					<div class="categories_container">
+						
+					</div>
+				</div>
+			</form>
+
+			<!-- <div class="nav_links">
+                <a href="upload.html" class="nav__link">Upload</a>
+                <a href="orders.html" class="nav__link">Orders</a>
+            </div> -->
+
+			<div class="more_options">
+				<a href="#" class="tooltip">
+					<span class="tooltip_text">Favorites</span>
+					<i class="fa-regular fa-heart"></i>
+				  </a>
+
+				<div class="notifications_button tooltip">
+					<span class="tooltip_text">Notifications</span>
+					<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					<div class="number_of_notifications">2</div>
+					<div class="notifications_container">
+						<p class="stuff">Your Notifications <span style="font-weight: bold;">5</span></p>
+
+						<div class="mark_all">Mark all as read</div>
+
+						<!-- <p style="padding: 20px;">No messages available</p> -->
+						
+						<div class="all_notifications">
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p>Your order will <span style="color: #D35454">expire</span> </p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="#" class="notification">
+								<div class="profile_pic"></div>
+								<div class="message_container">
+									<div class="both">
+										<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
+										<div class="dot"></div>
+									</div>
+									<div class="time">
+										<p style="color: grey;">Friday 3:12 PM</p>
+										<p style="color: grey;">2 hours ago</p>
+									</div>
+									<div class="response">
+										<p>
+											This is going to be an encouraging text we will send our customers so 
+											they keep working with us
+										</p>
+									</div>
+								</div>
+							</a>
+						</div>
+
+						<a href="notifications.html" class="button">
+							View All Messages
+						</a>
+					</div>
+				</div>
+
+				<a href="./checkout.html" class="tooltip">
+					<span class="tooltip_text">Cart</span>
+					<i class="fa-solid fa-cart-shopping"></i>
+				</a>
+
+				<div class="tooltip">
+					<span class="tooltip_text">Log/Sign in</span>
+					<i class="fa-regular fa-circle-user show_more_nav_icon"></i>
+					<div class="notifications_container profile">
+						<a href="profile.html" class="profile_option">
+							<i class="fa-duotone fa-solid fa-gear"></i>
+							<p>Settings</p>
+						</a>
+
+						<a href="signinnew.html" class="profile_option">
+							<i class="fa-solid fa-user"></i>
+							<p>Sign in</p>
+						</a>
+						
+						<a href="#" class="profile_option">
+							<i class="fa-solid fa-arrow-right-from-bracket"></i>
+							<p>Logout</p>
+						</a>						
+					</div>
+				</div>
+			</div>
+
+			<div class="nav_icon_container">
+	            <div class="show_search_form_button">
+	                <i class="fa-solid fa-magnifying-glass"></i>
+	            </div>
+				<div>
+					<a href="notifications.html">
+						<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					</a>
+				</div>
+	        </div>
+		</nav>
+		<form action="" class="second_form">
+            <input type="text" placeholder="What are you looking for" required>
+            <div class="form_options">
+				<i class="fa-solid fa-xmark clear_search"></i>
+				<label for="picture">
+					<i class="fa-solid fa-camera camera_upload"></i>
+				</label>
+				<p class="divider">|</p>
+				<button>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
+			</div>
+			<input id="picture" type="file" accept="image/*" name="">
+            <div class="search_suggestions">
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
+            </div>
+			<div class="search_ideas">
+				<h3>Ideas for you</h3>
+
+				<div class="categories_container">
+					
+				</div>
+
+				<h3>Popular on Vince Search</h3>
+
+				<div class="categories_container">
+					
+				</div>
+			</div>
+        </form>
+	</header>
+
+	<div class="mobile_screen_sidebar">
+    <i class="close_button fas fa-times"></i>
+
+    <div class="container">
+        <a href="orders.html" class="nav_link">Orders</a>
+        <a href="notifications.html" class="nav_link">Notifications</a>
+        <a href="upload.html" class="nav_link">Upload</a>
+        <a href="checkout.html" class="nav_link">Checkout</a>
+    </div>
+  </div>
+
+    <main>
+		<h2 style="font-weight: normal; text-align: left; margin-bottom: 15px;">Order Summary</h2>
+
+		<div class="stats-grid">
+			<div class="stat-card">
+				<h3>21</h3>
+				<p>Total Orders</p>
+			</div>
+			<div class="stat-card">
+				<h3>15</h3>
+				<p>Order items over time</p>
+			</div>
+			<div class="stat-card">
+				<h3>0</h3>
+				<p>Returns Orders</p>
+			</div>
+			<div class="stat-card">
+				<h3>12</h3>
+				<p>Fulfilled orders over time</p>
+			</div>
+		</div>
+	
+		<div class="table_container">
+			<div class="table_summary">
+				<h3 style="font-weight: normal; text-align: left;">Order History</h3>
+
+				<input type="text" placeholder="Search...">
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Order</th>
+						<th>Date</th>
+						<th>Customer</th>
+						<th>Payment</th>
+						<th>Total</th>
+						<th>Delivery</th>
+						<th>Items</th>
+						<th>Fulfillment</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-href="order_details.html">
+						<td>#1002</td>
+						<td>11 Feb, 2024</td>
+						<td>Wade Warren</td>
+						<td><span class="status-badge status-pending">Pending</span></td>
+						<td>$200.00</td>
+						<td>N/A</td>
+						<td>2 items</td>
+						<td><span class="status-badge status-unfulfilled">Unfulfilled</span></td>
+					</tr>
+					<tr data-href="order_details.html">
+						<td>#1004</td>
+						<td>13 Feb, 2024</td>
+						<td>Esther Howard</td>
+						<td><span class="status-badge status-success">Success</span></td>
+						<td>$220.00</td>
+						<td>N/A</td>
+						<td>3 items</td>
+						<td><span class="status-badge status-success">Fulfilled</span></td>
+					</tr>
+					<tr data-href="order_details.html">
+						<td>#1007</td>
+						<td>15 Feb, 2024</td>
+						<td>Jenny Wilson</td>
+						<td><span class="status-badge status-pending">Pending</span></td>
+						<td>$250.00</td>
+						<td>N/A</td>
+						<td>1 items</td>
+						<td><span class="status-badge status-unfulfilled">Unfulfilled</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="navigation_container" style="justify-content: center;">
+			<div class="pagination_container" style="gap: 15px;">
+				<a href=""><i class="fa-solid fa-chevron-left"></i></a>
+				<a href="">1</a>
+				<a href="">2</a>
+				<a href="" class="active_page">3</a>
+				<a href=""><i class="fa-solid fa-chevron-right"></i></a>
+			</div>
+		</div>
+    </main>
+
+    <footer>
+        <div class="footer_info">
+            <h2>COMPANY INFO</h2>
+
+            <a href="#">About Us</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Career Opportunities</a>
+        </div>
+
+        <div class="footer_info">
+            <h2>POLICIES</h2>
+            <a href="website_t&c_and_privacy_policy.pdf">Terms & Condition</a>
+            <a href="#">Accessibility Statement</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="footer_info">
+            <h2>CUSTOMER CARE</h2>
+            <a href="tel:+447767624362">07767624362</a>
+            <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
+			<a href="#">Vince Vineyard Charity</a>
+        </div>
+    </footer>
+
+    <div class="copyright">
+    	<div class="social_media_icons">
+    		<a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+    	</div>
+    	<div style="text-align: center;">
+    		<p>&copy2025 Vince Vineyard Empire Company Limited</p>
+    	</div>
+    	<div style="text-align: right;">
+    		<a href="#">Terms & Conditions</a>
+    	</div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+
+	<script>
+        var sideBarButton = document.querySelector(".nav_icon");
+
+        var closeButton = document.querySelector(".close_button");
+
+        var sideBar = document.querySelector(".mobile_screen_sidebar");
+
+        sideBarButton.addEventListener("click", (e)=>{
+        	e.preventDefault();
+            sideBar.style.left = "0";
+        });
+
+		closeButton.addEventListener("click", (e)=>{
+            sideBar.style.left = "100%";
+        });
+
+        var show_search_form_button = document.querySelector(".show_search_form_button");
+
+        var second_header_form = document.querySelector("header").querySelector(".second_form");
+        
+        show_search_form_button.addEventListener("click", (e)=>{
+            e.preventDefault();
+            second_header_form.classList.toggle("show_header");
+        });
+
+        var all_show_more_nav_icon = document.querySelectorAll(".show_more_nav_icon");
+
+		all_show_more_nav_icon.forEach((show_more_nav_icon)=>{
+			show_more_nav_icon.addEventListener("click", (e)=>{
+				var old_one = document.querySelector(".show_display");
+
+				show_more_nav_icon.parentElement.querySelector(".notifications_container").classList.toggle("show_display");
+
+				if(old_one !== null){
+					old_one.classList.remove("show_display");
+				}
+			});
+		});
+		
+		document.querySelectorAll("tbody tr").forEach((row)=>{
+			row.addEventListener("click", function () {
+                const url = this.getAttribute("data-href");
+                if (url) {
+                    window.location.href = url;
+                }
+            });
+		})
+    </script>
+</body>
+</html>

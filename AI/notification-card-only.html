@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Card</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Light Theme (Default) */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --bg-hover: #f1f3f4;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6c757d;
+            --text-muted: #868e96;
+            --border-color: #dee2e6;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --notification-bg: #ffffff;
+            --notification-hover: #f8f9fa;
+            --unread-bg: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Dark Theme */
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2d2d2d;
+            --bg-tertiary: #404040;
+            --bg-hover: #353535;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-muted: #888888;
+            --border-color: #404040;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --notification-bg: #2d2d2d;
+            --notification-hover: #353535;
+            --unread-bg: rgba(59, 130, 246, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--bg-hover);
+        }
+
+        /* Notifications Panel */
+        .notifications-panel {
+            width: 24rem;
+            background-color: var(--notification-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .mark-all-read {
+            background: none;
+            border: none;
+            color: #3b82f6;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .mark-all-read:hover {
+            color: #2563eb;
+        }
+
+        .notifications-list {
+            max-height: 24rem;
+            overflow-y: auto;
+        }
+
+        .notification-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .notification-item:hover {
+            background-color: var(--notification-hover);
+        }
+
+        .notification-item.unread {
+            background-color: var(--unread-bg);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background-color: var(--bg-tertiary);
+        }
+
+        .notification-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-title.success { color: #10b981; }
+        .notification-title.warning { color: #f59e0b; }
+        .notification-title.error { color: #ef4444; }
+        .notification-title.processing { color: #3b82f6; }
+        .notification-title.info { color: #3b82f6; }
+
+        .unread-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
+        }
+
+        .notification-message {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .notification-time {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .panel-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .view-all-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .view-all-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Icons */
+        .icon {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        /* Success Icon */
+        .icon-success { color: #10b981; }
+        /* Warning Icon */
+        .icon-warning { color: #f59e0b; }
+        /* Error Icon */
+        .icon-error { color: #ef4444; }
+        /* Processing Icon */
+        .icon-processing { color: #3b82f6; }
+        /* Brand Icon */
+        .brand-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 768px) {
+            .notifications-panel {
+                width: 20rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/>
+        </svg>
+    </button>
+
+    <!-- Notifications Card -->
+    <div class="notifications-panel">
+        <!-- Header -->
+        <div class="panel-header">
+            <h3 class="panel-title">Your Notifications <span id="unread-count">3</span></h3>
+            <button class="mark-all-read" onclick="markAllAsRead()">Mark all as read</button>
+        </div>
+
+        <!-- Notifications List -->
+        <div class="notifications-list" id="notifications-list">
+            <!-- Notifications will be populated by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <div class="panel-footer">
+            <button class="view-all-btn">View All Messages</button>
+        </div>
+    </div>
+
+    <script>
+        // Sample notifications data
+        let notifications = [
+            {
+                id: 1,
+                type: 'success',
+                title: 'Your order is ready',
+                message: 'Order #12345 has been confirmed and will be shipped within 2 business days.',
+                time: 'Friday 3:12 PM',
+                timeAgo: '2 hours ago',
+                isRead: false
+            },
+            {
+                id: 2,
+                type: 'warning',
+                title: 'Your order will expire',
+                message: 'Complete your purchase soon to secure your items.',
+                time: 'Friday 3:12 PM',
+                timeAgo: '2 hours ago',
+                isRead: false
+            },
+            {
+                id: 3,
+                type: 'info',
+                title: '@Vince responded to comment',
+                message: 'This is going to be an encouraging text we will send our customers so they keep working with us',
+                time: 'Friday 3:12 PM',
+                timeAgo: '2 hours ago',
+                isRead: false
+            },
+            {
+                id: 4,
+                type: 'processing',
+                title: 'Payment Processing',
+                message: 'We\'re currently processing your payment for Order #12346. This may take a few minutes.',
+                time: 'Today, 1:45 PM',
+                timeAgo: '4 hours ago',
+                isRead: true
+            },
+            {
+                id: 5,
+                type: 'error',
+                title: 'Payment Failed',
+                message: 'We couldn\'t process your payment. Please check your payment details and try again.',
+                time: 'Yesterday, 5:15 PM',
+                timeAgo: '1 day ago',
+                isRead: true
+            }
+        ];
+
+        // Theme management (no localStorage)
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+        }
+
+        function getIconHTML(type) {
+            switch (type) {
+                case 'success':
+                    return '<svg class="icon icon-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>';
+                case 'warning':
+                    return '<svg class="icon icon-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+                case 'error':
+                    return '<svg class="icon icon-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>';
+                case 'processing':
+                    return '<svg class="icon icon-processing" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>';
+                case 'info':
+                    return '<div class="brand-icon">V</div>';
+                default:
+                    return '<div class="brand-icon">?</div>';
+            }
+        }
+
+        function renderNotifications() {
+            const listContainer = document.getElementById('notifications-list');
+            const unreadCount = notifications.filter(n => !n.isRead).length;
+            
+            // Update unread count
+            const countSpan = document.getElementById('unread-count');
+            if (unreadCount > 0) {
+                countSpan.textContent = unreadCount;
+            } else {
+                countSpan.textContent = '';
+            }
+
+            // Render notifications
+            listContainer.innerHTML = notifications.map(notification => `
+                <div class="notification-item ${!notification.isRead ? 'unread' : ''}" onclick="markAsRead(${notification.id})">
+                    <div class="notification-icon">
+                        ${getIconHTML(notification.type)}
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-header">
+                            <div class="notification-title ${notification.type}">
+                                ${notification.title}
+                            </div>
+                            ${!notification.isRead ? '<div class="unread-dot"></div>' : ''}
+                        </div>
+                        <p class="notification-message">
+                            ${notification.message}
+                        </p>
+                        <div class="notification-time">
+                            <span>${notification.time}</span>
+                            <span>${notification.timeAgo}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function markAsRead(id) {
+            notifications = notifications.map(n => 
+                n.id === id ? { ...n, isRead: true } : n
+            );
+            renderNotifications();
+        }
+
+        function markAllAsRead() {
+            notifications = notifications.map(n => ({ ...n, isRead: true }));
+            renderNotifications();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNotifications();
+        });
+    </script>
+</body>
+</html>

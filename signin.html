@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/signup.css">
+    <link rel="shortcut icon" type="image/png" href="./images/logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Sign In</title>
+</head>
+
+<style>
+    form{
+        gap: 30px;
+    }
+
+    main, main .bottom_section{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+    }
+
+    main .bottom_section{
+        gap: 30px;
+        line-height: 30px;
+    }
+
+    main .bottom_section p{
+        color: #666;
+    }
+
+    main .bottom_section a{
+        text-decoration: underline;
+        transition: all 0.5px;
+    }
+
+    main .bottom_section a:hover{
+        color: dodgerblue;
+    }
+
+    header{
+        position: relative; 
+        top: 60px;
+    }
+
+    main .sign_options_container{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-width: 500px;
+    }
+
+    main .sign_options_container{
+        width: 100%;
+    }
+
+    main .sign_options_container a{
+        text-align: center;
+        padding: 15px 20px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        transition: border 0.7s;
+    }
+
+    main .sign_options_container a:hover{
+        border: 1px solid dodgerblue;
+    }
+
+    main .sign_options_container .sign_up_google{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    main .sign_options_container .sign_up_google img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        font-size: 14px;
+        margin: 0;
+    }
+
+    .divider::before,
+    .divider::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background-color: #ccc;
+    }
+
+    .divider::before {
+        margin-right: 10px;
+    }
+
+    .divider::after {
+        margin-left: 10px;
+    }
+
+    @media(max-width: 700px){
+        header{
+            top: 0;
+        }
+    }
+
+    @media (prefers-color-scheme: dark){
+        main .bottom_section p{
+            color: #cccccc;
+        }
+
+        main .sign_options_container a{
+            border: 1px solid #2a2a2a;
+        }
+    }
+</style>
+<body>
+    <header style="top: 20px;">
+		<nav style="align-self: center;">
+			<a href="./index.html" class="logo">
+				<img src="./images/logo.png" loading="lazy" alt="Lazy" style="width: 70px; height: 70px;">
+			</a>
+		</nav>
+	</header>
+    <main style="margin-top: 0;">
+        <h2>Welcome Back</h2>
+
+        <div class="sign_options_container">
+            <a href="#" class="sign_up_google">
+                <img src="./images/google.png" alt=""> 
+                Sign in with Google
+            </a>
+            <div class="divider">or sign in to email</div>
+        </div>
+        <form action="" method="post">
+            <div class="label_plus_input">
+              <p>Username/Email</p>
+              <input type="text" placeholder="Username/Email">
+            </div>
+            <div class="label_plus_input">
+              <div class="pass_or_forgot">
+                <p>Password</p>
+                <a href="forgotpass.html">Forgot?</a>
+              </div>
+              <input type="password" placeholder="Email">
+            </div>
+
+            <div class="bottom_section">
+                <p>By creating an account you agree with our 
+                    <a href="#">Terms of Service</a>,
+                    <a href="#">Privacy Policy</a>
+                    and our default 
+                    <a href="#">Notification Settings</a>
+                </p>
+            </div>
+
+            <button>Create Account</button>
+        </form>
+        <div class="bottom_section">
+            <p>Already have an account? <a href="signup.html">Sign Up</a></p>
+        </div>
+    </main>
+
+    <div class="copyright">
+    	<div class="social_media_icons">
+    		<a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+    	</div>
+    	<div style="text-align: center;">
+    		<p>&copy2025 Vince Vineyard Empire Company Limited</p>
+    	</div>
+    	<div style="text-align: right;">
+    		<a href="#">Terms & Conditions</a>
+    	</div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+</body>
+</html>

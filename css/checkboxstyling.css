@@ -1,0 +1,107 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --checkbox-color: #4a6fa5; /* Original blue checkbox color */
+    --checkbox-hover: #3a5985; /* Original blue hover color */
+    --checkbox-border: #cccccc;
+    --checkbox-bg: #f9f9f9;
+    --disclaimer-bg: #f5f5f5;
+    --disclaimer-border: #e0e0e0;
+    --disclaimer-text: #666666;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+    --bg-color: #1a1a1a;
+    --text-color: #eeeeee;
+    --checkbox-color: #5b88c7; /* Original dark mode blue checkbox color */
+    --checkbox-hover: #6b98d7; /* Original dark mode blue hover color */
+    --checkbox-border: #3a3a3a;
+    --checkbox-bg: #252525;
+    --disclaimer-bg: #252525;
+    --disclaimer-border: #3a3a3a;
+    --disclaimer-text: #bbbbbb;
+    }
+}
+.wholesale-container {
+    width: 100%;
+}
+.checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+    transition: box-shadow 0.3s;
+}
+.custom-checkbox {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--checkbox-bg);
+    border: 2px solid var(--checkbox-border);
+    border-radius: 4px;
+    margin-right: 12px;
+    margin-top: 2px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.custom-checkbox:checked ~ .checkmark {
+    background-color: var(--checkbox-color);
+    border-color: var(--checkbox-color);
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 50%; /* Center horizontally */
+    top: 50%; /* Center vertically */
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: translate(-50%, -60%) rotate(45deg); /* Adjusted for optical centering */
+}
+.custom-checkbox:checked ~ .checkmark:after {
+    display: block;
+}
+.checkbox-label {
+    font-size: 1rem;
+    font-weight: 500;
+    user-select: none;
+    cursor: pointer;
+}
+.wholesale-disclaimer {
+    font-size: 0.875rem;
+    padding: 0.875rem;
+    background-color: var(--disclaimer-bg);
+    border: 1px solid var(--disclaimer-border);
+    border-radius: 0.5rem;
+    color: var(--disclaimer-text);
+    margin-top: 0.5rem;
+    transition: opacity 0.3s, max-height 0.3s;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+.wholesale-disclaimer.active {
+    opacity: 1;
+    max-height: 200px;
+    transition: opacity 0.3s, max-height 0.5s;
+}
+/* Animation for checkbox */
+.custom-checkbox:checked ~ .checkmark {
+    animation: pulse 0.3s;
+}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}

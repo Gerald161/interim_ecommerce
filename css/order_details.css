@@ -1,0 +1,156 @@
+.progress_tab{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.progress_tab .all_progress_container{
+    width: 100%; 
+    overflow-x: auto;
+}
+
+.progress_tab .all_progress{
+    display: flex;
+    align-items: center;
+}
+
+.progress_tab .all_progress .checkpoint{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.progress_tab .all_progress .checkpoint .both{
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress_tab .all_progress .checkpoint .unfulfilled{
+    color: #6b7280;
+}
+
+.progress_tab .all_progress .checkpoint .ongoing{
+    color: #5B78F6;
+}
+
+.progress_tab .all_progress .checkpoint .point_and_progress{
+    display: flex;
+    align-items: center;
+}
+
+.progress_tab .all_progress .point{
+    padding: 10px;
+    background-color: #28a745;
+    border-radius: 50%;
+    /* mine here below */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress_tab .all_progress .point i{
+    color: white;
+}
+
+.progress_tab .all_progress .pointless{
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    /* mine here below */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress_tab .all_progress .pointless i{
+    opacity: 0;
+}
+
+.progress_tab .all_progress .checkpoint .point_and_progress .progress_bar{
+    overflow: hidden;
+    padding: 2px;
+    height: 0;
+    background-color: #ccc;
+    flex: 1;
+    position: relative;
+}
+
+.progress_tab .all_progress .checkpoint .point_and_progress .progress_bar .progress_fill{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #28a745;
+}
+
+.progress_tab .bottom_section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress_tab .bottom_double_text{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#packaging{
+    padding: 3px 5px;
+    border-radius: 5px;
+    color:#5B78F6;
+    border: solid 1px #5B78F6;
+}
+
+#estimate{
+    padding: 3px 5px;
+    border-radius: 5px;
+    background-color: #dadada;
+}
+
+.show_more{
+    transition: all 0.5s;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+    color: dodgerblue;
+}
+
+.show_more:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+@media(max-width: 700px){
+    .progress_tab .all_progress_container{
+        padding-bottom: 10px;
+    }
+
+    .progress_tab .bottom_section{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .progress_tab .all_progress{
+        width: 200%;
+    }
+}
+
+@media(prefers-color-scheme: dark){
+    .progress_tab .all_progress .checkpoint .point_and_progress .progress_bar{
+        background-color: #3a3a3a;
+    }
+
+    .progress_tab .all_progress .pointless{
+        background-color: #3a3a3a;
+    }
+
+    #estimate{
+        background-color: #3a3a3a;
+    }
+
+    .show_more:hover{
+        background-color: #2a2a2a;
+    }
+}
