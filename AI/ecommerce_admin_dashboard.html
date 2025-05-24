@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Order Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-400: #9ca3af;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+        }
+
+        /* Light theme (default) */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: var(--gray-50);
+            --bg-tertiary: var(--gray-100);
+            --text-primary: var(--gray-900);
+            --text-secondary: var(--gray-600);
+            --text-muted: var(--gray-500);
+            --border-color: var(--gray-200);
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Dark theme */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: var(--gray-900);
+                --bg-secondary: var(--gray-800);
+                --bg-tertiary: var(--gray-700);
+                --text-primary: var(--gray-100);
+                --text-secondary: var(--gray-300);
+                --text-muted: var(--gray-400);
+                --border-color: var(--gray-600);
+                --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .dashboard {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+            width: 24px;
+            height: 24px;
+            opacity: 0.7;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive {
+            color: var(--success-color);
+        }
+
+        .stat-change.negative {
+            color: var(--danger-color);
+        }
+
+        /* Filters Section */
+        .filters-section {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .filters-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .filter-input, .filter-select {
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Orders Table */
+        .orders-section {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .orders-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .orders-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .orders-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .orders-table td {
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .orders-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-confirmed {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .status-picking-up {
+            background: rgba(139, 69, 19, 0.1);
+            color: #8B4513;
+        }
+
+        .status-in-transit {
+            background: rgba(147, 51, 234, 0.1);
+            color: #9333ea;
+        }
+
+        .status-near-destination {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+
+        .status-delivered {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .status-cancelled {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger-color);
+        }
+
+        /* ETA and Progress Indicators */
+        .eta-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .eta-time {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .progress-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .progress-indicator.starting {
+            background: var(--danger-color);
+            animation: pulse 2s infinite;
+        }
+
+        .progress-indicator.in-progress {
+            background: var(--warning-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        .progress-indicator.almost-done {
+            background: var(--success-color);
+            animation: pulse 1s infinite;
+        }
+
+        .progress-indicator.completed {
+            background: var(--success-color);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        /* Destination styling */
+        .destination-info {
+            max-width: 200px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .destination-address {
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .destination-distance {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Driver Info */
+        .driver-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .driver-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .driver-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .driver-name {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .driver-id {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Pagination */
+        .pagination {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .pagination-info {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--bg-secondary);
+            border-color: var(--primary-color);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .orders-header {
+                padding: 1rem;
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .pagination-controls {
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-card, .filters-section, .orders-section {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .stat-card:nth-child(2) { animation-delay: 0.1s; }
+        .stat-card:nth-child(3) { animation-delay: 0.2s; }
+        .stat-card:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span>🚚 DeliveryPro</span>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <div class="avatar">AD</div>
+                        <div>
+                            <div style="font-weight: 500;">Admin User</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Administrator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Stats Section -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Total Orders</div>
+                        <div class="stat-icon">📦</div>
+                    </div>
+                    <div class="stat-value">2,847</div>
+                    <div class="stat-change positive">
+                        ↗ +12.5% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Active Drivers</div>
+                        <div class="stat-icon">👥</div>
+                    </div>
+                    <div class="stat-value">156</div>
+                    <div class="stat-change positive">
+                        ↗ +8.2% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Delivery Rate</div>
+                        <div class="stat-icon">✅</div>
+                    </div>
+                    <div class="stat-value">94.2%</div>
+                    <div class="stat-change positive">
+                        ↗ +2.1% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">Revenue</div>
+                        <div class="stat-icon">💰</div>
+                    </div>
+                    <div class="stat-value">$48,392</div>
+                    <div class="stat-change positive">
+                        ↗ +15.3% from last month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <div class="filters-section">
+                <div class="filters-header">
+                    <h3 class="filters-title">Filter Orders</h3>
+                </div>
+                <div class="filters-grid">
+                    <div class="filter-group">
+                        <label class="filter-label">Search Orders</label>
+                        <input type="text" class="filter-input" placeholder="Order ID, Customer name..." id="searchFilter">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Status</label>
+                        <select class="filter-select" id="statusFilter">
+                            <option value="">All Statuses</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="picking-up">Picking Up</option>
+                            <option value="in-transit">In Transit</option>
+                            <option value="near-destination">Near Destination</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Driver</label>
+                        <select class="filter-select" id="driverFilter">
+                            <option value="">All Drivers</option>
+                            <option value="john">John Smith</option>
+                            <option value="sarah">Sarah Johnson</option>
+                            <option value="mike">Mike Wilson</option>
+                            <option value="emma">Emma Davis</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Date Range</label>
+                        <input type="date" class="filter-input" id="dateFilter">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="orders-section">
+                <div class="orders-header">
+                    <h3 class="orders-title">Recent Orders</h3>
+                </div>
+                <div class="table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Driver</th>
+                                <th>Status</th>
+                                <th>Destination</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>ETA / Delivery Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Orders will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination">
+                    <div class="pagination-info">
+                        Showing <span id="showingStart">1</span> to <span id="showingEnd">10</span> of <span id="totalOrders">247</span> orders
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn" onclick="changePage(-1)" id="prevBtn">Previous</button>
+                        <button class="pagination-btn active" onclick="goToPage(1)">1</button>
+                        <button class="pagination-btn" onclick="goToPage(2)">2</button>
+                        <button class="pagination-btn" onclick="goToPage(3)">3</button>
+                        <button class="pagination-btn" onclick="changePage(1)" id="nextBtn">Next</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Sample orders data with enhanced statuses and destinations
+        const ordersData = [
+            { 
+                id: 'ORD-001', 
+                customer: 'John Doe', 
+                driver: { name: 'Sarah Johnson', id: 'DR-001' }, 
+                status: 'delivered', 
+                destination: { address: '123 Main St, Downtown', distance: '2.3 km' },
+                amount: 45.99, 
+                date: '2024-01-15', 
+                deliveryTime: '28 min',
+                eta: null,
+                progressStatus: 'completed'
+            },
+            { 
+                id: 'ORD-002', 
+                customer: 'Jane Smith', 
+                driver: { name: 'Mike Wilson', id: 'DR-002' }, 
+                status: 'in-transit', 
+                destination: { address: '456 Oak Ave, Midtown', distance: '4.1 km' },
+                amount: 32.50, 
+                date: '2024-01-15', 
+                deliveryTime: null,
+                eta: 15,
+                progressStatus: 'in-progress'
+            },
+            { 
+                id: 'ORD-003', 
+                customer: 'Bob Johnson', 
+                driver: { name: 'Emma Davis', id: 'DR-003' }, 
+                status: 'pending', 
+                destination: { address: '789 Pine Rd, Uptown', distance: '6.7 km' },
+                amount: 67.25, 
+                date: '2024-01-14', 
+                deliveryTime: null,
+                eta: null,
+                progressStatus: null
+            },
+            { 
+                id: 'ORD-004', 
+                customer: 'Alice Brown', 
+                driver: { name: 'John Smith', id: 'DR-004' }, 
+                status: 'near-destination', 
+                destination: { address: '321 Elm St, Riverside', distance: '1.8 km' },
+                amount: 23.99, 
+                date: '2024-01-14', 
+                deliveryTime: null,
+                eta: 5,
+                progressStatus: 'almost-done'
+            },
+            { 
+                id: 'ORD-005', 
+                customer: 'Charlie Wilson', 
+                driver: { name: 'Sarah Johnson', id: 'DR-001' }, 
+                status: 'cancelled', 
+                destination: { address: '654 Maple Dr, Westside', distance: '8.9 km' },
+                amount: 89.00, 
+                date: '2024-01-13', 
+                deliveryTime: null,
+                eta: null,
+                progressStatus: null
+            },
+            { 
+                id: 'ORD-006', 
+                customer: 'Diana Prince', 
+                driver: { name: 'Mike Wilson', id: 'DR-002' }, 
+                status: 'delivered', 
+                destination: { address: '987 Cedar Ln, Eastside', distance: '3.5 km' },
+                amount: 54.75, 
+                date: '2024-01-13', 
+                deliveryTime: '22 min',
+                eta: null,
+                progressStatus: 'completed'
+            },
+            { 
+                id: 'ORD-007', 
+                customer: 'Eddie Murphy', 
+                driver: { name: 'Emma Davis', id: 'DR-003' }, 
+                status: 'picking-up', 
+                destination: { address: '147 Birch St, Northside', distance: '5.2 km' },
+                amount: 41.20, 
+                date: '2024-01-12', 
+                deliveryTime: null,
+                eta: 25,
+                progressStatus: 'starting'
+            },
+            { 
+                id: 'ORD-008', 
+                customer: 'Fiona Green', 
+                driver: { name: 'John Smith', id: 'DR-004' }, 
+                status: 'confirmed', 
+                destination: { address: '258 Spruce Ave, Southside', distance: '7.3 km' },
+                amount: 76.80, 
+                date: '2024-01-12', 
+                deliveryTime: null,
+                eta: null,
+                progressStatus: null
+            },
+            { 
+                id: 'ORD-009', 
+                customer: 'George Lucas', 
+                driver: { name: 'Sarah Johnson', id: 'DR-001' }, 
+                status: 'in-transit', 
+                destination: { address: '369 Willow Rd, Central', distance: '2.9 km' },
+                amount: 38.45, 
+                date: '2024-01-11', 
+                deliveryTime: null,
+                eta: 12,
+                progressStatus: 'in-progress'
+            },
+            { 
+                id: 'ORD-010', 
+                customer: 'Helen Troy', 
+                driver: { name: 'Mike Wilson', id: 'DR-002' }, 
+                status: 'delivered', 
+                destination: { address: '741 Ash Blvd, Harbor', distance: '4.6 km' },
+                amount: 92.15, 
+                date: '2024-01-11', 
+                deliveryTime: '26 min',
+                eta: null,
+                progressStatus: 'completed'
+            }
+        ];
+
+        let filteredOrders = [...ordersData];
+        let currentPage = 1;
+        const ordersPerPage = 10;
+
+        // Initialize the dashboard
+        function initDashboard() {
+            renderOrders();
+            setupFilters();
+            startETASimulation();
+        }
+
+        // Simulate ETA changes and movement
+        function startETASimulation() {
+            setInterval(() => {
+                let hasChanges = false;
+                
+                ordersData.forEach(order => {
+                    if (order.eta && order.eta > 0) {
+                        // Randomly decrease ETA
+                        if (Math.random() < 0.3) {
+                            order.eta = Math.max(0, order.eta - Math.floor(Math.random() * 3 + 1));
+                            hasChanges = true;
+                            
+                            // Update progress status based on ETA
+                            if (order.eta <= 0) {
+                                order.status = 'delivered';
+                                order.deliveryTime = `${Math.floor(Math.random() * 15 + 20)} min`;
+                                order.progressStatus = 'completed';
+                                order.eta = null;
+                            } else if (order.eta <= 5) {
+                                order.status = 'near-destination';
+                                order.progressStatus = 'almost-done';
+                            } else if (order.eta <= 15) {
+                                order.progressStatus = 'in-progress';
+                            }
+                        }
+                    }
+                    
+                    // Simulate status progression for confirmed orders
+                    if (order.status === 'confirmed' && Math.random() < 0.1) {
+                        order.status = 'picking-up';
+                        order.eta = Math.floor(Math.random() * 10 + 20);
+                        order.progressStatus = 'starting';
+                        hasChanges = true;
+                    }
+                    
+                    // Progress from picking-up to in-transit
+                    if (order.status === 'picking-up' && Math.random() < 0.15) {
+                        order.status = 'in-transit';
+                        order.progressStatus = 'in-progress';
+                        hasChanges = true;
+                    }
+                });
+                
+                if (hasChanges) {
+                    // Re-apply filters to maintain current view
+                    applyFilters();
+                }
+            }, 3000); // Check every 3 seconds
+        }
+
+        // Render orders table
+        function renderOrders() {
+            const tbody = document.getElementById('ordersTableBody');
+            const startIndex = (currentPage - 1) * ordersPerPage;
+            const endIndex = startIndex + ordersPerPage;
+            const ordersToShow = filteredOrders.slice(startIndex, endIndex);
+
+            tbody.innerHTML = ordersToShow.map(order => {
+                let timeDisplay = '';
+                
+                if (order.status === 'delivered') {
+                    timeDisplay = `<div class="eta-container">
+                        <span class="eta-time">${order.deliveryTime}</span>
+                        <div class="progress-indicator completed"></div>
+                    </div>`;
+                } else if (order.eta) {
+                    timeDisplay = `<div class="eta-container">
+                        <span class="eta-time">${order.eta} min</span>
+                        <div class="progress-indicator ${order.progressStatus}"></div>
+                    </div>`;
+                } else {
+                    timeDisplay = '<span style="color: var(--text-muted);">-</span>';
+                }
+
+                return `
+                <tr>
+                    <td><strong>${order.id}</strong></td>
+                    <td>${order.customer}</td>
+                    <td>
+                        <div class="driver-info">
+                            <div class="driver-avatar">${order.driver.name.split(' ').map(n => n[0]).join('')}</div>
+                            <div class="driver-details">
+                                <div class="driver-name">${order.driver.name}</div>
+                                <div class="driver-id">${order.driver.id}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td><span class="status-badge status-${order.status}">${order.status.replace('-', ' ')}</span></td>
+                    <td>
+                        <div class="destination-info">
+                            <div class="destination-address">${order.destination.address}</div>
+                            <div class="destination-distance">📍 ${order.destination.distance}</div>
+                        </div>
+                    </td>
+                    <td><strong>${order.amount}</strong></td>
+                    <td>${order.date}</td>
+                    <td>${timeDisplay}</td>
+                </tr>
+            `;
+            }).join('');
+
+            updatePaginationInfo();
+        }
+
+        // Setup filter functionality
+        function setupFilters() {
+            const searchFilter = document.getElementById('searchFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const driverFilter = document.getElementById('driverFilter');
+            const dateFilter = document.getElementById('dateFilter');
+
+            [searchFilter, statusFilter, driverFilter, dateFilter].forEach(filter => {
+                filter.addEventListener('change', applyFilters);
+                filter.addEventListener('input', applyFilters);
+            });
+        }
+
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('searchFilter').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const driverFilter = document.getElementById('driverFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+
+            filteredOrders = ordersData.filter(order => {
+                const matchesSearch = !searchTerm || 
+                    order.id.toLowerCase().includes(searchTerm) ||
+                    order.customer.toLowerCase().includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || order.status === statusFilter;
+                
+                const matchesDriver = !driverFilter || 
+                    order.driver.name.toLowerCase().includes(driverFilter);
+                
+                const matchesDate = !dateFilter || order.date === dateFilter;
+
+                return matchesSearch && matchesStatus && matchesDriver && matchesDate;
+            });
+
+            currentPage = 1;
+            renderOrders();
+        }
+
+        // Pagination functions
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+            const newPage = currentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                renderOrders();
+                updatePaginationButtons();
+            }
+        }
+
+        function goToPage(page) {
+            const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                renderOrders();
+                updatePaginationButtons();
+            }
+        }
+
+        function updatePaginationInfo() {
+            const startIndex = (currentPage - 1) * ordersPerPage;
+            const endIndex = Math.min(startIndex + ordersPerPage, filteredOrders.length);
+            
+            document.getElementById('showingStart').textContent = startIndex + 1;
+            document.getElementById('showingEnd').textContent = endIndex;
+            document.getElementById('totalOrders').textContent = filteredOrders.length;
+        }
+
+        function updatePaginationButtons() {
+            const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
+            
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+            
+            // Update active page button
+            document.querySelectorAll('.pagination-btn').forEach((btn, index) => {
+                if (index > 0 && index < 4) { // Skip prev/next buttons
+                    btn.classList.toggle('active', index === currentPage);
+                }
+            });
+        }
+
+        // Initialize dashboard when page loads
+        document.addEventListener('DOMContentLoaded', initDashboard);
+    </script>
+</body>
+</html>

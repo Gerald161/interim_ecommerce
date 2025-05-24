@@ -74,13 +74,6 @@ body {
     background: var(--surface);
 }
 
-.table_summary{
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 table {
     width: 100%;
     border-collapse: collapse;
