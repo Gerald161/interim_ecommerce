@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order - Vince</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+
+
+        .container {
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 1rem 2rem;
+        }
+
+        .tracking-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .order-id {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .status-badge {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-badge::before {
+            content: "🚚";
+            font-size: 1.2rem;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .map-section {
+            background: linear-gradient(135deg, #a8e6cf, #7fcdcd);
+            border-radius: 15px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="30" r="2" fill="rgba(255,255,255,0.3)"/><circle cx="80" cy="20" r="1.5" fill="rgba(255,255,255,0.4)"/><circle cx="60" cy="70" r="2.5" fill="rgba(255,255,255,0.2)"/><circle cx="30" cy="80" r="1" fill="rgba(255,255,255,0.5)"/><circle cx="90" cy="60" r="1.8" fill="rgba(255,255,255,0.3)"/></svg>') repeat;
+            opacity: 0.6;
+        }
+
+        .map-content {
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .map-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .order-details {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .progress-section {
+            margin: 2rem 0;
+        }
+
+        .progress-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .progress-bar {
+            position: relative;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            border-radius: 3px;
+            width: 80%;
+            position: relative;
+            animation: progressAnimation 2s ease-in-out;
+        }
+
+        @keyframes progressAnimation {
+            from { width: 0%; }
+            to { width: 80%; }
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step.completed .step-icon {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .step.current .step-icon {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .step.pending .step-icon {
+            background: #e0e0e0;
+            color: #999;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .contact-section {
+            background: rgba(248, 250, 252, 0.8);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-call {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+        }
+
+        .btn-text {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+
+            .nav-items {
+                gap: 1rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Track Your Order</h1>
+        
+        <div class="tracking-card">
+            <div class="order-header">
+                <div class="order-id">Order #KNUST-2025-001</div>
+                <div class="status-badge">In Delivery</div>
+            </div>
+
+            <div class="main-content">
+                <div class="map-section">
+                    <div class="map-content">
+                        <div class="map-icon">🗺️</div>
+                        <div class="map-text">Tracking your package in real-time</div>
+                    </div>
+                </div>
+
+                <div class="order-details">
+                    <div class="detail-item">
+                        <span class="detail-label">📍 Destination</span>
+                        <span class="detail-value">123 Ahinsan Estate, Kumasi</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">⏰ Order Time</span>
+                        <span class="detail-value">10:23 PM</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">📅 Date</span>
+                        <span class="detail-value">21/2/2025</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">🚚 ETA</span>
+                        <span class="detail-value" id="eta-display">12 mins</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <h3 class="progress-title">Delivery Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step completed">
+                        <div class="step-icon">✓</div>
+                        <div class="step-label">Order Confirmed</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step-icon">📦</div>
+                        <div class="step-label">Prepared</div>
+                    </div>
+                    <div class="step completed">
+                        <div class="step-icon">🚚</div>
+                        <div class="step-label">In Transit</div>
+                    </div>
+                    <div class="step current">
+                        <div class="step-icon">🚛</div>
+                        <div class="step-label">Out for Delivery</div>
+                    </div>
+                    <div class="step pending">
+                        <div class="step-icon">🏠</div>
+                        <div class="step-label">Delivered</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3 class="contact-title">Need Help?</h3>
+                <div class="contact-buttons">
+                    <button class="contact-btn btn-call" onclick="contactCourier('call')">
+                        📞 Call Courier
+                    </button>
+                    <button class="contact-btn btn-text" onclick="contactCourier('text')">
+                        💬 Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function contactCourier(method) {
+            if (method === 'call') {
+                // Simulate calling functionality
+                alert('📞 Calling courier...\n\nThis would typically open your phone app or initiate a call.');
+            } else if (method === 'text') {
+                // Simulate messaging functionality
+                alert('💬 Opening message...\n\nThis would typically open your messaging app or chat interface.');
+            }
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the progress steps
+            const steps = document.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.opacity = '0';
+                    step.style.transform = 'translateY(20px)';
+                    step.style.transition = 'all 0.5s ease';
+                    setTimeout(() => {
+                        step.style.opacity = '1';
+                        step.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+
+            // Add hover effects to contact buttons
+            const contactButtons = document.querySelectorAll('.contact-btn');
+            contactButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px) scale(1.05)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Update ETA countdown with realistic decreasing time
+        let currentETA = 12; // Starting ETA in minutes
+        
+        function updateETA() {
+            const etaElement = document.getElementById('eta-display');
+            
+            // Decrease ETA by 1 minute, but add some randomness
+            const decrease = Math.random() > 0.3 ? 1 : 0; // 70% chance to decrease
+            currentETA = Math.max(1, currentETA - decrease); // Don't go below 1 minute
+            
+            etaElement.textContent = `${currentETA} mins`;
+            
+            // Add a subtle animation when ETA updates
+            etaElement.style.transform = 'scale(1.1)';
+            etaElement.style.color = '#ff6b6b';
+            setTimeout(() => {
+                etaElement.style.transform = 'scale(1)';
+                etaElement.style.color = '#333';
+            }, 300);
+        }
+
+        // Update ETA every 45 seconds for demo purposes
+        setInterval(updateETA, 45000);
+    </script>
+</body>
+</html>

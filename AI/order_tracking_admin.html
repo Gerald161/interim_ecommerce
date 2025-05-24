@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Order Tracking</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            min-height: 100vh;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar h2 {
+            color: #f8fafc;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(51, 65, 85, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 50px;
+            color: #e2e8f0;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-box input::placeholder {
+            color: #94a3b8;
+        }
+
+        .drivers-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 70vh;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .drivers-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .drivers-list::-webkit-scrollbar-track {
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 3px;
+        }
+
+        .drivers-list::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 3px;
+        }
+
+        .driver-card {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .driver-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .driver-card:hover::before {
+            left: 100%;
+        }
+
+        .driver-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .driver-card.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .driver-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .driver-details h3 {
+            color: #f8fafc;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .driver-details p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .driver-status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-delivering {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .status-pending {
+            background: rgba(251, 146, 60, 0.2);
+            color: #fb923c;
+            border: 1px solid rgba(251, 146, 60, 0.3);
+        }
+
+        .status-transit {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-delivery {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-delivering .status-dot {
+            background: #22c55e;
+        }
+
+        .status-pending .status-dot {
+            background: #fb923c;
+        }
+
+        .status-transit .status-dot {
+            background: #3b82f6;
+        }
+
+        .status-delivery .status-dot {
+            background: #ef4444;
+        }
+
+        .main-content {
+            background: rgba(30, 41, 59, 0.9);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: slideInRight 0.6s ease-out;
+            overflow: hidden;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .content-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            padding: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotateReverse 25s linear infinite;
+        }
+
+        @keyframes rotateReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header-title p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .content-body {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+            height: calc(100vh - 200px);
+        }
+
+        .map-section {
+            background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder {
+            text-align: center;
+            color: #e2e8f0;
+        }
+
+        .map-placeholder h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .map-placeholder p {
+            opacity: 0.6;
+        }
+
+        .order-details {
+            background: rgba(51, 65, 85, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .order-header {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .order-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f8fafc;
+            margin-bottom: 10px;
+        }
+
+        .order-time {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .order-progress {
+            margin-bottom: 30px;
+        }
+
+        .progress-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f8fafc;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            background: rgba(51, 65, 85, 0.8);
+            height: 8px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #22c55e, #16a34a);
+            width: 75%;
+            border-radius: 4px;
+            animation: fillProgress 2s ease-out;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 75%; }
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .step.completed .step-icon {
+            background: #22c55e;
+            color: white;
+        }
+
+        .step.active .step-icon {
+            background: #3b82f6;
+            color: white;
+            animation: bounce 1s infinite;
+        }
+
+        .step.pending .step-icon {
+            background: rgba(51, 65, 85, 0.8);
+            color: #94a3b8;
+            border: 2px solid rgba(148, 163, 184, 0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .step-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .step.completed .step-label,
+        .step.active .step-label {
+            color: #e2e8f0;
+        }
+
+        .order-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .info-value {
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .contact-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-call {
+            background: #22c55e;
+            color: white;
+        }
+
+        .btn-call:hover {
+            background: #16a34a;
+            transform: translateY(-2px);
+        }
+
+        .btn-message {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-message:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .content-body {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                height: auto;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>All Shipping</h2>
+            <div class="search-box">
+                <input type="text" placeholder="Search for driver..." id="searchInput">
+            </div>
+            <div class="drivers-list" id="driversList">
+                <div class="driver-card active" onclick="selectDriver(this, 'driver1')">
+                    <div class="driver-info">
+                        <div class="driver-avatar">JD</div>
+                        <div class="driver-details">
+                            <h3>#Driver Name</h3>
+                            <p>Some Optional</p>
+                        </div>
+                    </div>
+                    <div class="driver-status">
+                        <div class="status-indicator status-delivering">
+                            <div class="status-dot"></div>
+                            Delivering
+                        </div>
+                    </div>
+                </div>
+
+                <div class="driver-card" onclick="selectDriver(this, 'driver2')">
+                    <div class="driver-info">
+                        <div class="driver-avatar">MS</div>
+                        <div class="driver-details">
+                            <h3>#Driver Name</h3>
+                            <p>Some Optional</p>
+                        </div>
+                    </div>
+                    <div class="driver-status">
+                        <div class="status-indicator status-pending">
+                            <div class="status-dot"></div>
+                            Pending
+                        </div>
+                    </div>
+                </div>
+
+                <div class="driver-card" onclick="selectDriver(this, 'driver3')">
+                    <div class="driver-info">
+                        <div class="driver-avatar">RJ</div>
+                        <div class="driver-details">
+                            <h3>#Driver Name</h3>
+                            <p>Some Optional</p>
+                        </div>
+                    </div>
+                    <div class="driver-status">
+                        <div class="status-indicator status-transit">
+                            <div class="status-dot"></div>
+                            In Transit
+                        </div>
+                    </div>
+                </div>
+
+                <div class="driver-card" onclick="selectDriver(this, 'driver4')">
+                    <div class="driver-info">
+                        <div class="driver-avatar">AL</div>
+                        <div class="driver-details">
+                            <h3>#Driver Name</h3>
+                            <p>Some Optional</p>
+                        </div>
+                    </div>
+                    <div class="driver-status">
+                        <div class="status-indicator status-delivery">
+                            <div class="status-dot"></div>
+                            Out for Delivery
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="content-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1>Track Order on Map</h1>
+                        <p>Real-time delivery monitoring and management</p>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat">
+                            <div class="stat-number">12</div>
+                            <div class="stat-label">Active Orders</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Drivers Online</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">On-time Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="map-section">
+                    <div class="map-placeholder">
+                        <h3>🗺️ Live Tracking Map</h3>
+                        <p>Select a driver to view their real-time location</p>
+                    </div>
+                </div>
+
+                <div class="order-details" id="orderDetails">
+                    <div class="order-header">
+                        <div class="order-number">Order #KNUST-2025-001</div>
+                        <div class="order-time">10:23 PM (21/2/2025)</div>
+                    </div>
+
+                    <div class="order-progress">
+                        <div class="progress-title">Delivery Progress</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="progress-steps">
+                            <div class="step completed">
+                                <div class="step-icon">✓</div>
+                                <div class="step-label">Confirmed</div>
+                            </div>
+                            <div class="step completed">
+                                <div class="step-icon">📦</div>
+                                <div class="step-label">Prepared</div>
+                            </div>
+                            <div class="step completed">
+                                <div class="step-icon">🚚</div>
+                                <div class="step-label">In Transit</div>
+                            </div>
+                            <div class="step active">
+                                <div class="step-icon">🚛</div>
+                                <div class="step-label">Out for Delivery</div>
+                            </div>
+                            <div class="step pending">
+                                <div class="step-icon">🏠</div>
+                                <div class="step-label">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="order-info">
+                        <div class="info-row">
+                            <span class="info-label">📍 Destination</span>
+                            <span class="info-value">Ahinsan Estate, Kumasi</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">⏰ ETA</span>
+                            <span class="info-value">12 mins</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">🚚 Driver</span>
+                            <span class="info-value">John Doe</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">📱 Contact</span>
+                            <span class="info-value">+233 123 456 789</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">💰 Order Value</span>
+                            <span class="info-value">$125.50</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-section">
+                        <div class="contact-buttons">
+                            <button class="btn btn-call">
+                                📞 Call Driver
+                            </button>
+                            <button class="btn btn-message">
+                                💬 Send Message
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample driver data
+        const driversData = {
+            driver1: {
+                name: "John Doe",
+                status: "Delivering",
+                statusClass: "status-delivering",
+                order: "KNUST-2025-001",
+                time: "10:23 PM (21/2/2025)",
+                destination: "Ahinsan Estate, Kumasi",
+                eta: "12 mins",
+                contact: "+233 123 456 789",
+                value: "$125.50",
+                progress: 75
+            },
+            driver2: {
+                name: "Mike Smith",
+                status: "Pending",
+                statusClass: "status-pending",
+                order: "KNUST-2025-002",
+                time: "09:45 PM (21/2/2025)",
+                destination: "Tech Junction, Kumasi",
+                eta: "Pending pickup",
+                contact: "+233 123 456 790",
+                value: "$89.25",
+                progress: 25
+            },
+            driver3: {
+                name: "Robert Johnson",
+                status: "In Transit",
+                statusClass: "status-transit",
+                order: "KNUST-2025-003",
+                time: "10:15 PM (21/2/2025)",
+                destination: "Unity Hall, KNUST",
+                eta: "25 mins",
+                contact: "+233 123 456 791",
+                value: "$156.75",
+                progress: 50
+            },
+            driver4: {
+                name: "Alice Brown",
+                status: "Out for Delivery",
+                statusClass: "status-delivery",
+                order: "KNUST-2025-004",
+                time: "10:30 PM (21/2/2025)",
+                destination: "Republic Hall, KNUST",
+                eta: "8 mins",
+                contact: "+233 123 456 792",
+                value: "$203.40",
+                progress: 85
+            }
+        };
+
+        function selectDriver(element, driverId) {
+            // Remove active class from all driver cards
+            document.querySelectorAll('.driver-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            // Add active class to selected card
+            element.classList.add('active');
+            
+            // Update order details
+            updateOrderDetails(driverId);
+        }
+
+        function updateOrderDetails(driverId) {
+            const driver = driversData[driverId];
+            if (!driver) return;
+
+            const orderDetails = document.getElementById('orderDetails');
+            
+            // Update order header
+            orderDetails.querySelector('.order-number').textContent = `Order #${driver.order}`;
+            orderDetails.querySelector('.order-time').textContent = driver.time;
+            
+            // Update progress bar
+            const progressFill = orderDetails.querySelector('.progress-fill');
+            progressFill.style.width = `${driver.progress}%`;
+            
+            // Update progress steps
+            const steps = orderDetails.querySelectorAll('.step');
+            steps.forEach((step, index) => {
+                step.classList.remove('completed', 'active', 'pending');
+                if (index < Math.floor(driver.progress / 20)) {
+                    step.classList.add('completed');
+                } else if (index === Math.floor(driver.progress / 20)) {
+                    step.classList.add('active');
+                } else {
+                    step.classList.add('pending');
+                }
+            });
+            
+            // Update order info
+            const infoRows = orderDetails.querySelectorAll('.info-row');
+            infoRows[0].querySelector('.info-value').textContent = driver.destination;
+            infoRows[1].querySelector('.info-value').textContent = driver.eta;
+            infoRows[2].querySelector('.info-value').textContent = driver.name;
+            infoRows[3].querySelector('.info-value').textContent = driver.contact;
+            infoRows[4].querySelector('.info-value').textContent = driver.value;
+        }
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const driverCards = document.querySelectorAll('.driver-card');
+            
+            driverCards.forEach(card => {
+                const driverName = card.querySelector('h3').textContent.toLowerCase();
+                if (driverName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Initialize with first driver selected
+        updateOrderDetails('driver1');
+    </script>
+</body>
+</html>
