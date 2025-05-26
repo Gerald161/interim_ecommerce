@@ -1,0 +1,94 @@
+.nav_categories_container{
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    margin-top: 76px;
+}
+
+.nav_categories_container{
+    gap: 20px;
+}
+
+.nav_categories_container .vertical_categories_container{
+    position: relative;
+}
+
+.nav_categories_container .vertical_categories_container .all_categories_container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.5s;
+}
+
+.nav_categories_container .vertical_categories_container .all_categories_container:hover{
+    background-color: #CCC;
+}
+
+.nav_categories_container .vertical_categories_container .vertical_categories{
+    width: 100%;
+    position: absolute;
+    background-color: #eee;
+    border-radius: 10px;
+    z-index: 200;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.category_plus_icon{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.5s;
+    padding: 10px;
+}
+
+.category_plus_icon:hover{
+    color: dodgerblue;
+    background: #e0e0e0;
+}
+
+.category_plus_icon img{
+    width: 20px;
+    height: 20px;
+}
+
+.nav_categories_container .horizontal_categories{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.horizontal_categories .category_plus_icon{
+    border-radius: 10px;
+}
+
+@media(max-width: 700px){
+    .nav_categories_container{
+        margin-top: 65px;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .nav_categories_container .vertical_categories_container .vertical_categories{
+        background-color: #1f1f1f;
+    }
+
+    .nav_categories_container .vertical_categories_container .all_categories_container i{
+        color: white;
+    }
+
+    .nav_categories_container .vertical_categories_container .all_categories_container:hover{
+        background-color: #2C2C2C;
+    }
+
+    .category_plus_icon:hover{
+        background: #2a2a2a;
+    }
+}
