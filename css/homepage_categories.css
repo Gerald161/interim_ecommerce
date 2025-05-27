@@ -80,6 +80,11 @@
     display: flex;
 }
 
+/* ai code below */
+.vertical_categories .category_with_submenu:hover > .category_plus_icon{
+    color: dodgerblue;
+}
+
 .nav_categories_container .vertical_categories_container .vertical_categories .subcategories_container a{
     transition: all 0.3s;
     padding: 10px;
@@ -99,6 +104,11 @@
 .horizontal_categories .category_with_submenu{
     width: 100%;
     position: relative;
+}
+
+/* ai code below */
+.horizontal_categories .category_with_submenu:hover > .category_plus_icon {
+    color: dodgerblue;
 }
 
 .horizontal_categories .subcategories_container{

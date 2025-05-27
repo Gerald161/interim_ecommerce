@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dropdown with Highlighted Parent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+
+    .menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .menu > a {
+      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .dropdown, .submenu {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 180px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    .dropdown a, .submenu a {
+      padding: 10px;
+      display: block;
+      color: #333;
+      text-decoration: none;
+    }
+
+    .dropdown a:hover, .submenu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .menu:hover .dropdown {
+      display: block;
+    }
+
+    .has-submenu {
+      position: relative;
+    }
+
+    .has-submenu:hover > a,
+    .has-submenu:hover .submenu,
+    .has-submenu .submenu:hover {
+      background-color: #e0e0e0;
+      color: dodgerblue;
+    }
+
+    .has-submenu:hover .submenu {
+      display: block;
+      top: 0;
+      left: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<div class="menu">
+  <a href="#">Categories</a>
+  <div class="dropdown">
+    <div class="has-submenu">
+      <a href="#">Electronics</a>
+      <div class="submenu">
+        <a href="#">Phones</a>
+        <a href="#">Laptops</a>
+        <a href="#">Cameras</a>
+      </div>
+    </div>
+    <div class="has-submenu">
+      <a href="#">Fashion</a>
+      <div class="submenu">
+        <a href="#">Men</a>
+        <a href="#">Women</a>
+      </div>
+    </div>
+    <a href="#">Home Appliances</a>
+  </div>
+</div>
+
+</body>
+</html>
