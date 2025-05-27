@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce Navigation Drawer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Theme classes */
+        .light-theme {
+            background-color: white;
+            color: #111827;
+        }
+
+        .dark-theme {
+            background-color: #111827;
+            color: white;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid;
+            transition: border-color 0.3s;
+        }
+
+        .light-theme .header {
+            border-color: #e5e7eb;
+        }
+
+        .dark-theme .header {
+            border-color: #374151;
+        }
+
+        .header-btn {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .light-theme .header-btn {
+            color: #111827;
+        }
+
+        .light-theme .header-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .dark-theme .header-btn {
+            color: white;
+        }
+
+        .dark-theme .header-btn:hover {
+            background-color: #1f2937;
+        }
+
+        .dark-theme .theme-btn {
+            color: #fbbf24;
+        }
+
+        .light-theme .theme-btn {
+            color: #6b7280;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Navigation Drawer */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 20rem;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            z-index: 50;
+            border-right: 1px solid;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-drawer.open {
+            transform: translateX(0);
+        }
+
+        .light-theme .nav-drawer {
+            background-color: white;
+            border-color: #e5e7eb;
+        }
+
+        .dark-theme .nav-drawer {
+            background-color: #1f2937;
+            border-color: #374151;
+        }
+
+        /* Drawer Header */
+        .drawer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid;
+        }
+
+        .light-theme .drawer-header {
+            border-color: #e5e7eb;
+        }
+
+        .dark-theme .drawer-header {
+            border-color: #374151;
+        }
+
+        .drawer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .drawer-logo-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(to bottom right, #3b82f6, #8b5cf6);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .drawer-logo-text h2 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.125rem;
+        }
+
+        .drawer-logo-text p {
+            font-size: 0.875rem;
+        }
+
+        .light-theme .drawer-logo-text p {
+            color: #6b7280;
+        }
+
+        .dark-theme .drawer-logo-text p {
+            color: #9ca3af;
+        }
+
+        .close-btn {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .light-theme .close-btn {
+            color: #6b7280;
+        }
+
+        .light-theme .close-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .dark-theme .close-btn {
+            color: #d1d5db;
+        }
+
+        .dark-theme .close-btn:hover {
+            background-color: #374151;
+        }
+
+        /* Drawer Content */
+        .drawer-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .nav-section {
+            padding: 1rem;
+        }
+
+        .nav-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .light-theme .nav-section-title {
+            color: #6b7280;
+        }
+
+        .dark-theme .nav-section-title {
+            color: #9ca3af;
+        }
+
+        .nav-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+        }
+
+        .nav-item:hover {
+            transform: scale(1.02);
+        }
+
+        .light-theme .nav-item {
+            color: #374151;
+        }
+
+        .light-theme .nav-item:hover {
+            background-color: #f9fafb;
+        }
+
+        .dark-theme .nav-item {
+            color: #e5e7eb;
+        }
+
+        .dark-theme .nav-item:hover {
+            background-color: #374151;
+        }
+
+        .nav-item-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nav-item-label {
+            font-weight: 500;
+        }
+
+        .badge {
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+
+        .badge-new {
+            background: linear-gradient(to right, #10b981, #059669);
+        }
+
+        .badge-number {
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+        }
+
+        .badge-sale {
+            background: linear-gradient(to right, #ef4444, #ec4899);
+        }
+
+        .badge-fresh {
+            background: linear-gradient(to right, #eab308, #f59e0b);
+        }
+
+        .badge-hot {
+            background: linear-gradient(to right, #8b5cf6, #ec4899);
+        }
+
+        /* Drawer Footer */
+        .drawer-footer {
+            padding: 1rem;
+            border-top: 1px solid;
+        }
+
+        .light-theme .drawer-footer {
+            border-color: #e5e7eb;
+        }
+
+        .dark-theme .drawer-footer {
+            border-color: #374151;
+        }
+
+        .sign-out-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.75rem;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .sign-out-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .light-theme .sign-out-btn {
+            color: #dc2626;
+        }
+
+        .light-theme .sign-out-btn:hover {
+            background-color: #fef2f2;
+        }
+
+        .dark-theme .sign-out-btn {
+            color: #f87171;
+        }
+
+        .dark-theme .sign-out-btn:hover {
+            background-color: rgba(153, 27, 27, 0.2);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .content-card {
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid;
+            transition: all 0.3s;
+        }
+
+        .light-theme .content-card {
+            border-color: #e5e7eb;
+            background-color: rgba(249, 250, 251, 0.5);
+        }
+
+        .dark-theme .content-card {
+            border-color: #374151;
+            background-color: rgba(31, 41, 55, 0.5);
+        }
+
+        .content-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .content-description {
+            margin-bottom: 1.5rem;
+        }
+
+        .light-theme .content-description {
+            color: #4b5563;
+        }
+
+        .dark-theme .content-description {
+            color: #d1d5db;
+        }
+
+        /* Icon styles */
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            vertical-align: middle;
+        }
+
+        .icon-lg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <!-- Header -->
+    <div class="header">
+        <button class="header-btn" id="menuBtn">
+            <svg class="icon icon-lg" viewBox="0 0 24 24">
+                <line x1="4" x2="20" y1="6" y2="6"/>
+                <line x1="4" x2="20" y1="12" y2="12"/>
+                <line x1="4" x2="20" y1="18" y2="18"/>
+            </svg>
+        </button>
+        
+        <h1 class="logo">ShopZone</h1>
+        
+        <button class="header-btn theme-btn" id="themeBtn">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navigation Drawer -->
+    <div class="nav-drawer" id="navDrawer">
+        <!-- Drawer Header -->
+        <div class="drawer-header">
+            <div class="drawer-logo">
+                <div class="drawer-logo-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                        <path d="M3 6h18"/>
+                        <path d="M16 10a4 4 0 0 1-8 0"/>
+                    </svg>
+                </div>
+                <div class="drawer-logo-text">
+                    <h2>ShopZone</h2>
+                    <p>Welcome back!</p>
+                </div>
+            </div>
+            <button class="close-btn" id="closeBtn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="m18 6-12 12"/>
+                    <path d="m6 6 12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Drawer Content -->
+        <div class="drawer-content">
+            <!-- Quick Actions -->
+            <div class="nav-section">
+                <h3 class="nav-section-title">Quick Actions</h3>
+                <div class="nav-items">
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+                                <path d="M3 6h18"/>
+                                <path d="M16 10a4 4 0 0 1-8 0"/>
+                            </svg>
+                            <span class="nav-item-label">Cart</span>
+                        </div>
+                        <span class="badge badge-number">3</span>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>
+                            </svg>
+                            <span class="nav-item-label">Wishlist</span>
+                        </div>
+                        <span class="badge badge-number">12</span>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span class="nav-item-label">My Reviews</span>
+                        </div>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M16 12l-4-4-4 4"/>
+                                <path d="M12 16V8"/>
+                            </svg>
+                            <span class="nav-item-label">Deals & Offers</span>
+                        </div>
+                        <span class="badge badge-new">New</span>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M14 18V6a2 2 0 0 0-2-2c-1.1 0-2 .9-2 2v12"/>
+                                <path d="M15 18H9"/>
+                                <path d="M19 18h2.5c.8 0 1.5-.7 1.5-1.5v-9c0-.8-.7-1.5-1.5-1.5H19"/>
+                                <path d="M5 18H2.5c-.8 0-1.5-.7-1.5-1.5v-9c0-.8.7-1.5 1.5-1.5H5"/>
+                            </svg>
+                            <span class="nav-item-label">Track Orders</span>
+                        </div>
+                        <span class="badge badge-number">2</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Browse -->
+            <div class="nav-section">
+                <h3 class="nav-section-title">Browse</h3>
+                <div class="nav-items">
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                            <span class="nav-item-label">Sale & Clearance</span>
+                        </div>
+                        <span class="badge badge-sale">50% Off</span>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                            </svg>
+                            <span class="nav-item-label">New Arrivals</span>
+                        </div>
+                        <span class="badge badge-fresh">Fresh</span>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/>
+                            </svg>
+                            <span class="nav-item-label">Trending Now</span>
+                        </div>
+                        <span class="badge badge-hot">Hot</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Account -->
+            <div class="nav-section">
+                <h3 class="nav-section-title">Account</h3>
+                <div class="nav-items">
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                            <span class="nav-item-label">My Profile</span>
+                        </div>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M14 18V6a2 2 0 0 0-2-2c-1.1 0-2 .9-2 2v12"/>
+                                <path d="M15 18H9"/>
+                                <path d="M19 18h2.5c.8 0 1.5-.7 1.5-1.5v-9c0-.8-.7-1.5-1.5-1.5H19"/>
+                                <path d="M5 18H2.5c-.8 0-1.5-.7-1.5-1.5v-9c0-.8.7-1.5 1.5-1.5H5"/>
+                            </svg>
+                            <span class="nav-item-label">Order History</span>
+                        </div>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <rect width="20" height="14" x="2" y="5" rx="2"/>
+                                <line x1="2" x2="22" y1="10" y2="10"/>
+                            </svg>
+                            <span class="nav-item-label">Payment Methods</span>
+                        </div>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                            <span class="nav-item-label">Saved Addresses</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Support -->
+            <div class="nav-section">
+                <h3 class="nav-section-title">Support</h3>
+                <div class="nav-items">
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <path d="M12 17h.01"/>
+                            </svg>
+                            <span class="nav-item-label">Help Center</span>
+                        </div>
+                    </button>
+                    <button class="nav-item">
+                        <div class="nav-item-content">
+                            <svg class="icon" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 1v6m0 6v6"/>
+                                <path d="m15.14 4.14 4.24 4.24m-4.24 7.24 4.24 4.24"/>
+                                <path d="M4.14 4.14 8.38 8.38m7.24 7.24 4.24 4.24"/>
+                                <path d="M1 12h6m6 0h6"/>
+                            </svg>
+                            <span class="nav-item-label">Settings</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawer Footer -->
+        <div class="drawer-footer">
+            <button class="sign-out-btn">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" x2="9" y1="12" y2="12"/>
+                </svg>
+                <span>Sign Out</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-card">
+            <h2 class="content-title">Ecommerce Navigation Drawer</h2>
+            <p class="content-description">
+                Click the menu button in the top-left corner to open the navigation drawer. 
+                The drawer includes all essential ecommerce navigation options with beautiful animations, 
+                expandable categories, badges for cart items, and full support for light and dark themes.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // State variables
+            let isDrawerOpen = false;
+            let isDark = false;
+
+            // DOM elements
+            const body = document.body;
+            const menuBtn = document.getElementById('menuBtn');
+            const themeBtn = document.getElementById('themeBtn');
+            const closeBtn = document.getElementById('closeBtn');
+            const overlay = document.getElementById('overlay');
+            const navDrawer = document.getElementById('navDrawer');
+
+            // Toggle drawer
+            function toggleDrawer() {
+                isDrawerOpen = !isDrawerOpen;
+                
+                if (isDrawerOpen) {
+                    navDrawer.classList.add('open');
+                    overlay.classList.add('show');
+                } else {
+                    navDrawer.classList.remove('open');
+                    overlay.classList.remove('show');
+                }
+            }
+
+            // Toggle theme
+            function toggleTheme() {
+                isDark = !isDark;
+                
+                if (isDark) {
+                    body.classList.remove('light-theme');
+                    body.classList.add('dark-theme');
+                    themeBtn.innerHTML = `
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="5"/>
+                            <path d="M12 1v2"/>
+                            <path d="M12 21v2"/>
+                            <path d="M4.22 4.22l1.42 1.42"/>
+                            <path d="M18.36 18.36l1.42 1.42"/>
+                            <path d="M1 12h2"/>
+                            <path d="M21 12h2"/>
+                            <path d="M4.22 19.78l1.42-1.42"/>
+                            <path d="M18.36 5.64l1.42-1.42"/>
+                        </svg>
+                    `;
+                } else {
+                    body.classList.remove('dark-theme');
+                    body.classList.add('light-theme');
+                    themeBtn.innerHTML = `
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    `;
+                }
+            }
+
+            // Event listeners
+            menuBtn.addEventListener('click', toggleDrawer);
+            closeBtn.addEventListener('click', toggleDrawer);
+            overlay.addEventListener('click', toggleDrawer);
+            themeBtn.addEventListener('click', toggleTheme);
+
+            // Close drawer on escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isDrawerOpen) {
+                    toggleDrawer();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
