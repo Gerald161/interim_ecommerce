@@ -490,39 +490,6 @@
         <div class="featured_products">
             
 		</div>
-
-        <div class="faq_section">
-			<div class="image_section">
-				<img src="./images/customer.jpg" alt="">
-			</div>
-			<div class="faq-container">
-				<h2>Queries about Vineyard</h2>
-				<div class="faq-item">
-					<button class="faq-question">
-					What is your return policy? <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
-					</button>
-					<div class="faq-answer">
-					<p>You can return items within 30 days of purchase with a receipt.</p>
-					</div>
-				</div>
-				<div class="faq-item">
-					<button class="faq-question">
-					Do you offer international shipping? <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
-					</button>
-					<div class="faq-answer">
-					<p>Yes, we ship worldwide. Shipping charges may vary by location.</p>
-					</div>
-				</div>
-				<div class="faq-item">
-					<button class="faq-question">
-					How can I track my order? <span class="arrow"><i class="fa-solid fa-chevron-down"></i></span>
-					</button>
-					<div class="faq-answer">
-					<p>You can track your order using the tracking link provided in your email.</p>
-					</div>
-				</div>
-			</div>
-		</div>
     </main>
 
     <footer>
@@ -543,9 +510,9 @@
 
         <div class="footer_info">
             <h2>CUSTOMER CARE</h2>
-            <a href="tel:+447767624362">07767624362</a>
-            <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
-			<a href="#">Vince Vineyard Charity</a>
+            <a href="tel:+233594678132">0594678132</a>
+            <a href="mailto:gerald@gmail.com">hello@commercemail.com</a>
+			<a href="faq.html">FAQ</a>
         </div>
     </footer>
 
@@ -557,10 +524,10 @@
             <a href="#"><i class="fab fa-youtube"></i></a>
     	</div>
     	<div style="text-align: center;">
-    		<p>&copy2025 Vince Vineyard Empire Company Limited</p>
+    		<p>&copy2025 Ecommerce Site Company Limited</p>
     	</div>
     	<div class="terms">
-    		<a href="website_t&c_and_privacy_policy.pdf" download="">Terms & Conditions</a>
+    		<a href="" download="">Terms & Conditions</a>
     	</div>
     </div>
 
@@ -793,21 +760,6 @@
 				}
 			});
 		});
-
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                const isActive = faqItem.classList.contains('active');
-
-                // Close all other FAQ items
-                document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
-
-                // Toggle the clicked FAQ item
-                if (!isActive) {
-                	faqItem.classList.add('active');
-                }
-            });
-        });
     </script>
 
 	<script src="./js/homesearch.js"></script>

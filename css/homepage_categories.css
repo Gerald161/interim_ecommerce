@@ -143,11 +143,15 @@
 }
 
 @media(max-width: 700px){
-    .nav_categories_container{
+    /* .nav_categories_container{
         margin-top: 65px;
     }
 
     .nav_categories_container .vertical_categories_container{
+        display: none;
+    } */
+
+    .nav_categories_container{
         display: none;
     }
 }

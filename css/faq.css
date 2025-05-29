@@ -1,0 +1,95 @@
+.faq_section{
+    display: flex;
+    gap: 10px;
+    margin: 40px 0;
+}
+
+.faq_section .image_section{
+    flex: 1;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    min-height: 55vh;
+    max-height: 55vh;
+}
+
+.faq_section .image_section img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.faq-container {
+    flex: 1;
+    border-radius: 8px;
+}
+
+.faq-container h2{
+    margin-bottom: 20px;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.faq-question{
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    outline: none;
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.faq-answer p {
+    margin: 10px 0;
+}
+
+.faq-question:hover {
+    background-color: var(--border-color);
+}
+
+.arrow {
+    transition: transform 0.3s;
+}
+  
+.faq-item.active .faq-answer {
+    max-height: 150px;
+    padding: 15px;
+}
+  
+.faq-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+/*this here below is a maybe*/
+.faq-item.active .faq-question{
+    background-color: var(--border-color);
+}
+
+@media(max-width: 700px){
+    .faq_section .image_section{
+        display: none;
+    }
+
+    .faq-container {
+        width: 100%;
+    }
+}
