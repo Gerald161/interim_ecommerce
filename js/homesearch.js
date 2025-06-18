@@ -59,3 +59,43 @@ allInputs.forEach((input, index)=>{
         searchSuggestions[1].style.display = "none";
     })
 })
+
+// below is for the second search bar
+var show_search_form_button = document.querySelector(".show_search_form_button");
+
+var second_header_form = document.querySelector("header").querySelector(".second_form");
+
+show_search_form_button.addEventListener("click", (e)=>{
+    e.preventDefault();
+    second_header_form.classList.toggle("show_header");
+});
+
+var categories_containers = document.querySelectorAll(".categories_container");
+
+var all_categories = [
+    ["Clothes", "Bags", "Jewelry"], ["Shoes",
+    "Cars", "Spare Parts", "Electronics",
+    "Used Items", "Beads and Bead Designs", "Gold", "Diamonds"]
+]
+
+categories_containers.forEach((category_container, index)=>{
+    if(index % 2 == 0){
+        all_categories[0].forEach((category)=>{
+            category_container.innerHTML += `
+                <a href="subcategories.html" class="category">
+                    <div class="representation"></div>
+                    <p>${category}</p>
+                </a>
+            `
+        })
+    }else{
+        all_categories[1].forEach((category)=>{
+            category_container.innerHTML += `
+                <a href="subcategories.html" class="category">
+                    <div class="representation"></div>
+                    <p>${category}</p>
+                </a>
+            `
+        })
+    }
+})

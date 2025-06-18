@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/categories.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/navbar.css">
+	<link rel="stylesheet" href="./css/footer.css">
 	<link rel="stylesheet" href="./css/homepage_categories.css">
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -567,201 +569,12 @@
 		closeButton.addEventListener("click", (e)=>{
             sideBar.style.left = "100%";
         });
-
-        var show_search_form_button = document.querySelector(".show_search_form_button");
-
-        var second_header_form = document.querySelector("header").querySelector(".second_form");
-        
-        show_search_form_button.addEventListener("click", (e)=>{
-            e.preventDefault();
-            second_header_form.classList.toggle("show_header");
-        });
-
-		var categories_containers = document.querySelectorAll(".categories_container");
-
-		var all_categories = [
-			["Clothes", "Bags", "Jewelry"], ["Shoes",
-			"Cars", "Spare Parts", "Electronics",
-			"Used Items", "Beads and Bead Designs", "Gold", "Diamonds"]
-		]
-
-		categories_containers.forEach((category_container, index)=>{
-			if(index % 2 == 0){
-				all_categories[0].forEach((category)=>{
-					category_container.innerHTML += `
-						<a href="subcategories.html" class="category">
-							<div class="representation"></div>
-							<p>${category}</p>
-						</a>
-					`
-				})
-			}else{
-				all_categories[1].forEach((category)=>{
-					category_container.innerHTML += `
-						<a href="subcategories.html" class="category">
-							<div class="representation"></div>
-							<p>${category}</p>
-						</a>
-					`
-				})
-			}
-		})
-
-        var allImages = [
-			[
-			{
-				"image": 5,
-				"name": "Diamond Ring",
-				"price": "45.5"
-			},
-			{
-				"image": 6,
-				"name": "Jeans",
-				"price": "50.0"
-			},
-			{
-				"image": 7,
-				"name": "Sneakers",
-				"price": "25.5"
-			},
-			{
-				"image": 8,
-				"name": "Gold Necklace",
-				"price": "30.0"
-			},
-			{
-				"image":2,
-				"name": "Diamond Earrings",
-				"price": "50.0"
-			},
-			{
-				"image": 1,
-				"name": "Jade Pendant",
-				"price": "45.5"
-			},
-			{
-				"image":2,
-				"name": "Diamond Earrings",
-				"price": "50.0"
-			},
-			{
-				"image": 3,
-				"name": "Jade Necklace",
-				"price": "25.5"
-			},
-			{
-				"image": 4,
-				"name": "Kente",
-				"price": "30.0"
-			},
-			{
-				"image": 7,
-				"name": "Sneakers",
-				"price": "25.5"
-			},
-			],
-			[
-			{
-				"image": 1,
-				"name": "Jade Pendant",
-				"price": "45.5"
-			},
-			{
-				"image":2,
-				"name": "Diamond Earrings",
-				"price": "50.0"
-			},
-			{
-				"image": 3,
-				"name": "Jade Necklace",
-				"price": "25.5"
-			},
-			{
-				"image": 4,
-				"name": "Kente",
-				"price": "30.0"
-			},
-			{
-				"image": 7,
-				"name": "Sneakers",
-				"price": "25.5"
-			},
-			{
-				"image": 5,
-				"name": "Diamond Ring",
-				"price": "45.5"
-			},
-			{
-				"image": 6,
-				"name": "Jeans",
-				"price": "50.0"
-			},
-			{
-				"image": 7,
-				"name": "Sneakers",
-				"price": "25.5"
-			},
-			{
-				"image": 8,
-				"name": "Gold Necklace",
-				"price": "30.0"
-			},
-			{
-				"image":2,
-				"name": "Diamond Earrings",
-				"price": "50.0"
-			},
-			],
-		];
-
-        const featured_products = document.querySelectorAll(".featured_products");
-        
-        featured_products.forEach((featured_product, index)=>{
-            allImages[index].forEach((image, index2)=>{
-                featured_product.innerHTML += `
-                <a href="product.html" class="product">
-                    <div class="image_container">
-                        <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
-						${index2 % 2 == 0 && `<div class="badge">30% off</div>`}
-                    </div>
-
-                    <i class="fa-regular fa-heart like_button"></i>
-
-                    <h3>${image.name}</h3>
-
-                    <div class="price_and_discount">
-						<p>£${image.price}</p>
-						<span>${index2 % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
-					</div>
-
-					<div class="add_container">
-						<p>${index2 % 2 == 0 ? "Added to cart": "Add to cart"}</p>
-						${index2 % 2 == 0 ? 
-						`<i class="fa-solid fa-check add_cart_button success_added"></i>` 
-						: 
-						`<i class="fa-solid fa-plus add_cart_button"></i>`
-						}
-					</div>
-                </a>
-                `
-            });
-        });
-
-		var all_show_more_nav_icon = document.querySelectorAll(".show_more_nav_icon");
-
-		all_show_more_nav_icon.forEach((show_more_nav_icon)=>{
-			show_more_nav_icon.addEventListener("click", (e)=>{
-				var old_one = document.querySelector(".show_display");
-
-				show_more_nav_icon.parentElement.querySelector(".notifications_container").classList.toggle("show_display");
-
-				if(old_one !== null){
-					old_one.classList.remove("show_display");
-				}
-			});
-		});
     </script>
 
 	<script src="./js/homesearch.js"></script>
+
+	<script src="./js/notification_toggle.js"></script>
+
+	<script src="./js/homepageproducts.js"></script>
 </body>
 </html>

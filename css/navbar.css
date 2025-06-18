@@ -1,0 +1,560 @@
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip .tooltip_text{
+    visibility: hidden;
+    width: 150px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 6px;
+    position: absolute;
+    top: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+.tooltip:last-child .tooltip_text{
+    left: -25px;
+}
+
+.tooltip:hover .tooltip_text {
+    visibility: visible;
+    opacity: 1;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    background-color: white;
+}
+
+nav{
+	display: flex;
+	justify-content: space-between;
+    align-items: center;
+	padding: 15px;
+	gap: 5px;
+}
+
+nav .logo{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+nav .logo img{ 
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
+
+nav .more_options{
+	display: flex;
+	gap: 35px;
+}
+
+nav .more_options a, nav .more_options div{
+	display: flex; 
+	gap: 5px; 
+	align-items: center;
+}
+
+nav .more_options i{
+    padding: 13px;
+    border-radius: 100%;
+    transition: all 0.5s;
+    font-size: 20px;
+}
+
+nav .more_options i:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+
+nav .more_options .notifications_button{
+    position: relative;
+}
+
+nav .more_options .notifications_button .number_of_notifications{
+    position: absolute;
+    right: -6px;
+    top: -2px;
+    width: 20px;
+    height: 20px;
+    padding: 12px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    pointer-events: none;
+}
+
+nav .more_options .tooltip .notifications_container{
+    position: absolute;
+    top: 124%;
+    left: -250px;
+    background-color: #eee;
+    color: black;
+    z-index: 10;
+    display: none;
+    flex-direction: column;
+    width: 450px;
+    cursor: default;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.show_display{
+    display: flex !important;
+}
+
+.notifications_container .button{
+    padding: 10px 20px;
+    margin: 20px;
+    background-color: dodgerblue;
+    border-radius: 20px;
+    color: white;
+    transition: all 0.7s;
+}
+
+.notifications_container .button:hover{
+    background-color: orangered;
+}
+
+nav .more_options .tooltip .stuff{
+    width: 100%;
+    font-size: 1.1em;
+    padding-top: 15px;
+    padding-left: 15px;
+    text-align: center;
+}
+
+nav .more_options .tooltip .mark_all{
+    transition: all 0.5s;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+nav .more_options .tooltip .mark_all:hover{
+    color: dodgerblue;
+}
+
+.notifications_container .all_notifications{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 400px;
+    overflow-y: auto;
+    gap: 0;
+}
+
+.notifications_container .all_notifications .notification{
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    padding: 10px;
+    transition: all 0.7s;
+}
+
+.notifications_container .all_notifications .notification:hover{
+    background-color: #cccccc;
+}
+
+.notifications_container .all_notifications .notification .profile_pic{
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    align-self: flex-start;
+    background: url(../images/avatar.jpg) no-repeat center/cover;
+}
+
+.notifications_container .all_notifications .notification .message_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+.message_container .both{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.message_container .both .dot{
+    padding: 5px;
+    border-radius: 100%;
+    background-color: dodgerblue;
+}
+
+.notifications_container .all_notifications .notification .message_container p{
+    word-break: break-all;
+    white-space: normal;
+}
+
+.notifications_container .all_notifications .notification .message_container .time{
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+}
+
+.notifications_container .all_notifications .notification .message_container .response{
+    background-color: #bbb;
+    padding: 10px 15px;
+    max-width: 450px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+nav .more_options .tooltip .profile{
+    width: 210px;
+    left: -155px;
+}
+
+nav .more_options .tooltip .profile .profile_option{
+    width: 100%;
+    align-items: center;
+    transition: background-color 0.7s;
+}
+
+nav .more_options .tooltip .profile .profile_option:hover{
+    background-color: #ccc;
+}
+
+nav .more_options .tooltip .profile .profile_option i:hover{
+    background-color: initial;
+}
+
+nav .nav_icon_container{
+    display: none !important;
+    align-items: center;
+    gap: 20px;
+}
+
+nav .nav_icon_container div{
+    cursor: pointer;
+}
+
+.nav_icon{
+    cursor: pointer;
+    display: none;
+}
+
+header form{
+    /* flex: 1; */
+    /* below width is the new view */
+    width: 50%;
+    display: flex;
+    gap: 5px;
+    transition: all 0.5s;
+    position: relative;
+}
+
+.second_form{
+	display: none;
+    pointer-events: none;
+    opacity: 0;
+    max-height: 0;
+    /* below is to unset it for the small screen */
+    width: initial;
+    flex: 1;
+}
+
+/* below is to unset it for the small screen */
+.second_form input{
+    width: initial;
+    flex: 1;
+    padding-right: 87px;
+}
+
+header form input{
+    width: 100%;
+    padding-right: 82px;
+}
+
+header form .search_suggestions{
+    position: absolute;
+    top: 44px;
+    width: 100%;
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    display: none;
+}
+
+header form .search_ideas{
+    position: absolute;
+    top: 44px;
+    width: 100%;
+    background: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 12px 15px;
+    gap: 15px;
+    display: none;
+}
+
+header form .search_ideas h3{
+    font-weight: normal;
+}
+
+/* from the categories css */
+.categories_container{
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+.form_options{
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.fa-xmark{
+    cursor: pointer;
+    font-size: 1.2em;
+    color: black;
+    border-radius: 100%;
+    padding: 5px 7px;
+    transition: all 0.5s;
+}
+
+.divider{
+    color: #ccc;
+    pointer-events: none;
+}
+
+.camera_upload{
+    font-size: 1.2em;
+    border-radius: 100%;
+    padding: 8px;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+/* for the typing part */
+.form_options .clear_search{
+    display: none;
+}
+
+input[type='file']{
+    display: none;
+    pointer-events: none;
+}
+
+.fa-xmark:hover, .camera_upload:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+header form .search_suggestions a{
+    text-decoration: none;
+    transition: all 0.5s;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+header form .search_suggestions a:hover{
+    background: #B3B3B3;
+    color: black !important;
+}
+
+.show_header{
+	/* for first header */
+	max-width: 100%;
+	pointer-events: all;
+	position: relative;
+	/* it ends here */
+    opacity: 1;
+    max-height: 300px;
+    margin: 0 8px;
+}
+
+header form button{
+    cursor: pointer;
+    padding: 8px 10px;
+    max-width: fit-content;
+    border: none;
+    background-color: transparent;
+    transition: background-color 0.5s;
+    border-radius: 100%;
+    margin-right: 2px;
+}
+
+header form button:hover{
+    background-color: rgba(0,0,0,0.2);
+}
+
+header form button i{
+    font-size: 1.2em;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.mobile_screen_sidebar{
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    z-index: 20000;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    transition: all 0.5s;
+}
+
+.close_button{
+    font-size: 25px;
+    margin-top: 5px;
+    align-self: flex-start;
+    cursor: pointer;
+    color: black;
+}
+
+.mobile_screen_sidebar .container{
+    height: 80%;
+    display: flex; 
+    justify-content: space-between; 
+    flex-direction: column;
+}
+
+.mobile_screen_sidebar .container a{
+    width: 100%;
+    text-align: center;
+}
+
+@media(max-width: 700px){
+	nav .more_options{
+		display: none;
+	}
+
+	nav .nav_icon_container{
+		display: flex !important;
+	}
+
+    .nav_icon{
+        display: block;
+    }
+
+	.first_form{
+		display: none !important;
+	}
+
+	.second_form{
+		display: flex !important;
+        pointer-events: initial;
+	}
+
+    header form input{
+        padding-right: 0;
+    }
+
+	.show_header{
+		padding-bottom: 10px;
+	}
+}
+
+@media (prefers-color-scheme: dark){
+    .tooltip .tooltip_text {
+        background-color: #ccc;
+        color: black;
+    }
+
+    header{
+        background-color: #121212;
+    }
+
+    .notifications_container .all_notifications .notification .message_container .response{
+        background-color: #3e3e3e;
+    }
+
+    .nav_icon{
+        color: white;
+    }
+
+    nav .more_options .tooltip .notifications_container{
+        background-color: #4A4A4A;
+    }
+
+    nav .more_options .tooltip .profile .profile_option:hover{
+        background-color: #333333;
+    }
+
+    header form .search_suggestions, header form .search_ideas{
+        background-color: #333333;
+    }
+
+    header form .search_suggestions a:hover{
+        background: #222222;
+        color: white !important;
+    }
+
+    .divider{
+        color: #4a4a4a;
+    }
+
+    /*camera upload take off in a framework*/
+    .fa-xmark:hover, .camera_upload:hover, header form button:hover{
+        background-color: rgba(255,255,255,0.3);
+    }
+
+    .camera_upload, header form button i{
+        color: white;
+    }
+
+    .notifications_container .all_notifications .notification:hover{
+        background-color: #333333;
+    }
+
+    nav .more_options i{
+        color:white;
+    }
+
+    nav .more_options i:hover{
+        background-color: rgba(255,255,255,0.3);
+    }
+
+    .mobile_screen_sidebar{
+        background-color: #121212;
+    }
+
+    .close_button{
+		color: white;
+	}
+
+    nav .nav_icon_container div{
+        color: white;
+    }
+
+    .fa-xmark{
+        color: white;
+    }
+
+    nav .more_options .tooltip .mark_all{
+        color: white;
+    }
+}
