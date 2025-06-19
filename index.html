@@ -247,10 +247,10 @@
 
 				<i class="close_button fas fa-times"></i>
 			</div>
-
-			<div class="drawer_overlay"></div>
 		</div>
     </div>
+
+	<div class="drawer_overlay"></div>
 
 	<div class="nav_categories_container">
 		<div class="vertical_categories_container">
@@ -566,22 +566,7 @@
 
     <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
 
-	<script>
-        var sideBarButton = document.querySelector(".nav_icon");
-
-        var closeButton = document.querySelector(".close_button");
-
-        var sideBar = document.querySelector(".mobile_screen_sidebar");
-
-        sideBarButton.addEventListener("click", (e)=>{
-        	e.preventDefault();
-            sideBar.style.right = "0";
-        });
-
-		closeButton.addEventListener("click", (e)=>{
-            sideBar.style.right = "100%";
-        });
-    </script>
+	<script src="./js/sidebarcontroller.js"></script>
 
 	<script src="./js/homesearch.js"></script>
 
