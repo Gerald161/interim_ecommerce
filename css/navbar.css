@@ -609,6 +609,7 @@ header form button i{
 	}
 
     .mobile_screen_sidebar{
+        left: -75vw;
         width: 75vw;
     }
 }

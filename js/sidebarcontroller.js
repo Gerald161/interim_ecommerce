@@ -6,21 +6,25 @@ var sideBar = document.querySelector(".mobile_screen_sidebar");
 
 var drawerOverlay = document.querySelector(".drawer_overlay");
 
+var changeValue = 30;
+
 sideBarButton.addEventListener("click", (e)=>{
+    // the opened class below is just to check window size no css attached
+    sideBar.classList.toggle("opened");
     sideBar.style.left = "0";
     drawerOverlay.style.opacity = 1;
     drawerOverlay.style.pointerEvents = "auto";
 });
 
 closeButton.addEventListener("click", (e)=>{
-    sideBar.style.left = "-30vw";
+    sideBar.style.left = `-${changeValue}vw`;
     drawerOverlay.style.opacity = 0;
     drawerOverlay.style.pointerEvents = "none";
 });
 
 
 drawerOverlay.addEventListener("click", (e)=>{
-    sideBar.style.left = "-30vw";
+    sideBar.style.left = `-${changeValue}vw`;
     drawerOverlay.style.opacity = 0;
     drawerOverlay.style.pointerEvents = "none";
 })
@@ -29,9 +33,9 @@ window.onresize = checkWindowSize;
 
 function checkWindowSize(){
     if(window.innerWidth <= '700'){
-        console.log("small")
+        changeValue = 75;
     }else{
-        console.log("large")
+        changeValue = 30;
     }
 }
 
