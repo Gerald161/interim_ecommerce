@@ -9,35 +9,35 @@ var drawerOverlay = document.querySelector(".drawer_overlay");
 var changeValue = 30;
 
 sideBarButton.addEventListener("click", (e)=>{
-    // the opened class below is just to check window size no css attached
-    sideBar.classList.toggle("opened");
     sideBar.style.left = "0";
     drawerOverlay.style.opacity = 1;
     drawerOverlay.style.pointerEvents = "auto";
 });
 
 closeButton.addEventListener("click", (e)=>{
-    sideBar.style.left = `-${changeValue}vw`;
+    sideBar.style.left = `-${getChangeValue()}vw`;
     drawerOverlay.style.opacity = 0;
     drawerOverlay.style.pointerEvents = "none";
 });
 
 
 drawerOverlay.addEventListener("click", (e)=>{
-    sideBar.style.left = `-${changeValue}vw`;
+    sideBar.style.left = `-${getChangeValue()}vw`;
     drawerOverlay.style.opacity = 0;
     drawerOverlay.style.pointerEvents = "none";
 })
 
-window.onresize = checkWindowSize;
-
-function checkWindowSize(){
-    if(window.innerWidth <= '700'){
-        changeValue = 75;
-    }else{
-        changeValue = 30;
-    }
+function getChangeValue(){
+    return window.innerWidth <= 700 ? 75 : 30;
 }
+
+window.addEventListener("resize", () => {
+    // If sidebar is currently closed, update its position to match new screen size
+    if (sideBar.style.left !== "0px" && sideBar.style.left !== "0") {
+        const changeValue = getChangeValue();
+        sideBar.style.left = `-${changeValue}vw`;
+    }
+});
 
 // below is for the categories toggle
 const categoryButtons = document.querySelectorAll(".category_button");
