@@ -413,19 +413,21 @@ header form button i{
     position: fixed;
     top: 0;
     left: -30vw;
-    width: fit-content;
+    width: 30vw;
     height: 100vh;
     background-color: transparent;
     z-index: 1000;
     transition: all 0.5s;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-right: 1px solid #ccc;
+    gap: 15px;
 }
 
 .mobile_screen_sidebar .nav_drawer{
     position: relative;
-    width: 30vw;
-    height: 100vh;
-    background-color: white;
-    border-right: 1px solid #ccc;
+    width: 100%;
 }
 
 .mobile_screen_sidebar .nav_drawer .drawer_header{
@@ -462,6 +464,102 @@ header form button i{
     color: #666666;
 }
 
+ .mobile_screen_sidebar .drawer_content{
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nav_section_title{
+    font-size: 0.80rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+    color: #b3b3b3;
+}
+
+.nav_section_items{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav_section_items .item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.6s;
+    padding: 15px 20px;
+    border-radius: 10px;
+}
+
+.nav_section_items .item .icon_and_label{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav_section_items .item .icon_and_label i{
+    font-size: 20px;
+}
+
+.nav_section_items .item .icon_and_label img{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+.nav_section_items .nav_sub_cat{
+    display: flex;
+    flex-direction: column;
+    margin-left: 52px;
+    transition: all 0.5s;
+    gap: 10px;
+    max-height: 0;
+    overflow: hidden;
+}
+
+.arrow{
+  transition: transform 0.3s !important;
+}
+
+.active_arrow{
+  transform: rotate(180deg);
+}
+
+.active_category{
+    max-height: 200px !important;
+}
+
+.nav_section_items .nav_sub_cat a{
+    padding: 10px;
+    border-radius: 5px;
+    color: #c0c0c0;
+    transition: all 0.5s;
+}
+
+.mobile_screen_sidebar .drawer_footer{
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+.mobile_screen_sidebar .drawer_footer a{
+    padding: 10px;
+    border-radius: 10px;
+    color: #dc2626;
+    transition: all 0.5s;
+    display: block;
+}
+
+.mobile_screen_sidebar .drawer_footer a:hover{
+    background-color: #fef2f2;
+}
+
 .drawer_overlay{
     background-color: rgba(0,0,0,0.5);
     position: fixed;
@@ -478,18 +576,6 @@ header form button i{
     font-size: 20px;
     cursor: pointer;
     color: black;
-}
-
-.mobile_screen_sidebar .container{
-    height: 80%;
-    display: flex; 
-    justify-content: space-between; 
-    flex-direction: column;
-}
-
-.mobile_screen_sidebar .container a{
-    width: 100%;
-    text-align: center;
 }
 
 @media(max-width: 700px){
@@ -522,8 +608,8 @@ header form button i{
 		padding-bottom: 10px;
 	}
 
-    .mobile_screen_sidebar .nav_drawer{
-        width: 70vw;
+    .mobile_screen_sidebar{
+        width: 75vw;
     }
 }
 
@@ -587,7 +673,7 @@ header form button i{
         background-color: rgba(255,255,255,0.3);
     }
 
-    .mobile_screen_sidebar .nav_drawer{
+    .mobile_screen_sidebar{
         background-color: #121212;
     }
 
@@ -595,7 +681,7 @@ header form button i{
         background-color: rgba(0,0,0,0.2);
     }
 
-    .mobile_screen_sidebar .nav_drawer{
+    .mobile_screen_sidebar{
         border-right: 1px solid #222222;
     }
 
@@ -603,8 +689,18 @@ header form button i{
         border-bottom: solid 1px #222222;
     }
 
+    .mobile_screen_sidebar .drawer_footer{
+        border-top: solid 1px #222222;
+    }
+
     .mobile_screen_sidebar .nav_drawer .drawer_header .logo .logo_text p{
         color: #b3b3b3;
+    }
+
+    .mobile_screen_sidebar .drawer_footer a:hover,
+    .nav_section_items .item:hover,
+    .nav_section_items .nav_sub_cat a:hover{
+        background-color: #2a2a2a;
     }
 
     .close_button{

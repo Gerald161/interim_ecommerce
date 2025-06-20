@@ -34,3 +34,13 @@ function checkWindowSize(){
         console.log("large")
     }
 }
+
+// below is for the categories toggle
+const categoryButtons = document.querySelectorAll(".category_button");
+
+categoryButtons.forEach((categoryButton)=>{
+    categoryButton.addEventListener("click", (e)=>{
+        categoryButton.nextElementSibling.classList.toggle("active_category");
+        categoryButton.querySelector(".arrow").classList.toggle("active_arrow");
+    })
+})
