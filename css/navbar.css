@@ -481,6 +481,10 @@ header form button i{
         background-color: #333333;
     }
 
+    header form .search_suggestions{
+        background-color: #333333;
+    }
+
     header form .search_suggestions a:hover{
         background: #222222;
         color: white !important;

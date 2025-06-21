@@ -44,20 +44,23 @@ allInputs.forEach((input, index)=>{
         }
     })
 
-    clearSearches[index].addEventListener("click", (e)=>{
-        allInputs[0].value = ``;
-        allInputs[1].value = ``;
+    // the undefined check is for the products pageXOffset, not sure what is going on there and I am too lazy to debug
+    if(clearSearches[index] !== undefined){
+        clearSearches[index].addEventListener("click", (e)=>{
+            allInputs[0].value = ``;
+            allInputs[1].value = ``;
 
-        searchIdeas[0].style.display = "none";
-        cameraUploads[0].style.display = "block";
-        clearSearches[0].style.display = "none";
-        searchSuggestions[0].style.display = "none";
+            searchIdeas[0].style.display = "none";
+            cameraUploads[0].style.display = "block";
+            clearSearches[0].style.display = "none";
+            searchSuggestions[0].style.display = "none";
 
-        searchIdeas[1].style.display = "none";
-        cameraUploads[1].style.display = "block";
-        clearSearches[1].style.display = "none";
-        searchSuggestions[1].style.display = "none";
-    })
+            searchIdeas[1].style.display = "none";
+            cameraUploads[1].style.display = "block";
+            clearSearches[1].style.display = "none";
+            searchSuggestions[1].style.display = "none";
+        })
+    }
 })
 
 // below is for the second search bar
