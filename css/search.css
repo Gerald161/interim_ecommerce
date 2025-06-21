@@ -1,5 +1,10 @@
+:root {
+  --margin-top-big: 76px;
+  --margin-top-small: 70px;
+}
+
 .mobile_filter_options{
-  margin-top: 72px;
+  margin-top: var(--margin-top-small);
   align-items: center;
   gap: 20px;
   padding: 20px;
@@ -60,7 +65,7 @@
   border-bottom: solid 1px #ccc;
   justify-content: space-around;
   text-align: center;
-  margin-top: 72px;
+  margin-top: var(--margin-top-big);
 }
 
 .category_classifications img{
