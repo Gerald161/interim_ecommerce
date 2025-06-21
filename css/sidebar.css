@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: solid 1px #eaeaea;
+    overflow: hidden;
 }
 
 .mobile_screen_sidebar .nav_drawer .drawer_header .logo{

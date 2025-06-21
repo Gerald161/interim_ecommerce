@@ -312,23 +312,6 @@ header form .search_suggestions{
     display: none;
 }
 
-header form .search_ideas{
-    position: absolute;
-    top: 44px;
-    width: 100%;
-    background: #f2f2f2;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 12px 15px;
-    gap: 15px;
-    display: none;
-}
-
-header form .search_ideas h3{
-    font-weight: normal;
-}
-
 /* from the categories css */
 .categories_container{
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -495,10 +478,6 @@ header form button i{
     }
 
     nav .more_options .tooltip .profile .profile_option:hover{
-        background-color: #333333;
-    }
-
-    header form .search_suggestions, header form .search_ideas{
         background-color: #333333;
     }
 
