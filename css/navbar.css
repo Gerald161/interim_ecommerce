@@ -16,11 +16,13 @@ nav{
 	gap: 5px;
 }
 
-nav .logo{
-    /* below here is for the desktop hamburger */
-    margin-right: 260px;
-    /* it ends here */
+nav .ham_and_icon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
+nav .logo{
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -51,7 +53,7 @@ nav .more_options i{
 }
 
 nav .more_options i:hover{
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.1);
 }
 
 nav .more_options .notifications_button{
@@ -106,7 +108,7 @@ nav .more_options .tooltip .notifications_container{
     background-color: orangered;
 }
 
-.tooltip {
+.tooltip{
     position: relative;
     cursor: pointer;
 }
@@ -260,6 +262,13 @@ nav .nav_icon_container div{
     /* ends here */
     cursor: pointer;
     /* display: none; */
+    transition: background-color 0.5s;
+    padding: 5px 10px;
+    border-radius: 50%;
+}
+
+.nav_icon:hover{
+    background-color: rgba(0,0,0,0.1);
 }
 
 header form{
@@ -367,7 +376,7 @@ input[type='file']{
 }
 
 .fa-xmark:hover, .camera_upload:hover{
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.1);
 }
 
 header form .search_suggestions a{
@@ -407,7 +416,7 @@ header form button{
 }
 
 header form button:hover{
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.1);
 }
 
 header form button i{
@@ -416,178 +425,17 @@ header form button i{
     cursor: pointer;
 }
 
-.mobile_screen_sidebar{
-    position: fixed;
-    top: 0;
-    left: -30vw;
-    width: 30vw;
-    height: 100vh;
-    background-color: transparent;
-    z-index: 1000;
-    transition: all 0.5s;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    border-right: 1px solid #ccc;
-    gap: 15px;
-}
-
-.mobile_screen_sidebar .nav_drawer{
-    position: relative;
-    width: 100%;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header{
-    display: flex;
-    gap: 10px;
-    padding: 20px;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: solid 1px #eaeaea;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header .logo{
-    display: flex;
-    gap: 10px;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header .logo img{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header .logo .logo_text{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header .logo .logo_text h3{
-    font-weight: normal;
-}
-
-.mobile_screen_sidebar .nav_drawer .drawer_header .logo .logo_text p{
-    color: #666666;
-}
-
- .mobile_screen_sidebar .drawer_content{
-    flex: 1;
-    overflow-y: auto;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.nav_section_title{
-    font-size: 0.80rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
-    color: #b3b3b3;
-}
-
-.nav_section_items{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.nav_section_items .item{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.6s;
-    padding: 15px 20px;
-    border-radius: 10px;
-}
-
-.nav_section_items .item .icon_and_label{
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.nav_section_items .item .icon_and_label i{
-    font-size: 20px;
-}
-
-.nav_section_items .item .icon_and_label img{
-    width: 25px;
-    height: 25px;
-    object-fit: cover;
-}
-
-.nav_section_items .nav_sub_cat{
-    display: flex;
-    flex-direction: column;
-    margin-left: 52px;
-    transition: all 0.5s;
-    gap: 10px;
-    max-height: 0;
-    overflow: hidden;
-}
-
-.arrow{
-  transition: transform 0.3s !important;
-}
-
-.active_arrow{
-  transform: rotate(180deg);
-}
-
-.active_category{
-    max-height: 200px !important;
-}
-
-.nav_section_items .nav_sub_cat a{
-    padding: 10px;
-    border-radius: 5px;
-    color: #c0c0c0;
-    transition: all 0.5s;
-}
-
-.mobile_screen_sidebar .drawer_footer{
-    border-top: 1px solid #ccc;
-    padding: 10px;
-}
-
-.mobile_screen_sidebar .drawer_footer a{
-    padding: 10px;
-    border-radius: 10px;
-    color: #dc2626;
-    transition: all 0.5s;
-    display: block;
-}
-
-.mobile_screen_sidebar .drawer_footer a:hover{
-    background-color: #fef2f2;
-}
-
-.drawer_overlay{
-    background-color: rgba(0,0,0,0.5);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    opacity: 0;
-    z-index: 999;
-    pointer-events: none;
-    transition: all 0.3s;
-}
-
-.close_button{
-    font-size: 20px;
-    cursor: pointer;
-    color: black;
-}
-
 @media(max-width: 700px){
-    nav .logo{
-        margin-right: 0;
+    nav .ham_and_icon{
+        flex: 1;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    nav .ham_and_icon .logo {
+        position: absolute;
+        left: 55%;
+        transform: translateX(-50%);
     }
 
 	nav .more_options{
@@ -618,11 +466,6 @@ header form button i{
 	.show_header{
 		padding-bottom: 10px;
 	}
-
-    .mobile_screen_sidebar{
-        left: -75vw;
-        width: 75vw;
-    }
 }
 
 @media (prefers-color-scheme: dark){
@@ -641,6 +484,10 @@ header form button i{
 
     .nav_icon{
         color: white;
+    }
+
+    .nav_icon:hover{
+        background-color: rgba(255,255,255,0.2);
     }
 
     nav .more_options .tooltip .notifications_container{
@@ -666,7 +513,7 @@ header form button i{
 
     /*camera upload take off in a framework*/
     .fa-xmark:hover, .camera_upload:hover, header form button:hover{
-        background-color: rgba(255,255,255,0.3);
+        background-color: rgba(255,255,255,0.2);
     }
 
     .camera_upload, header form button i{
@@ -677,57 +524,7 @@ header form button i{
         background-color: #333333;
     }
 
-    nav .more_options i{
-        color:white;
-    }
-
-    nav .more_options i:hover{
-        background-color: rgba(255,255,255,0.3);
-    }
-
-    .mobile_screen_sidebar{
-        background-color: #121212;
-    }
-
-    .mobile_screen_sidebar .drawer_overlay{
-        background-color: rgba(0,0,0,0.2);
-    }
-
-    .mobile_screen_sidebar{
-        border-right: 1px solid #222222;
-    }
-
-    .mobile_screen_sidebar .nav_drawer .drawer_header{
-        border-bottom: solid 1px #222222;
-    }
-
-    .mobile_screen_sidebar .drawer_footer{
-        border-top: solid 1px #222222;
-    }
-
-    .mobile_screen_sidebar .nav_drawer .drawer_header .logo .logo_text p{
-        color: #b3b3b3;
-    }
-
-    .mobile_screen_sidebar .drawer_footer a:hover,
-    .nav_section_items .item:hover,
-    .nav_section_items .nav_sub_cat a:hover{
-        background-color: #2a2a2a;
-    }
-
-    .close_button{
-		color: white;
-	}
-
-    nav .nav_icon_container div{
-        color: white;
-    }
-
-    .fa-xmark{
-        color: white;
-    }
-
-    nav .more_options .tooltip .mark_all{
+    nav .nav_icon_container div, .fa-xmark, nav .more_options .tooltip .mark_all{
         color: white;
     }
 }
