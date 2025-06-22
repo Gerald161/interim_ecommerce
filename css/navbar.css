@@ -45,14 +45,14 @@ nav .more_options a, nav .more_options div{
 	align-items: center;
 }
 
-nav .more_options i{
+nav .more_options .tooltip > i{
     padding: 13px;
     border-radius: 100%;
     transition: all 0.5s;
     font-size: 20px;
 }
 
-nav .more_options i:hover{
+nav .more_options .tooltip > i:hover{
     background-color: rgba(0,0,0,0.1);
 }
 
