@@ -76,36 +76,8 @@ nav .more_options .notifications_button .number_of_notifications{
     pointer-events: none;
 }
 
-nav .more_options .tooltip .notifications_container{
-    position: absolute;
-    top: 124%;
-    left: -250px;
-    background-color: #eee;
-    color: black;
-    z-index: 10;
-    display: none;
-    flex-direction: column;
-    width: 450px;
-    cursor: default;
-    overflow: hidden;
-    border-radius: 10px;
-}
-
 .show_display{
     display: flex !important;
-}
-
-.notifications_container .button{
-    padding: 10px 20px;
-    margin: 20px;
-    background-color: dodgerblue;
-    border-radius: 20px;
-    color: white;
-    transition: all 0.7s;
-}
-
-.notifications_container .button:hover{
-    background-color: orangered;
 }
 
 .tooltip{
@@ -157,43 +129,6 @@ nav .more_options .tooltip .mark_all:hover{
     color: dodgerblue;
 }
 
-.notifications_container .all_notifications{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    max-height: 400px;
-    overflow-y: auto;
-    gap: 0;
-}
-
-.notifications_container .all_notifications .notification{
-    width: 100%;
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    transition: all 0.7s;
-}
-
-.notifications_container .all_notifications .notification:hover{
-    background-color: #cccccc;
-}
-
-.notifications_container .all_notifications .notification .profile_pic{
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: 50%;
-    align-self: flex-start;
-    background: url(../images/avatar.jpg) no-repeat center/cover;
-}
-
-.notifications_container .all_notifications .notification .message_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
-}
-
 .message_container .both{
     width: 100%;
     display: flex;
@@ -204,46 +139,6 @@ nav .more_options .tooltip .mark_all:hover{
     padding: 5px;
     border-radius: 100%;
     background-color: dodgerblue;
-}
-
-.notifications_container .all_notifications .notification .message_container p{
-    word-break: break-all;
-    white-space: normal;
-}
-
-.notifications_container .all_notifications .notification .message_container .time{
-    width: 100%;
-    display: flex; 
-    justify-content: space-between;
-}
-
-.notifications_container .all_notifications .notification .message_container .response{
-    background-color: #bbb;
-    padding: 10px 15px;
-    max-width: 450px;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    border-radius: 5px;
-}
-
-nav .more_options .tooltip .profile{
-    width: 210px;
-    left: -155px;
-}
-
-nav .more_options .tooltip .profile .profile_option{
-    width: 100%;
-    align-items: center;
-    transition: background-color 0.7s;
-}
-
-nav .more_options .tooltip .profile .profile_option:hover{
-    background-color: #ccc;
-}
-
-nav .more_options .tooltip .profile .profile_option i:hover{
-    background-color: initial;
 }
 
 nav .nav_icon_container{
@@ -461,24 +356,12 @@ header form button i{
         background-color: #121212;
     }
 
-    .notifications_container .all_notifications .notification .message_container .response{
-        background-color: #3e3e3e;
-    }
-
     .nav_icon{
         color: white;
     }
 
     .nav_icon:hover{
         background-color: rgba(255,255,255,0.2);
-    }
-
-    nav .more_options .tooltip .notifications_container{
-        background-color: #4A4A4A;
-    }
-
-    nav .more_options .tooltip .profile .profile_option:hover{
-        background-color: #333333;
     }
 
     header form .search_suggestions{
@@ -501,10 +384,6 @@ header form button i{
 
     .camera_upload, header form button i{
         color: white;
-    }
-
-    .notifications_container .all_notifications .notification:hover{
-        background-color: #333333;
     }
 
     nav .nav_icon_container div, .fa-xmark, nav .more_options .tooltip .mark_all{
