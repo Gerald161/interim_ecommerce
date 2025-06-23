@@ -9,11 +9,12 @@
 	<link rel="stylesheet" href="./css/sidebar.css">
 	<link rel="stylesheet" href="./css/footer.css">
 	<link rel="stylesheet" href="./css/home_profile_settings.css">
-	<link rel="stylesheet" href="./css/homepage_categories.css">
 	<link rel="stylesheet" href="./css/navbar_notifications.css">
+	<!-- Page specific css links below -->
+	<link rel="stylesheet" href="./css/homepage_categories.css">
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Welcome to Vince Vineyard International</title>
+    <title>Welcome to Ecommerce App Ghana</title>
 </head>
 <body>
     <header>
@@ -91,12 +92,12 @@
 						</div>
 						<div class="notification_content">
 							<a href="notifications.html" class="notification_item unread_noti">
-								<div class="icon">
-									<i class="fa-solid fa-box-open"></i>
+								<div class="icon text_success">
+									<i class="fa-solid fa-check"></i>
 								</div>
 								<div class="title_and_details">
 									<div class="title_and_status">
-										<p>Order Shipped</p>
+										<p class="text_success">Your order is ready</p>
 										<div class="unread_dot"></div>
 									</div>
 									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
@@ -108,13 +109,30 @@
 								</div>
 							</a>
 							<a href="notifications.html" class="notification_item">
-								<div class="icon">
-									<i class="fa-solid fa-box-open"></i>
+								<div class="icon text_warning">
+									<i class="fa-solid fa-triangle-exclamation"></i>
 								</div>
 								<div class="title_and_details">
 									<div class="title_and_status">
-										<p>Order Shipped</p>
+										<p class="text_warning">Your order will expire</p>
 										<!-- <div class="unread_dot"></div> -->
+									</div>
+									<p class="detail">Complete your purchase soon to secure your items.</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
+									</div>
+								</div>
+							</a>
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_processing">
+									<i class="fa-solid fa-clock"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_processing">Payment processing</p>
+										<div class="unread_dot"></div>
 									</div>
 									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
 
@@ -125,12 +143,12 @@
 								</div>
 							</a>
 							<a href="notifications.html" class="notification_item unread_noti">
-								<div class="icon">
-									<i class="fa-solid fa-box-open"></i>
+								<div class="icon text_error">
+									<i class="fa-solid fa-credit-card"></i>
 								</div>
 								<div class="title_and_details">
 									<div class="title_and_status">
-										<p>Order Shipped</p>
+										<p class="text_error">Payment failed</p>
 										<div class="unread_dot"></div>
 									</div>
 									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
@@ -144,7 +162,7 @@
 						</div>
 
 						<div class="notification_footer">
-							
+							<a href="notifications.html">View all notifications</a>
 						</div>
 					</div>
 				</div>
@@ -735,8 +753,9 @@
 
     <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
 	<script src="./js/sidebarcontroller.js"></script>
-	<script src="./js/homesearch.js"></script>
+	<script src="./js/primarysearch.js"></script>
 	<script src="./js/nav_icon_click.js"></script>
+	<!-- page specific scripts below -->
 	<script src="./js/homepageproducts.js"></script>
 </body>
 </html>
