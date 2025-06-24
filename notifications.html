@@ -440,57 +440,18 @@
 	<div class="drawer_overlay"></div>
 
     <main>
-		<div class="options">
-			<button><span>20</span> All</button>
-			<button><span>5</span>Unread</button>
-			<button><span>2</span>Star</button>
-		</div>
-		<div class="all_notifications">
-			<a href="#" class="notification">
-				<div class="profile_pic"></div>
-				<div class="message_container">
-					<div class="both">
-						<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
-						<div class="dot"></div>
-					</div>
-					<div class="time">
-						<p style="color: grey;">Friday 3:12 PM</p>
-						<p style="color: grey;">2 hours ago</p>
-					</div>
-				</div>
-			</a>
-			<a href="#" class="notification">
-				<div class="profile_pic"></div>
-				<div class="message_container">
-					<div class="both">
-						<p>Your order will <span style="color: #D35454">expire</span> </p>
-						<div class="dot"></div>
-					</div>
-					<div class="time">
-						<p style="color: grey;">Friday 3:12 PM</p>
-						<p style="color: grey;">2 hours ago</p>
-					</div>
-				</div>
-			</a>
-			<a href="#" class="notification">
-				<div class="profile_pic"></div>
-				<div class="message_container">
-					<div class="both">
-						<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
-						<div class="dot"></div>
-					</div>
-					<div class="time">
-						<p style="color: grey;">Friday 3:12 PM</p>
-						<p style="color: grey;">2 hours ago</p>
-					</div>
-					<div class="response">
-						<p>
-							This is going to be an encouraging text we will send our customers so 
-							they keep working with us.
-						</p>
-					</div>
-				</div>
-			</a>
+		<h2>Notifications</h2>
+
+		<div class="controls">
+			<div class="filter-group">
+				<button class="filter-btn active" data-filter="all">All</button>
+				<button class="filter-btn" data-filter="unread">Unread</button>
+				<button class="filter-btn" data-filter="success">Order Success</button>
+				<button class="filter-btn" data-filter="pending">Pending</button>
+				<button class="filter-btn" data-filter="warning">Warnings</button>
+				<button class="filter-btn" data-filter="error">Errors</button>
+			</div>
+			<button class="filter-btn" id="markAllReadBtn">Mark all as read</button>
 		</div>
     </main>
 

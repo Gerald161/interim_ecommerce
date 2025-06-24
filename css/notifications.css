@@ -1,146 +1,73 @@
+:root {
+    --primary: #4f46e5;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --pending: #6b7280;
+    --bg-light: #f9fafb;
+    --text-light: #1f2937;
+    --card-light: #ffffff;
+    --border-light: #e5e7eb;
+    --hover-light: #f3f4f6;
+    
+    --bg-dark: #111827;
+    --text-dark: #f9fafb;
+    --card-dark: #1f2937;
+    --border-dark: #374151;
+    --hover-dark: #374151;
+}
+
+main{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    /* padding: 20px; */
+}
+
 main h2{
     font-weight: normal;
-    margin-bottom: 20px;
-    text-align: center;
 }
 
-main .options{
+.controls {
     display: flex;
-    /* take off below later if you feel it makes it bulky */
     justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-main .options button{
-    padding: 10px 20px;
-    padding-bottom: 2px;
-    flex: 1;
-    /* the justify content above is affecting the width I set */
-    /* width: 200px; */
+.filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    background-color: var(--card-light);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
     cursor: pointer;
-    border: none;
-    background-color: transparent;
-    border-bottom: solid 2px #ccc;
-    transition: all 0.5s;
-    font-size: 1.1em;
-    /* here is flex stuff may remove */
-    display: flex;
-    align-items: center;
-    gap: 5px;
-
+    font-size: 14px;
+    font-weight: 500;
 }
 
-main .options button:hover{
-    border-bottom: solid 2px orangered;
+.dark-mode .filter-btn {
+    background-color: var(--card-dark);
+    border-color: var(--border-dark);
 }
 
-main .options button:focus{
-    border-bottom: solid 2px #009579;
-}
-
-main .options button:focus span{
-    background-color: red;
-}
-
-main .options button span{
-    width: 20px;
-    height: 20px;
-    padding: 20px;
-    border-radius: 50%;
-    background-color: #aaa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.5s;
+.filter-btn.active {
+    background-color: var(--primary);
     color: white;
-}
-
-main .all_notifications{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    max-height: 400px;
-    overflow-y: auto;
-    gap: 0;
-}
-
-main .all_notifications .notification{
-    width: 100%;
-    display: flex;
-    gap: 5px;
-    padding: 10px;
-    transition: all 0.7s;
-}
-
-main .all_notifications .notification:hover{
-    background-color: #cccccc;
-}
-
-main .all_notifications .notification .profile_pic{
-    min-width: 50px;
-    min-height: 50px;
-    border-radius: 50%;
-    align-self: flex-start;
-    background: url(../images/avatar.jpg) no-repeat center/cover;
-}
-
-main .all_notifications .notification .message_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    width: 100%;
-}
-
-main .message_container .both{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-main .message_container .both .dot{
-    padding: 5px;
-    width: 10px;
-    height: 10px;
-    border-radius: 100%;
-    background-color: dodgerblue;
-}
-
-main .all_notifications .notification .message_container p{
-    word-break: break-all;
-    white-space: normal;
-}
-
-main .all_notifications .notification .message_container .time{
-    width: 100%;
-    display: flex; 
-    justify-content: space-between;
-}
-
-main .all_notifications .notification .message_container .response{
-    background-color: #bbb;
-    padding: 10px 15px;
-    max-width: 450px;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    border-radius: 5px;
+    border-color: var(--primary);
 }
 
 @media (prefers-color-scheme: dark){
-    main .options button span{
-        background-color: #2a2a2a;
-    }
-
-    main .options button{
+    .filter-btn {
+        background-color: var(--card-dark);
+        border-color: var(--border-dark);
         color: white;
-        border-bottom: solid 2px #2a2a2a;
-    }
-
-    main .all_notifications .notification .message_container .response{
-        background-color: #3e3e3e;
-    }
-
-    main .all_notifications .notification:hover{
-        background-color: #333333;
     }
 }
