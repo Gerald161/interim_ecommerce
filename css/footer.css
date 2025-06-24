@@ -17,7 +17,7 @@ footer .footer_info h2{
     text-align: center;
     font-size: 1rem;   
     padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #b8b8b8;
 }
 
 footer .footer_info a{
@@ -108,6 +108,7 @@ footer .footer_info a:hover{
 
     footer .footer_info h2{
         color: white;
+        border-bottom: 1px solid #666666;
     }
 
     .copyright{
