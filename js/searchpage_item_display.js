@@ -45,7 +45,7 @@ const featured_products = document.querySelector(".featured_products");
 
 allImages.forEach((image, index)=>{
     featured_products.innerHTML += `
-    <a href="#" class="product">
+    <a href="./product.html" class="product">
         <div class="image_container">
         <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
         ${index % 2 == 0 && `<div class="badge">30% off</div>`}
