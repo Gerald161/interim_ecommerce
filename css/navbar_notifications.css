@@ -103,7 +103,7 @@ nav .more_options .tooltip .notifications_container{
 
 .notifications_container .notification_content .notification_item .title_and_details .detail{
     font-size: 0.9em;
-    color: #6c757d;
+    color: #4a4a4a;
 }
 
 .notifications_container .notification_content .notification_item .title_and_details .time_section{
@@ -113,7 +113,7 @@ nav .more_options .tooltip .notifications_container{
 }
 
 .notifications_container .notification_content .notification_item .title_and_details .time_section p{
-    color: #868e96;
+    color: #777777;
     font-size: 0.89em;
 }
 
