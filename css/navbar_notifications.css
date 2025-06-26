@@ -1,3 +1,20 @@
+/* here is generally for colors */
+:root {
+    --color-success: #4ade80;
+    --color-warning: #facc15;
+    --color-error: #f87171;
+    --color-processing: #60a5fa;
+    --color-info: #60a5fa;
+    --color-default: #9ca3af;
+    /* background below is where the notification icon bg-color change */
+    --bg-success: rgba(16, 185, 129, 0.15);
+    --bg-warning: rgba(245, 158, 11, 0.15);
+    --bg-error: rgba(239, 68, 68, 0.15);
+    --bg-processing: rgba(59, 130, 246, 0.15);
+    --bg-info: rgba(14, 165, 233, 0.15);
+    --bg-default: rgba(107, 114, 128, 0.15);
+}
+
 nav .more_options .tooltip .notifications_container{
     position: absolute;
     top: 124%;
@@ -137,28 +154,6 @@ nav .more_options .tooltip .notifications_container{
     background: rgba(102, 126, 234, 0.3);
 }
 
-/* here is generally for colors */
-:root {
-  --color-success: #4ade80; /* green-400 */
-  --color-warning: #facc15; /* yellow-400 */
-  --color-error: #f87171; /* red-400 */
-  --color-processing: #60a5fa; /* blue-400 */
-  --color-info: #60a5fa; /* blue-400 */
-  --color-default: #9ca3af; /* gray-400 */
-}
-
-/* Alternative dark theme with adjusted colors for better contrast */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-success: #22c55e; /* green-500 for better contrast */
-    --color-warning: #eab308; /* yellow-500 for better contrast */
-    --color-error: #ef4444; /* red-500 for better contrast */
-    --color-processing: #3b82f6; /* blue-500 for better contrast */
-    --color-info: #3b82f6; /* blue-500 for better contrast */
-    --color-default: #6b7280; /* gray-500 for better contrast */
-  }
-}
-
 /* Usage classes */
 .text_success, .text_success i{ 
     color: var(--color-success) !important; 
@@ -184,8 +179,48 @@ nav .more_options .tooltip .notifications_container{
     color: var(--color-default) !important; 
 }
 
+/* below here is what is making the background change */
+.text_success i{
+    background-color: var(--bg-success) !important; 
+}
+
+.text_warning i{ 
+    background-color: var(--bg-warning) !important; 
+}
+
+.text_error i{ 
+    background-color: var(--bg-error) !important; 
+}
+
+.text_processing i{ 
+    background-color: var(--bg-processing) !important; 
+}
+
+.text_info i{ 
+    background-color: var(--bg-info) !important; 
+}
+
+.text_default i{ 
+    background-color: var(--bg-default) !important; 
+}
 
 @media (prefers-color-scheme: dark){
+    :root{
+        --color-success: #22c55e;
+        --color-warning: #eab308;
+        --color-error: #ef4444;
+        --color-processing: #3b82f6;
+        --color-info: #3b82f6;
+        --color-default: #6b7280;
+        /* background below is where the notification icon bg-color change */
+        --bg-success: rgba(16, 185, 129, 0.1);
+        --bg-warning: rgba(245, 158, 11, 0.1);
+        --bg-error: rgba(239, 68, 68, 0.1);
+        --bg-processing: rgba(59, 130, 246, 0.1);
+        --bg-info: rgba(14, 165, 233, 0.1);
+        --bg-default: rgba(156, 163, 175, 0.1);
+    }
+
     nav .more_options .tooltip .notifications_container{
         border: solid 1px rgba(255, 255, 255, 0.08);
         background-color: #2A2A2A;

@@ -1,33 +1,38 @@
-:root {
-    --primary: #4f46e5;
-    --success: #10b981;
-    --warning: #f59e0b;
-    --error: #ef4444;
-    --pending: #6b7280;
+:root{
+    --primary: #6366f1;
+    --success: #059669;
+    --warning: #d97706;
+    --error: #dc2626;
+    --pending: #4b5563;
     --bg-light: #f9fafb;
     --text-light: #1f2937;
     --card-light: #ffffff;
     --border-light: #e5e7eb;
-    --hover-light: #f3f4f6;
+    --hover-light: #e9ecef;
     --bg-dark: #111827;
     --text-dark: #f9fafb;
     --card-dark: #1f2937;
     --border-dark: #374151;
     --hover-dark: #374151;
+    --bg-success: rgba(16, 185, 129, 0.15);
+    --bg-warning: rgba(245, 158, 11, 0.15);
+    --bg-error: rgba(239, 68, 68, 0.15);
+    --bg-processing: rgba(59, 130, 246, 0.15);
+    --bg-info: rgba(14, 165, 233, 0.15);
+    --bg-default: rgba(107, 114, 128, 0.15);
 }
 
 main{
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    /* padding: 20px; */
 }
 
 main h2{
     font-weight: normal;
 }
 
-.controls {
+.controls{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,13 +41,13 @@ main h2{
     gap: 12px;
 }
 
-.filter-group {
+.filter-group{
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
 }
 
-.filter-btn {
+.filter-btn{
     padding: 8px 16px;
     background-color: var(--card-light);
     border: 1px solid var(--border-light);
@@ -50,17 +55,24 @@ main h2{
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
+    transition: all 0.2s ease;
 }
 
-.dark-mode .filter-btn {
-    background-color: var(--card-dark);
-    border-color: var(--border-dark);
+.filter-btn:hover {
+    background-color: var(--hover-light);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.filter-btn.active {
+.filter-btn.active{
     background-color: var(--primary);
     color: white;
     border-color: var(--primary);
+}
+
+.filter-btn.active:hover{
+    background-color: var(--primary);
 }
 
 #notification_content{
@@ -110,11 +122,95 @@ main h2{
     background-color: #3b82f6;
 }
 
+#notification_footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: rgba(102, 126, 234, 0.2);
+    color: #667eea;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+
+#notification_footer:hover{
+    background: rgba(102, 126, 234, 0.3);
+}
+
+#notification_content .text_success i{
+    background-color: var(--bg-success) !important; 
+}
+
+#notification_content .text_warning i{ 
+    background-color: var(--bg-warning) !important; 
+}
+
+#notification_content .text_error i{ 
+    background-color: var(--bg-error) !important; 
+}
+
+#notification_content .text_processing i{ 
+    background-color: var(--bg-processing) !important; 
+}
+
+#notification_content .text_info i{ 
+    background-color: var(--bg-info) !important; 
+}
+
+#notification_content .text_default i{ 
+    background-color: var(--bg-default) !important; 
+}
+
+@media(max-width: 700px){
+    .controls{
+        flex-direction: column;
+    }
+
+    .filter-group{
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+
+    .filter-btn{
+        min-width: fit-content;
+    }
+
+    #markAllReadBtn{
+        width: 100%;
+    }
+
+    #notification_footer{
+        margin-bottom: 60px;
+    }
+}
+
 @media (prefers-color-scheme: dark){
+    :root{
+        --primary: #4f46e5;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --pending: #6b7280;
+        --bg-success: rgba(16, 185, 129, 0.1);
+        --bg-warning: rgba(245, 158, 11, 0.1);
+        --bg-error: rgba(239, 68, 68, 0.1);
+        --bg-processing: rgba(59, 130, 246, 0.1);
+        --bg-info: rgba(14, 165, 233, 0.1);
+        --bg-default: rgba(156, 163, 175, 0.1);
+    }
+
     .filter-btn {
         background-color: var(--card-dark);
         border-color: var(--border-dark);
         color: white;
+    }
+
+    .filter-btn:hover {
+        background-color: var(--hover-dark);
+        border-color: var(--primary);
     }
 
     #notification_content .notification_item{

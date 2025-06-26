@@ -85,7 +85,7 @@ categories_containers.forEach((category_container, index)=>{
     if(index % 2 == 0){
         all_categories[0].forEach((category)=>{
             category_container.innerHTML += `
-                <a href="subcategories.html" class="category">
+                <a href="search.html" class="category">
                     <div class="representation"></div>
                     <p>${category}</p>
                 </a>
@@ -94,7 +94,7 @@ categories_containers.forEach((category_container, index)=>{
     }else{
         all_categories[1].forEach((category)=>{
             category_container.innerHTML += `
-                <a href="subcategories.html" class="category">
+                <a href="search.html" class="category">
                     <div class="representation"></div>
                     <p>${category}</p>
                 </a>
@@ -102,3 +102,283 @@ categories_containers.forEach((category_container, index)=>{
         })
     }
 })
+
+// Below is an array to work with soon
+const kofisearchSuggestions = [
+  // A
+  "Apple iPhone 15",
+  "AirPods Pro",
+  "Adventure Backpack",
+  "Artificial Plants",
+  "Acrylic Nail Kit",
+  "Android Tablet",
+  "Aloe Vera Gel",
+  "Air Fryer",
+  "Action Camera",
+  "Adjustable Dumbbells",
+
+  // B
+  "Bluetooth Speaker",
+  "Baby Stroller",
+  "Board Games",
+  "Bike Helmet",
+  "Bean Bag Chair",
+  "Bathroom Organizer",
+  "Blender",
+  "Body Lotion",
+  "Bed Sheets",
+  "Bookshelf",
+
+  // C
+  "Camping Tent",
+  "Camera Tripod",
+  "Car Seat Cover",
+  "Coffee Maker",
+  "Ceiling Fan",
+  "Cutting Board",
+  "Cookware Set",
+  "Charging Cable",
+  "Cotton Towels",
+  "Clothing Rack",
+
+  // D
+  "Desk Lamp",
+  "Digital Watch",
+  "Dog Leash",
+  "Drone with Camera",
+  "Dish Rack",
+  "Duvet Cover",
+  "Dumbbell Set",
+  "Dry Erase Board",
+  "Desk Organizer",
+
+  // E
+  "Electric Kettle",
+  "Earbuds",
+  "E-Reader",
+  "Exercise Bike",
+  "Electric Toothbrush",
+  "Eyeliner Pen",
+  "Extension Cord",
+  "Espresso Machine",
+  "Electric Heater",
+
+  // F
+  "Fitness Tracker",
+  "Fashion Dresses",
+  "Floor Lamp",
+  "Furniture Covers",
+  "Frying Pan",
+  "Facial Steamer",
+  "Folding Chair",
+  "Food Processor",
+  "Foot Massager",
+
+  // G
+  "Gaming Laptop",
+  "Graphic Tablets",
+  "Garden Tools",
+  "Gourmet Coffee",
+  "Glass Water Bottle",
+  "Grill Pan",
+  "Gaming Mouse",
+  "Gold Necklace",
+  "Grocery Storage Containers",
+
+  // H
+  "Hair Dryer",
+  "Home Security Camera",
+  "Hiking Boots",
+  "Hydro Flask",
+  "Hand Blender",
+  "Hammock Chair",
+  "Heated Blanket",
+  "HD Projector",
+  "Hair Clipper",
+
+  // I
+  "Indoor Plants",
+  "Instant Pot",
+  "iPad Case",
+  "Insulated Water Bottle",
+  "Ice Cube Tray",
+  "Ink Cartridge",
+  "Inflatable Mattress",
+  "Ironing Board",
+
+  // J
+  "Jewelry Sets",
+  "Jogging Stroller",
+  "Juicer Machine",
+  "Journal Notebook",
+  "Jeans for Women",
+  "Jigsaw Puzzle",
+  "Jacket for Men",
+  "Jump Rope",
+
+  // K
+  "Kitchen Knife Set",
+  "Kids' Puzzle",
+  "Kettlebell",
+  "Key Organizer",
+  "Kids' Tablet",
+  "Kitchen Towels",
+  "Karaoke Microphone",
+  "Korean Skincare Set",
+
+  // L
+  "LED TV",
+  "Laptop Stand",
+  "Leather Wallet",
+  "Luggage Set",
+  "Lunch Box",
+  "LED Strip Lights",
+  "Laptop Backpack",
+  "Linen Curtains",
+  "Laundry Basket",
+
+  // M
+  "Men's Sneakers",
+  "Milk Frother",
+  "Massage Gun",
+  "Mobile Phone Case",
+  "Microwave Oven",
+  "Makeup Brushes",
+  "Memory Foam Pillow",
+  "Monitor Arm",
+  "Men's Watch",
+  "Mouse Pad",
+
+  // N
+  "Noise-Cancelling Headphones",
+  "Notebook Computer",
+  "Nail Art Kit",
+  "Nutrition Supplements",
+  "Neck Massager",
+  "Night Light",
+  "Nursing Pillow",
+  "Nylon Rope",
+
+  // O
+  "Outdoor Grill",
+  "Office Chair",
+  "Oil Diffuser",
+  "Oscillating Fan",
+  "Oven Mitts",
+  "Over-Ear Headphones",
+  "Organizer Box",
+  "Outdoor Lights",
+
+  // P
+  "Pet Food",
+  "Portable Charger",
+  "Phone Screen Protector",
+  "Projector",
+  "Power Strip",
+  "Pressure Cooker",
+  "Photo Frame",
+  "Plastic Storage Bins",
+  "Pasta Maker",
+
+  // Q
+  "QR Code Reader",
+  "Quilted Jacket",
+  "Quiet Keyboard",
+  "Quick-Dry Towel",
+  "Quartz Watch",
+  "Queen Size Bed",
+  "Quilling Kit",
+
+  // R
+  "Running Shoes",
+  "Rice Cooker",
+  "Robot Vacuum",
+  "Reusable Water Bottle",
+  "Reading Lamp",
+  "Rug for Living Room",
+  "Resistance Bands",
+  "Raincoat",
+  "Rolling Suitcase",
+
+  // S
+  "Smart Watch",
+  "SSD Hard Drive",
+  "Scented Candles",
+  "Solar Power Bank",
+  "Sneakers for Women",
+  "Shower Curtain",
+  "Standing Desk",
+  "Storage Drawers",
+  "Suitcase Set",
+  "Soundbar",
+
+  // T
+  "Tablet Case",
+  "Thermal Socks",
+  "TV Stand",
+  "Travel Adapter",
+  "Toaster Oven",
+  "Tool Kit",
+  "Treadmill",
+  "Tea Kettle",
+  "Tripod Stand",
+  "Tote Bag",
+
+  // U
+  "Umbrella",
+  "USB-C Hub",
+  "Ultralight Backpack",
+  "Underdesk Treadmill",
+  "Upholstery Cleaner",
+  "UV Phone Sanitizer",
+  "USB Flash Drive",
+
+  // V
+  "Vacuum Cleaner",
+  "VR Headset",
+  "Video Doorbell",
+  "Vinyl Records",
+  "Vitamin C Serum",
+  "Vegetable Chopper",
+  "Vanity Mirror",
+  "Vegan Snacks",
+
+  // W
+  "Wireless Charger",
+  "Waterproof Jacket",
+  "Waffle Maker",
+  "Wristband Tracker",
+  "Wall Clock",
+  "Whiteboard",
+  "Wine Glass Set",
+  "Window Curtains",
+  "Wireless Mouse",
+  "Work Boots",
+
+  // X
+  "Xbox Controller",
+  "Xiaomi Smartphone",
+  "XPS Laptop",
+  "Xylophone Toy",
+  "X-Men Action Figure",
+  "X-Banner Stand",
+  "Xtreme Bluetooth Speaker",
+
+  // Y
+  "Yoga Mat",
+  "Yeti Cooler",
+  "Youth Backpack",
+  "Yarn Knitting Kit",
+  "Yellow Sunglasses",
+  "Yoga Pants",
+  "Yogurt Maker",
+
+  // Z
+  "Zipper Hoodie",
+  "Zero-Waste Starter Kit",
+  "Zebra Print Rug",
+  "Zip-Top Storage Bags",
+  "Zinc Supplement",
+  "Zoodle Maker",
+  "Zoom Lens"
+];
