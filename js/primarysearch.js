@@ -28,6 +28,21 @@ allInputs.forEach((input, index)=>{
             searchIdeas[index].style.display = "none";
             cameraUploads[index].style.display = "none";
             clearSearches[index].style.display = "block";
+            
+            // typing here
+            var filtered_suggestions = temp_searchSuggestions.filter((word)=> word.toLowerCase().startsWith(e.target.value.toLowerCase().trimStart()));
+
+            searchSuggestions[index].innerHTML = ``
+
+            filtered_suggestions.forEach((word)=>{
+                searchSuggestions[index].innerHTML += `
+                    <a href="search.html">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <p>${word}</p>
+                    </a>
+                `
+            })
+
             searchSuggestions[index].style.display = "flex";
         }else{
             searchIdeas[index].style.display = "flex";
@@ -103,8 +118,8 @@ categories_containers.forEach((category_container, index)=>{
     }
 })
 
-// Below is an array to work with soon
-const kofisearchSuggestions = [
+// Below is an array to work with
+const temp_searchSuggestions = [
   // A
   "Apple iPhone 15",
   "AirPods Pro",
