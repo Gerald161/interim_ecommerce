@@ -98,7 +98,8 @@ main .filter_options_section{
   gap: 20px;
   height: 66vh;
   position: sticky;
-  top: 0;
+  /* below is for the fixed top spacing */
+  top: 76px;
 }
 
 main .filter_results_section{
