@@ -43,7 +43,18 @@ textarea{
   height: 150px;
 }
 
-input:focus, textarea:focus{
+select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+}
+
+input:focus, textarea:focus, select:focus{
     border-color: #007bff;
 }
 
@@ -62,7 +73,7 @@ input:focus, textarea:focus{
         color: white;
     }
 
-	input, textarea{
+	input, textarea, select{
 	  background-color: #1e1e1e;;
 	  color: #fff;
 	  border: 1px solid #333;

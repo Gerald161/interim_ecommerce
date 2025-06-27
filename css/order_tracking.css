@@ -10,7 +10,7 @@ main .filter_section{
     gap: 20px;
     height: 66vh;
     position: sticky;
-    top: 0;
+    top: 76px;
 }
 
 main .filter_section .all_drivers{
