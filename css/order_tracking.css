@@ -68,6 +68,10 @@ main .details_section{
     gap: 20px;
 }
 
+main .details_section h3{
+    font-weight: normal;
+}
+
 main .details_section .map_container{
     background: url(../images/placeholder.png) no-repeat center/cover;
     height: 60vh;
@@ -195,7 +199,7 @@ button:hover{
     background-color: #28a745;   
 }
 
-@media(max-width: 700px){
+@media(max-width: 800px){
     main{
         flex-direction: column;
     }
@@ -203,6 +207,7 @@ button:hover{
     main .filter_section{
         position: relative;
         height: auto;
+        top: 0;
     }
 
     main .details_section .order_details{

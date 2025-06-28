@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="./css/navbar_searchbar_categories.css">
+    <link rel="stylesheet" href="./css/navbar_searchbar_categories.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 	<link rel="stylesheet" type="text/css" href="./css/navbar.css">
 	<link rel="stylesheet" href="./css/sidebar.css">
@@ -11,11 +11,11 @@
 	<link rel="stylesheet" href="./css/home_profile_settings.css">
 	<link rel="stylesheet" href="./css/navbar_notifications.css">
 	<!-- Page specific css links below -->
-	<link rel="stylesheet" href="./css/homepage_categories.css">
-	<link rel="stylesheet" href="./css/homepage.css">
+	<link rel="stylesheet" href="./css/order_tracking.css">
+    <link rel="stylesheet" href="./css/order_tracking_client.css">
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Welcome to Ecommerce Site</title>
+    <title>Your Orders</title>
 </head>
 <body>
     <header>
@@ -43,14 +43,6 @@
 				</div>
 				<input id="picture" type="file" accept="image/*" name="">
 				<div class="search_suggestions">
-					<!-- <a href="search.html">
-						<i class="fa-solid fa-magnifying-glass"></i>
-						<p>Test</p>
-					</a>
-					<a href="search.html">
-						<i class="fa-solid fa-magnifying-glass"></i>
-						<p>Search</p>
-					</a>
 					<a href="search.html">
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<p>Test</p>
@@ -58,7 +50,15 @@
 					<a href="search.html">
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<p>Search</p>
-					</a> -->
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a>
 				</div>
 				<div class="search_ideas">
 					<h3>Ideas for you</h3>
@@ -187,11 +187,6 @@
 							<p>Orders</p>
 						</a>
 
-						<a href="client_orders.html" class="profile_option">
-							<i class="fa-solid fa-box-open"></i>
-							<p>Client Orders</p>
-						</a>
-
 						<a href="signinnew.html" class="profile_option">
 							<i class="fa-solid fa-user"></i>
 							<p>Sign in</p>
@@ -235,14 +230,6 @@
 			</div>
 			<input id="picture" type="file" accept="image/*" name="">
             <div class="search_suggestions">
-                <!-- <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Test2</p>
-                </a>
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Search2</p>
-                </a>
                 <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Test2</p>
@@ -250,7 +237,15 @@
                 <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Search2</p>
-                </a> -->
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Test2</p>
+                </a>
+                <a href="search.html">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <p>Search2</p>
+                </a>
             </div>
 			<div class="search_ideas">
 				<h3>Ideas for you</h3>
@@ -445,257 +440,77 @@
 
 	<div class="drawer_overlay"></div>
 
-	<div class="nav_categories_container">
-		<div class="vertical_categories_container">
-			<div class="all_categories_container">
-				<p>All Categories</p>
-				<i class="fa-solid fa-chevron-down"></i>
+    <main>
+		<div class="details_section">
+			<h3>Order #KNUST-2025-001</h3>
+			<div class="map_container">
+
 			</div>
 
-			<div class="vertical_categories">
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/fashion.png" alt="">
-						Fashion
-					</a>
-					<div class="subcategories_container">
-						<a href="">Men</a>
-						<a href="">Women</a>
-						<a href="">Kids</a>
+			<div class="order_details">
+				<div class="order_detail">
+                    <p style="color: #6b7280;">Estimated Arrival Time</p>
+					<div class="first">
+						<i class="fa-regular fa-clock"></i>
+						<p>10:23 pm <span>(21/12/2025)</span></p>
 					</div>
 				</div>
 
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/electronics.png" alt="">
-						Electronics
-					</a>
-
-					<div class="subcategories_container">
-						<a href="">Phones</a>
-						<a href="">Laptops</a>
-						<a href="">PCs</a>
-					</div>
-				</div>	
-
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/beauty.png" alt="">
-						Beauty
-					</a>
-					<div class="subcategories_container">
-						<a href="">Makeup</a>
-						<a href="">Lipstick</a>
-						<a href="">Lotions</a>
+				<div class="order_detail">
+                    <p style="color: #6b7280;">Shipping Status</p>
+					<div class="first">
+						<i class="fa-solid fa-truck"></i>
+						<p>In Delivery</p>
 					</div>
 				</div>
-				
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/groceries.png" alt="">
-						Groceries
-					</a>
-				</div>
 
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/shoes.png" alt="">
-						Shoes
-					</a>
-				</div>
-
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/heels.png" alt="">
-						Heels
-					</a>
-				</div>
-
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/purses.png" alt="">
-						Purses
-					</a>
-				</div>	
-				<div class="category_with_submenu">
-					<a href="categories.html" class="category_plus_icon">
-						<img src="icons/sports.png" alt="">
-						Sports & Outdoors
-					</a>
-				</div>		
-			</div>
-		</div>
-		<div class="horizontal_categories">
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/fashion.png" alt="">
-					Fashion
-				</a>
-				<div class="subcategories_container">
-					<a href="">Men</a>
-					<a href="">Women</a>
-					<a href="">Kids</a>
+				<div class="order_detail">
+                    <p style="color: #6b7280;">Destination</p>
+					<div class="first">
+						<i class="fa-solid fa-location-dot"></i>
+						<p>Ahinsan Estate</p>
+					</div>
 				</div>
 			</div>
 
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/electronics.png" alt="">
-					Electronics
-				</a>
+			<div class="both_locations">
+				<p>KNUST</p>
+				<p>Ahinsan Estate</p>
+			</div>
 
-				<div class="subcategories_container">
-					<a href="">Phones</a>
-					<a href="">Laptops</a>
-					<a href="">PCs</a>
+			<div class="total_progress">
+				<div class="point">
+					<div class="hole"></div>
 				</div>
-			</div>	
-
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/beauty.png" alt="">
-					Beauty
-				</a>
-				<div class="subcategories_container">
-					<a href="">Makeup</a>
-					<a href="">Lipstick</a>
-					<a href="">Lotions</a>
+				<div class="progress_bar">
+					<div class="progress_fill"></div>
+				</div>
+				<div class="progress_bar">
+					<div class="progress_fill"></div>
+				</div>
+				<div class="progress_bar">
+					<div class="progress_fill"></div>
+				</div>
+				<div class="progress_bar">
+					<div class="progress_fill"></div>
+				</div>
+				<div class="progress_bar">
+					<div class="progress_fill" style="width: 20%;"></div>
+				</div>
+				<div class="pointless">
+					<div class="hole"></div>
+				</div>
+				<div class="timeline">
+					<img src="./images/box.png" alt="">
 				</div>
 			</div>
-			
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/groceries.png" alt="">
-					Groceries
-				</a>
+
+			<p>Contact Courier</p>
+
+			<div>
+				<button>Call</button>
+				<button>Text</button>
 			</div>
-
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/shoes.png" alt="">
-					Shoes
-				</a>
-			</div>
-
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/heels.png" alt="">
-					Heels
-				</a>
-			</div>
-
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/purses.png" alt="">
-					Purses
-				</a>
-			</div>
-			<div class="category_with_submenu">
-				<a href="categories.html" class="category_plus_icon">
-					<img src="icons/sports.png" alt="">
-					Sports & Outdoors
-				</a>
-			</div>		
-		</div>
-	</div>
-
-    <div class="welcome_container">
-		<img src="./images/welcome.jpg" loading="lazy" alt="">
-		  <img src="./images/welcome2.jpg" loading="lazy" alt="">
-		  <div class="overlay">
-			  <div class="welcome_description">
-				  <h1>LIGHTEN UP</h1> 
-				  <p>Bigger, bolder and better than ever! The best shopping experience delivered to you, everything you will need in a single platform.</p>
-				  <button>BROWSE NOW</button>
-			  </div>
-		  </div>
-	</div>
-
-    <main style="margin-top: 0; padding-top: 0;">
-        <div class="heading_category">
-	        <h2>Our Featured Categories</h2>
-
-	        <p>Browse through our various collections</p>
-	    </div>
-
-    	<div class="featured_styles">
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/6.jpg" loading="lazy" alt="Clothing">
-	            <div class="overlay">
-	               <h1>Clothes</h1>
-	            </div>
-	        </a>
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/7.jpg" loading="lazy" alt=""Shoe>
-	            <div class="overlay">
-	               <h1>Footwear</h1>
-	            </div>
-	        </a>
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/2.jpg" loading="lazy" alt=""Jewelry>
-	            <div class="overlay">
-	               <h1>Jewelry</h1>
-	            </div>
-	        </a>
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/4.jpg" loading="lazy" alt="Kente Cloth">
-	            <div class="overlay">
-	               <h1>Kente</h1>
-	            </div>
-	        </a>
-    	</div>
-
-		<div class="heading">
-	        <h2>Latest Arrivals</h2>
-
-	        <a href="">View More</a>
-	    </div>
-
-        <div class="featured_products">
-            
-		</div>
-
-		<div class="heading_category">
-	        <h2>Our Featured Categories</h2>
-
-	        <p>Browse through our various collections</p>
-	    </div>
-
-    	<div class="featured_styles">
-			<a href="search.html" class="featured_style big_feature">
-	            <img src="./images/4.jpg" loading="lazy" alt="Kente Cloth">
-	            <div class="overlay">
-	               <h1>Kente</h1>
-	            </div>
-	        </a>
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/7.jpg" loading="lazy" alt=""Shoe>
-	            <div class="overlay">
-	               <h1>Footwear</h1>
-	            </div>
-	        </a>
-			<a href="search.html" class="featured_style big_feature">
-	            <img src="./images/6.jpg" loading="lazy" alt="Clothing">
-	            <div class="overlay">
-	               <h1>Clothes</h1>
-	            </div>
-	        </a>
-	        <a href="search.html" class="featured_style big_feature">
-	            <img src="./images/2.jpg" loading="lazy" alt=""Jewelry>
-	            <div class="overlay">
-	               <h1>Jewelry</h1>
-	            </div>
-	        </a>
-    	</div>
-
-        <div class="heading">
-	        <h2>Popular Products</h2>
-
-	        <a href="">View More</a>
-	    </div>
-
-        <div class="featured_products">
-            
 		</div>
     </main>
 
@@ -738,11 +553,29 @@
     	</div>
     </div>
 
+	<div class="bottom_nav">
+		<a href="" class="icon_and_desc">
+			<i class="fa-solid fa-house"></i>
+			<p>Home</p>
+		</a>
+		<a href="" class="icon_and_desc">
+			<i class="fa-regular fa-heart"></i>
+			<p>Wishlist</p>
+		</a>
+		<a href="" class="icon_and_desc">
+			<i class="fa-solid fa-bag-shopping"></i>
+			<p>Orders</p>
+		</a>
+		<a href="" class="icon_and_desc">
+			<i class="fa-regular fa-user"></i>
+			<p>Account</p>
+		</a>
+	</div>
+
     <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
 	<script src="./js/sidebarcontroller.js"></script>
 	<script src="./js/primarysearch.js"></script>
 	<script src="./js/nav_icon_click.js"></script>
 	<!-- page specific scripts below -->
-	<script src="./js/homepageproducts.js"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+main{
+    justify-content: center;
+    align-items: center;
+}
+
+main .details_section{
+    max-width: 800px;
+    /* padding: 0 40px; */
+}
