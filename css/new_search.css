@@ -259,10 +259,6 @@ main .filter_results_section .search_results .search_result h4{
     color: white;
   }
 
-  main .filter_options_section .filter_section .filter_options_section_option:hover{
-    background: #333333;
-  }
-
   main .filter_options_section form .search_suggestions a{
     background-color: #333333;
   }
