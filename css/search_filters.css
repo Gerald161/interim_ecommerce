@@ -1,0 +1,52 @@
+/* do not forget to add the other styling from the search page above */
+.actual_filter_options{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+  padding: 0 15px;
+}
+
+.actual_filter_options p{
+  margin: 10px 0;
+  text-align: left;
+}
+
+.selection_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.selection_box{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selection_box input{
+    width: 18px;
+    height: 18px;
+}
+
+.range_and_price{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.range_and_price .range_container{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.range_and_price .range_container .range{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.range_and_price .range_container .range input{
+    /* find a permanent solution to the input below so I do not have to manually set it over and over again */
+    max-width: 168px;
+}

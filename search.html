@@ -13,6 +13,7 @@
 	<!-- page specific css below -->
     <link rel="stylesheet" href="./css/search.css">
 	<link rel="stylesheet" href="./css/homepage.css">
+	<link rel="stylesheet" href="./css/search_filters.css">
 	<!-- it ends here -->
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -517,6 +518,35 @@
             <p class="clear_filters">Clear Filters</p>
           </div>
 
+		  <div class="filter_options_section_option">
+            <div class="option">
+              <p>Categories</p>
+  
+              <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
+            </div>
+
+            <div class="actual_filter_options">
+              <div class="selection_container">
+				<label class="selection_box">
+					<input type="checkbox">
+					<p>Electronics</p>
+				</label>
+				<label class="selection_box">
+					<input type="checkbox">
+					<p>Clothings</p>
+				</label>
+				<label class="selection_box">
+					<input type="checkbox">
+					<p>Books</p>
+				</label>
+				<label class="selection_box">
+					<input type="checkbox">
+					<p>Home & Garden</p>
+				</label>
+			  </div>
+            </div>
+          </div>
+
           <div class="filter_options_section_option">
             <div class="option">
               <p>Color</p>
@@ -609,9 +639,19 @@
             </div>
 
             <div class="actual_filter_options">
-              <p>Cheap</p>
-              <p>Mid</p>
-              <p>Expensive</p>
+              <div class="range_and_price">
+				<div class="range_container">
+					<div class="range">
+						<p>Min</p>
+						<input type="number" placeholder="0">
+					</div>
+					<div class="range">
+						<p>Max</p>
+						<input type="number" placeholder="1000">
+					</div>
+				</div>
+				<p>$0 - $1000</p>
+			  </div>
             </div>
           </div>
   
@@ -623,22 +663,53 @@
             </div>
 
             <div class="actual_filter_options">
-              <p>Male</p>
-              <p>Female</p>
+				<div class="selection_container">
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Male</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Female</p>
+					</label>
+				</div>
             </div>
           </div>
   
           <div class="filter_options_section_option">
             <div class="option">
-              <p>Brand</p>
+              <p>Brands</p>
   
               <a href="#" class="arrow"><i class="fa-solid fa-chevron-down"></i></a>
             </div>
 
             <div class="actual_filter_options">
-              <p>Gucci</p>
-              <p>Samsung</p>
-              <p>LG</p>
+              	<div class="selection_container">
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Apple</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Samsung</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Nike</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Adidas</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>Sony</p>
+					</label>
+					<label class="selection_box">
+						<input type="checkbox">
+						<p>LG</p>
+					</label>
+				</div>
             </div>
           </div>
         </div>

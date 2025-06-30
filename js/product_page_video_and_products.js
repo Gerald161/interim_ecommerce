@@ -14,13 +14,13 @@ allImages.forEach((image, index)=>{
     featured_products.innerHTML += `
     <a href="#" class="product">
         <div class="image_container">
-        <img src="./images/${image}.jpg" loading="lazy" alt="Ginseng">
+            <img src="./images/${image}.jpg" loading="lazy" alt="Ginseng">
         </div>
 
         ${
         index % 2 == 0 ?
-        `<i class="fa-regular fa-heart"></i>`:
-        `<i class="fa-solid fa-heart" style="color: red;"></i>`
+        `<i class="fa-regular fa-heart like_button"></i>`:
+        `<i class="fa-solid fa-heart like_button" style="color: red;"></i>`
         }
 
         <h3>${product_name[index]}</h3>

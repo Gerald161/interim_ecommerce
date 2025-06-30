@@ -201,7 +201,7 @@ main h2{
     font-size:0.9em;
 }
 
-.featured_products .product i{
+.featured_products .product .like_button{
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -232,6 +232,7 @@ main h2{
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .featured_products .product .add_container:hover{
