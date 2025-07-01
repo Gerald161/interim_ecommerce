@@ -219,6 +219,7 @@ main h2{
 	margin: 5px;
 	background-color: rgba(0,0,0,0.2);
 	border-radius: 100%;
+    cursor: pointer;
 }
 
 .featured_products .product .price_and_discount{
