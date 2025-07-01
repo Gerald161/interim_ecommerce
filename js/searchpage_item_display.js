@@ -45,20 +45,22 @@ const featured_products = document.querySelector(".featured_products");
 
 allImages.forEach((image, index)=>{
     featured_products.innerHTML += `
-    <a href="./product.html" class="product">
-        <div class="image_container">
-            <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
-            ${index % 2 == 0 && `<div class="badge">30% off</div>`}
+    <div class="product">
+            <a href="product.html" class="image_container">
+                <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
+                ${index % 2 == 0 && `<div class="badge">30% off</div>`}
+            </a>
+
+            <i class="fa-regular fa-heart like_button"></i>
+
+            <div class="product_desc">
+                <h3>${image.name}</h3>
+
+                <div class="price_and_discount">
+                    <p>£${image.price}</p>
+                    <span>${index % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
+                </div>
+            </div>
         </div>
-
-        <i class="fa-regular fa-heart like_button"></i>
-
-        <h3>${image.name}</h3>
-
-        <div class="price_and_discount">
-            <p>£${image.price}</p>
-            <span>${index % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
-        </div>
-    </a>
     `
 });

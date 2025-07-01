@@ -110,30 +110,32 @@ const featured_products = document.querySelectorAll(".featured_products");
 featured_products.forEach((featured_product, index)=>{
     allImages[index].forEach((image, index2)=>{
         featured_product.innerHTML += `
-        <a href="product.html" class="product">
-            <div class="image_container">
+        <div class="product">
+            <a href="product.html" class="image_container">
                 <img src="./images/${image.image}.jpg" loading="lazy" alt="Ginseng">
                 ${index2 % 2 == 0 && `<div class="badge">30% off</div>`}
-            </div>
+            </a>
 
             <i class="fa-regular fa-heart like_button"></i>
 
-            <h3>${image.name}</h3>
+            <div class="product_desc">
+                <h3>${image.name}</h3>
 
-            <div class="price_and_discount">
-                <p>£${image.price}</p>
-                <span>${index2 % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
-            </div>
+                <div class="price_and_discount">
+                    <p>£${image.price}</p>
+                    <span>${index2 % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
+                </div>
 
-            <div class="add_container">
-                <p>${index2 % 2 == 0 ? "Added to cart": "Add to cart"}</p>
-                ${index2 % 2 == 0 ? 
-                `<i class="fa-solid fa-check add_cart_button success_added"></i>` 
-                : 
-                `<i class="fa-solid fa-plus add_cart_button"></i>`
-                }
+                <div class="add_container">
+                    <p>${index2 % 2 == 0 ? "Added to cart": "Add to cart"}</p>
+                    ${index2 % 2 == 0 ? 
+                    `<i class="fa-solid fa-check add_cart_button success_added"></i>` 
+                    : 
+                    `<i class="fa-solid fa-plus add_cart_button"></i>`
+                    }
+                </div>
             </div>
-        </a>
+        </div>
         `
     });
 });
