@@ -15,7 +15,7 @@ allImages.forEach((image, index)=>{
     <div class="product">
         <a href="product.html" class="image_container">
             <img src="./images/${image}.jpg" loading="lazy" alt="Ginseng">
-            ${index % 2 == 0 && `<div class="badge">30% off</div>`}
+            ${index % 2 == 0 && `<div class="badge">NEW</div>`}
         </a>
 
         ${
@@ -29,7 +29,8 @@ allImages.forEach((image, index)=>{
 
             <div class="price_and_discount">
                 <p>£${prices[index]}</p>
-                <span>${index % 2 == 0 ? "£"+ parseInt(prices[index]) + 20 : ""}</span>
+                <span class="discount_price">${index % 2 == 0 ? "£"+ parseInt(prices[index]) + 20 : ""}</span>
+                ${index % 2 == 0 ? `<span class="discount">25% OFF</span>` : ""}
             </div>
         </div>
     </div>
