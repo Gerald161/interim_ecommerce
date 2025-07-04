@@ -245,6 +245,12 @@ main h2{
     white-space: nowrap;
 }
 
+.featured_products .product .discount_section{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .featured_products .product .price_and_discount{
     display: flex;
     align-items: center;
@@ -256,15 +262,14 @@ main h2{
     color: gray;
 }
 
-.featured_products .product .price_and_discount .discount{
+.featured_products .product .discount_section .discount{
     background: linear-gradient(135deg, #48bb78, #38a169);
     color: white;
     padding: 0.25rem 0.5rem;
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 600;
-    /* below is for some extra left spacing */
-    margin-left: 10px;
+    text-align: center;
 }
 
 .featured_products .product .add_container{
@@ -361,6 +366,11 @@ main h2{
         padding-bottom: 10px;
     }
 
+    .featured_products .product{
+        /* min-width: max-content; */
+        min-width: 200px;
+    }
+
     .featured_products .product .image_container{
         min-width: 200px;
         height: 150px;
@@ -368,6 +378,12 @@ main h2{
 
     .featured_products:last-child{
         padding-bottom: 40px;
+    }
+
+    .featured_products .product .product_desc .product_rating{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
     }
 }
 

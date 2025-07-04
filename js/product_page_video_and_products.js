@@ -27,9 +27,11 @@ allImages.forEach((image, index)=>{
         <div class="product_desc">
             <h3>${product_name[index]}</h3>
 
-            <div class="price_and_discount">
-                <p>£${prices[index]}</p>
-                <span class="discount_price">${index % 2 == 0 ? "£"+ parseInt(prices[index]) + 20 : ""}</span>
+            <div class="discount_section">
+                <div class="price_and_discount">
+                    <p>£${prices[index]}</p>
+                    <span class="discount_price">${index % 2 == 0 ? "£"+parseInt(prices[index]) + 20 : ""}</span>
+                </div>
                 ${index % 2 == 0 ? `<span class="discount">25% OFF</span>` : ""}
             </div>
         </div>

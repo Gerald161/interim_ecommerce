@@ -568,6 +568,11 @@ i:hover ~ i
     overflow-x: auto;
   }
 
+  .featured_products .product{
+    /* min-width: max-content; */
+    min-width: 200px;
+  }
+
   .featured_products .product .image_container{
     min-width: 130px;
     height: 130px;

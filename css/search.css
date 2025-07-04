@@ -428,6 +428,10 @@ main .filter_results_section .search_results .search_result h4{
     padding-bottom: unset;
   }
 
+  .featured_products .product{
+    min-width: unset;
+  }
+
   .featured_products .product .image_container{
     height: 150px;
   }

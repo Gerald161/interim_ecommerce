@@ -71,9 +71,11 @@ allImages.forEach((image, index)=>{
                     <span class="rating_text">(4.8) 2,341 reviews</span>
                 </div>
 
-                <div class="price_and_discount">
-                    <p>£${image.price}</p>
-                    <span class="discount_price">${index % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
+                <div class="discount_section">
+                    <div class="price_and_discount">
+                        <p>£${image.price}</p>
+                        <span class="discount_price">${index % 2 == 0 ? "£"+parseInt(image.price) + 20 : ""}</span>
+                    </div>
                     ${index % 2 == 0 ? `<span class="discount">25% OFF</span>` : ""}
                 </div>
             </div>
