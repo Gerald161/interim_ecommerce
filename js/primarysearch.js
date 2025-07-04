@@ -8,8 +8,18 @@ const clearSearches = document.querySelectorAll(".clear_search");
 
 const cameraUploads = document.querySelectorAll(".camera_upload");
 
+// Closing containers here
+var notifications_container = document.querySelector(".notifications_container");
+
+var profile_settings_container = document.querySelector(".profile_settings_container");
+
 allInputs.forEach((input, index)=>{
     input.addEventListener("focus", (e)=>{
+        // here is where I actually close it
+        notifications_container.classList.remove("show_display");
+        profile_settings_container.classList.remove("show_display")
+        // it ends here
+
         cameraUploads[index].style.display = "none";
         clearSearches[index].style.display = "block";
 

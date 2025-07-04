@@ -4,7 +4,7 @@ header{
     width: 100%;
     position: fixed;
     top: 0;
-    z-index: 1000;
+    z-index: 15;
     background-color: white;
 }
 
@@ -344,6 +344,10 @@ header form button i{
 	.show_header{
 		padding-bottom: 10px;
 	}
+
+    .header_overlay{
+        display: none;
+    }
 }
 
 @media (prefers-color-scheme: dark){
