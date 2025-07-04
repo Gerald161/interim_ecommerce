@@ -86,7 +86,6 @@ main{
   display: flex;
   margin-bottom: 5px;
   padding: 0;
-	padding-bottom: 40px;
 }
   
 main .filter_options_section{
@@ -320,6 +319,7 @@ main .filter_results_section .search_results .search_result h4{
   border-radius: 8px;
   margin-right: 5px;
   transition: all 0.2s ease;
+  text-align: center;
 }
 
 .clear_filters:hover {
@@ -417,23 +417,6 @@ main .filter_results_section .search_results .search_result h4{
 
   .filter_text_container{
     display: none;
-  }
-
-  /* to override the new one inside main styles.css */
-  .featured_products{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    overflow-x: hidden;
-    /* padding bottom is for the scroll bar when small */
-    padding-bottom: unset;
-  }
-
-  .featured_products .product{
-    min-width: unset;
-  }
-
-  .featured_products .product .image_container{
-    height: 150px;
   }
 }
 

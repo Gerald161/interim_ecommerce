@@ -505,15 +505,6 @@ i:hover ~ i
   background-color: rgba(0,0,0,0.1);
 }
 
-/* overriding styles.css for featured products below here */
-.featured_products{
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-
-.featured_products .product .image_container{
-  height: 220px;
-}
-
 @media(max-width: 900px){
   :root{
     --image_width: 100vw;
@@ -554,28 +545,13 @@ i:hover ~ i
     flex-direction: row;
     height: fit-content;
     overflow-y: hidden;
+    padding-bottom: 10px;
   }
 
   main .additional_images .additional_image{
     min-width: 130px;
     height: 50px;
     border-radius: 10px;
-  }
-
-  .featured_products{
-    display: flex;
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .featured_products .product{
-    /* min-width: max-content; */
-    min-width: 200px;
-  }
-
-  .featured_products .product .image_container{
-    min-width: 130px;
-    height: 130px;
   }
 
   .general_reviews_container{
