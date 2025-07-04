@@ -250,12 +250,12 @@
 
     .featured_products .product{
         /* min-width: max-content; */
-        min-width: 250px;
+        min-width: 200px;
     }
 
     .featured_products .product .image_container{
         min-width: 200px;
-        height: 180px;
+        height: 150px;
     }
 
     .featured_products .product .product_desc .product_rating{

@@ -170,10 +170,6 @@
         overflow-x: hidden;
     }
 
-    .featured_products .product{
-        min-width: unset;
-    }
-
     .featured_products .product .image_container{
         height: 150px;
     }
