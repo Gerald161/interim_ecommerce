@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <link rel="stylesheet" href="./css/categories.css">
+    <link rel="stylesheet" href="./css/navbar_searchbar_categories.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/navbar.css">
+	<link rel="stylesheet" href="./css/sidebar.css">
+	<link rel="stylesheet" href="./css/footer.css">
+	<link rel="stylesheet" href="./css/home_profile_settings.css">
+	<link rel="stylesheet" href="./css/navbar_notifications.css">
+	<!-- Page specific css links below -->
+	<link rel="stylesheet" href="./css/categories.css">
+	<!-- it ends here -->
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>All Categories</title>
 </head>
 <body>
     <header>
 		<nav>
-			<a href="index.html" class="logo">
-				<img src="./images/logo.png" loading="lazy" alt="Lazy">
-			</a>
+			<div class="ham_and_icon">
+				<div class="nav_icon">
+					<i class="fa fa-bars"></i>
+				</div>
+				<a href="index.html" class="logo">
+					<img src="./images/logo.png" loading="lazy" alt="Logo">
+				</a>
+			</div>
 
-			<div class="nav_links">
-                <a href="upload.html" class="nav__link">Upload</a>
-                <a href="orders.html" class="nav__link">Orders</a>
-                <a href="#" class="nav__link">English</a>
-            </div>
-
-			<form action="" class="first_form">
-				<input type="text" placeholder="What are you looking for">
+			<form action="search.html" class="first_form">
+				<input type="text" placeholder="What are you looking for..." required>
 				<div class="form_options">
-					<i class="fa-solid fa-xmark"></i>
-					<p class="divider">|</p>
+					<i class="fa-solid fa-xmark clear_search"></i>
 					<label for="picture">
 						<i class="fa-solid fa-camera camera_upload"></i>
 					</label>
+					<p class="divider">|</p>
+					<button>
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
 				</div>
 				<input id="picture" type="file" accept="image/*" name="">
-				<button><i class="fa-solid fa-magnifying-glass"></i></button>
 				<div class="search_suggestions">
-					<a href="search.html">
-						<i class="fa-solid fa-magnifying-glass"></i>
-						<p>Test</p>
-					</a>
-					<a href="#">
-						<i class="fa-solid fa-magnifying-glass"></i>
-						<p>Search</p>
-					</a>
-					<a href="search.html">
+					<!-- <a href="search.html">
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<p>Test</p>
 					</a>
@@ -50,77 +51,120 @@
 						<i class="fa-solid fa-magnifying-glass"></i>
 						<p>Search</p>
 					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Test</p>
+					</a>
+					<a href="search.html">
+						<i class="fa-solid fa-magnifying-glass"></i>
+						<p>Search</p>
+					</a> -->
+				</div>
+				<div class="search_ideas">
+					<h3>Ideas for you</h3>
+
+					<div class="categories_container">
+						
+					</div>
+
+					<h3>Popular on Vince Search</h3>
+
+					<div class="categories_container">
+						
+					</div>
 				</div>
 			</form>
 
 			<div class="more_options">
-				<a href="#" class="toggle_big_search_button tooltip">
-					<span class="tooltip_text">Search</span>
-					<i class="fa-solid fa-magnifying-glass"></i>
-				</a>
+				<a href="#" class="tooltip">
+					<span class="tooltip_text">Favorites</span>
+					<i class="fa-regular fa-heart"></i>
+				  </a>
 
 				<div class="notifications_button tooltip">
 					<span class="tooltip_text">Notifications</span>
 					<i class="fa-solid fa-bell show_more_nav_icon"></i>
 					<div class="number_of_notifications">2</div>
 					<div class="notifications_container">
-						<p class="stuff">Your Notifications <span style="font-weight: bold;">5</span></p>
+						<div class="notification_header">
+							<h3>Notifications</h3>
 
-						<div class="mark_all">Mark all as read</div>
-
-						<!-- <p style="padding: 20px;">No messages available</p> -->
-						
-						<div class="all_notifications">
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
-										<div class="dot"></div>
+							<button class="mark_all_read">Mark all as read</button>
+						</div>
+						<div class="notification_content">
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_success">
+									<i class="fa-solid fa-check"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_success">Your order is ready</p>
+										<div class="unread_dot"></div>
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p>Your order will <span style="color: #D35454">expire</span> </p>
-										<div class="dot"></div>
+							<a href="notifications.html" class="notification_item">
+								<div class="icon text_warning">
+									<i class="fa-solid fa-triangle-exclamation"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_warning">Your order will expire</p>
+										<!-- <div class="unread_dot"></div> -->
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Complete your purchase soon to secure your items.</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
-										<div class="dot"></div>
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_processing">
+									<i class="fa-solid fa-clock"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_processing">Payment processing</p>
+										<div class="unread_dot"></div>
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
-									<div class="response">
-										<p>
-											This is going to be an encouraging text we will send our customers so 
-											they keep working with us
-										</p>
+								</div>
+							</a>
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_error">
+									<i class="fa-solid fa-credit-card"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_error">Payment failed</p>
+										<div class="unread_dot"></div>
+									</div>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
 						</div>
 
-						<a href="notifications.html" class="button">
-							View All Messages
-						</a>
+						<div class="notification_footer">
+							<a href="notifications.html">View all notifications</a>
+						</div>
 					</div>
 				</div>
 
@@ -132,15 +176,30 @@
 				<div class="tooltip">
 					<span class="tooltip_text">Log/Sign in</span>
 					<i class="fa-regular fa-circle-user show_more_nav_icon"></i>
-					<div class="notifications_container profile">
+					<div class="profile_settings_container">
 						<a href="profile.html" class="profile_option">
 							<i class="fa-duotone fa-solid fa-gear"></i>
 							<p>Settings</p>
 						</a>
 
+						<a href="orders.html" class="profile_option">
+							<i class="fa-solid fa-box-open"></i>
+							<p>Orders</p>
+						</a>
+
+						<a href="client_orders.html" class="profile_option">
+							<i class="fa-solid fa-box-open"></i>
+							<p>Client Orders</p>
+						</a>
+
 						<a href="signinnew.html" class="profile_option">
 							<i class="fa-solid fa-user"></i>
 							<p>Sign in</p>
+						</a>
+
+						<a href="upload.html" class="profile_option">
+							<i class="fa-solid fa-upload"></i>
+							<p>Upload</p>
 						</a>
 						
 						<a href="#" class="profile_option">
@@ -155,58 +214,241 @@
 	            <div class="show_search_form_button">
 	                <i class="fa-solid fa-magnifying-glass"></i>
 	            </div>
-	            <div class="nav_icon">
-	                <i class="fa fa-bars"></i>
-	            </div>
+				<div>
+					<a href="notifications.html">
+						<i class="fa-solid fa-bell show_more_nav_icon"></i>
+					</a>
+				</div>
 	        </div>
 		</nav>
 		<form action="" class="second_form">
-            <input type="text" placeholder="What are you looking for">
+            <input type="text" placeholder="What are you looking for" required>
             <div class="form_options">
-				<i class="fa-solid fa-xmark"></i>
-				<p class="divider">|</p>
+				<i class="fa-solid fa-xmark clear_search"></i>
 				<label for="picture">
 					<i class="fa-solid fa-camera camera_upload"></i>
 				</label>
+				<p class="divider">|</p>
+				<button>
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</button>
 			</div>
 			<input id="picture" type="file" accept="image/*" name="">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
             <div class="search_suggestions">
-                <a href="#">
+                <!-- <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Test2</p>
                 </a>
-                <a href="#">
+                <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Search2</p>
                 </a>
-                <a href="#">
+                <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Test2</p>
                 </a>
-                <a href="#">
+                <a href="search.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <p>Search2</p>
-                </a>
+                </a> -->
             </div>
+			<div class="search_ideas">
+				<h3>Ideas for you</h3>
+
+				<div class="categories_container">
+					
+				</div>
+
+				<h3>Popular on Vince Search</h3>
+
+				<div class="categories_container">
+					
+				</div>
+			</div>
         </form>
 	</header>
 
 	<div class="mobile_screen_sidebar">
-    <i class="close_button fas fa-times"></i>
+		<div class="nav_drawer">
+			<div class="drawer_header">
+				<div class="logo">
+					<img src="./images/logo.png" alt="Logo">
+					<div class="logo_text">
+						<h3>Ecommerce</h3>
+						<p>Welcome Back!</p>
+					</div>
+				</div>
 
-    <div class="container">
-        <a href="orders.html" class="nav_link">Orders</a>
-        <a href="notifications.html" class="nav_link">Notifications</a>
-        <a href="upload.html" class="nav_link">Upload</a>
-        <a href="checkout.html" class="nav_link">Checkout</a>
+				<i class="close_button fas fa-times"></i>
+			</div>
+		</div>
+
+		<div class="drawer_content">
+			<div class="nav_section">
+				<h3 class="nav_section_title">Quick Actions</h3>
+
+				<div class="nav_section_items">
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-cart-shopping"></i>
+							<p>Cart</p>
+						</div>
+
+						<p>20</p>
+					</a>
+
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-regular fa-heart"></i>
+							<p>Wishlist</p>
+						</div>
+
+						<p>9</p>
+					</a>
+
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-truck"></i>
+							<p>Track Orders</p>
+						</div>
+
+						<p>34</p>
+					</a>
+				</div>
+			</div>
+
+			<div class="nav_section">
+				<h3 class="nav_section_title">Categories</h3>
+
+				<div class="nav_section_items">
+					<div class="item category_button">
+						<div class="icon_and_label">
+							<img src="./icons/fashion.png" alt="Fashion">
+							<p>Fashion</p>
+						</div>
+
+						<div class="arrow">
+							<i class="fa-solid fa-chevron-down"></i>
+						</div>
+					</div>
+
+					<div class="nav_sub_cat">
+						<a href="">Men</a>
+						<a href="">Women</a>
+						<a href="">Children</a>
+					</div>
+
+					<div class="item category_button">
+						<div class="icon_and_label">
+							<img src="./icons/electronics.png" alt="Electronics">
+							<p>Electronics</p>
+						</div>
+
+						<div class="arrow">
+							<i class="fa-solid fa-chevron-down"></i>
+						</div>
+					</div>
+
+					<div class="nav_sub_cat">
+						<a href="">Phones</a>
+						<a href="">Laptops</a>
+						<a href="">PCs</a>
+					</div>
+
+					<div class="item category_button">
+						<div class="icon_and_label">
+							<img src="./icons/beauty.png" alt="Beauty">
+							<p>Beauty</p>
+						</div>
+
+						<div class="arrow">
+							<i class="fa-solid fa-chevron-down"></i>
+						</div>
+					</div>
+
+					<div class="nav_sub_cat">
+						<a href="">Makeup</a>
+						<a href="">Lipstick</a>
+						<a href="">Lotions</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="nav_section">
+				<h3 class="nav_section_title">Browse</h3>
+
+				<div class="nav_section_items">
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-fire-flame-curved"></i>
+							<p>Trending Now</p>
+						</div>
+					</a>
+
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-regular fa-star"></i>
+							<p>New Arrivals</p>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="nav_section">
+				<h3 class="nav_section_title">Account</h3>
+
+				<div class="nav_section_items">
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-regular fa-circle-user"></i>
+							<p>My Account</p>
+						</div>
+					</a>
+
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-location-dot"></i>
+							<p>Saved Addresses</p>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="nav_section">
+				<h3 class="nav_section_title">Support</h3>
+
+				<div class="nav_section_items">
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-circle-question"></i>
+							<p>Help Center</p>
+						</div>
+					</a>
+
+					<a href="#" class="item">
+						<div class="icon_and_label">
+							<i class="fa-solid fa-gear"></i>
+							<p>Settings</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="drawer_footer">
+			<a href="#">
+				<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				<span style="margin-left: 5px;">Sign Out</span>
+			</a>
+		</div>
     </div>
-  </div>
+
+	<div class="drawer_overlay"></div>
 
     <main>
-		<h2>All Categories</h2>
+		<h2 class="simple_header">All Categories</h2>
 
-		<div class="categories_container">
+		<div id="categories_container">
 			<!-- <a href="#" class="category">
 				<div class="representation"></div>
 				<p>3D illustrations</p>
@@ -215,144 +457,49 @@
     </main>
 
     <footer>
-		<div class="footer_info">
-            <h1>Shop with us</h1>
+    <div class="footer_info">
+        <h2>COMPANY INFO</h2>
 
-            <p class="first_p">Quality products, great prices, fast shipping. Shop with confidence</p>
-
-            <p style="font-weight: bold;">Subscribe to our newsletter</p>
-
-            <form>
-            	<input type="text" name="" placeholder="Enter your email">
-            	<button>Submit</button>
-            </form>
-        </div>
-
-        <div class="footer_info">
-            <h2>COMPANY INFO</h2>
-
-            <a href="#">About Us</a>
-            <a href="#">Investor Relations</a>
-            <a href="#">Career Opportunities</a>
-            <a href="website_t&c_and_privacy_policy.pdf" download="">Terms & Conditions</a>
-        </div>
-
-        <div class="footer_info">
-            <h2>POLICIES</h2>
-            <a href="#">Accessibility Statement</a>
-            <a href="#">Privacy Policy</a>
-        </div>
-
-        <div class="footer_info">
-            <h2>CUSTOMER CARE</h2>
-
-            <a href="+447767624362">+447767624362</a>
-            <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
-        </div>
-    </footer>
-
-    <div class="copyright">
-    	<div class="social_media_icons">
-    		<a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-    	</div>
-    	<div style="text-align: center;">
-    		<p>&copy2025 Vince Vineyard Empire Company Limited</p>
-    	</div>
-    	<div style="text-align: right;">
-    		<a href="#">Terms & Conditions</a>
-    	</div>
+        <a href="#">About Us</a>
+        <a href="#">Investor Relations</a>
+        <a href="#">Career Opportunities</a>
     </div>
 
-    <script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+    <div class="footer_info">
+        <h2>POLICIES</h2>
+        <a href="website_t&c_and_privacy_policy.pdf">Terms & Condition</a>
+        <a href="#">Accessibility Statement</a>
+        <a href="#">Privacy Policy</a>
+    </div>
 
-    <script src="js/carousel.js"></script>
+    <div class="footer_info">
+          <h2>CUSTOMER CARE</h2>
+          <a href="tel:+447767624362">07767624362</a>
+          <a href="mailto:hello@vincevineyardmail.com">hello@vincevineyardmail.com</a>
+          <a href="#">Vince Vineyard Charity</a>
+      </div>
+  </footer>
 
-	<script>
-        var sideBarButton = document.querySelector(".nav_icon");
+  <div class="copyright">
+    <div class="social_media_icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div style="text-align: center;">
+      <p>&copy2025 Vince Vineyard Empire Company Limited</p>
+    </div>
+    <div style="text-align: right;">
+      <a href="#">Terms & Conditions</a>
+    </div>
+  </div>
 
-        var closeButton = document.querySelector(".close_button");
-
-        var sideBar = document.querySelector(".mobile_screen_sidebar");
-
-        sideBarButton.addEventListener("click", (e)=>{
-        	e.preventDefault();
-            sideBar.style.left = "0";
-        });
-
-		closeButton.addEventListener("click", (e)=>{
-            sideBar.style.left = "100%";
-        });
-
-        var toggle_big_search_button = document.querySelector(".toggle_big_search_button");
-
-		var nav_links = document.querySelector(".nav_links");
-
-		var first_header_form = document.querySelector("header").querySelector(".first_form");
-
-		toggle_big_search_button.addEventListener("click", (e)=>{
-			e.preventDefault();
-
-			if(nav_links.classList.contains("hide_nav_links")){
-				first_header_form.style.transition = "all 0s";
-			}else{
-				first_header_form.style.transition = "all 0.5s";
-			}
-			nav_links.classList.toggle("hide_nav_links");
-
-			first_header_form.classList.toggle("show_header");
-		});
-
-        var show_search_form_button = document.querySelector(".show_search_form_button");
-
-        var second_header_form = document.querySelector("header").querySelector(".second_form");
-        
-        show_search_form_button.addEventListener("click", (e)=>{
-            e.preventDefault();
-            second_header_form.classList.toggle("show_header");
-        });
-
-		var all_show_more_nav_icon = document.querySelectorAll(".show_more_nav_icon");
-
-		all_show_more_nav_icon.forEach((show_more_nav_icon)=>{
-			show_more_nav_icon.addEventListener("click", (e)=>{
-				var old_one = document.querySelector(".show_display");
-
-				show_more_nav_icon.parentElement.querySelector(".notifications_container").classList.toggle("show_display");
-
-				if(old_one !== null){
-					old_one.classList.remove("show_display");
-				}
-			});
-		});
-
-		var categories_container = document.querySelector(".categories_container");
-
-		var all_categories = [
-			"Clothes", "Bags", "Jewelry", "Shoes", "Embroidery Threads",
-			"African Food and Market", "Cars", "Spare Parts", "Electronics",
-			"Used Items", "Beads and Bead Designs", "Gold", "Diamonds"
-		]
-
-		all_categories.forEach((category)=>{
-			categories_container.innerHTML += `
-				<a href="subcategories.html" class="category">
-					<div class="representation"></div>
-					<p>${category}</p>
-				</a>
-			`
-		})
-
-		// for(var i = 0; i < 12; i ++){
-		// 	categories_container.innerHTML += `
-		// 		<a href="search.html" class="category">
-		// 			<div class="representation"></div>
-		// 			<p>${all_categories[i]}</p>
-		// 		</a>
-		// 	`
-		// }
-    </script>
+	<script src="https://kit.fontawesome.com/2843b9be73.js" crossorigin="anonymous"></script>
+	<script src="./js/sidebarcontroller.js"></script>
+	<script src="./js/primarysearch.js"></script>
+	<script src="./js/nav_icon_click.js"></script>
+	<!-- page specific scripts below -->
+	 <script src="./js/categoriespage.js"></script>
 </body>
 </html>

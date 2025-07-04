@@ -20,7 +20,7 @@
     <title>Welcome to Vince Vineyard International</title>
 </head>
 <body>
-  <header>
+	<header>
 		<nav>
 			<div class="ham_and_icon">
 				<div class="nav_icon">
@@ -81,70 +81,92 @@
 				<a href="#" class="tooltip">
 					<span class="tooltip_text">Favorites</span>
 					<i class="fa-regular fa-heart"></i>
-				  </a>
+					</a>
 
 				<div class="notifications_button tooltip">
 					<span class="tooltip_text">Notifications</span>
 					<i class="fa-solid fa-bell show_more_nav_icon"></i>
 					<div class="number_of_notifications">2</div>
 					<div class="notifications_container">
-						<p class="stuff">Your Notifications <span style="font-weight: bold;">5</span></p>
+						<div class="notification_header">
+							<h3>Notifications</h3>
 
-						<div class="mark_all">Mark all as read</div>
-
-						<!-- <p style="padding: 20px;">No messages available</p> -->
-						
-						<div class="all_notifications">
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p>Your <span style="font-weight: bold;">order</span> is <span style="color: #28A745;">ready</span></p>
-										<div class="dot"></div>
+							<button class="mark_all_read">Mark all as read</button>
+						</div>
+						<div class="notification_content">
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_success">
+									<i class="fa-solid fa-check"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_success">Your order is ready</p>
+										<div class="unread_dot"></div>
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p>Your order will <span style="color: #D35454">expire</span> </p>
-										<div class="dot"></div>
+							<a href="notifications.html" class="notification_item">
+								<div class="icon text_warning">
+									<i class="fa-solid fa-triangle-exclamation"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_warning">Your order will expire</p>
+										<!-- <div class="unread_dot"></div> -->
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Complete your purchase soon to secure your items.</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
-							<a href="#" class="notification">
-								<div class="profile_pic"></div>
-								<div class="message_container">
-									<div class="both">
-										<p><span style="font-weight: bold;">@Vince</span> responded to comment</p>
-										<div class="dot"></div>
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_processing">
+									<i class="fa-solid fa-clock"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_processing">Payment processing</p>
+										<div class="unread_dot"></div>
 									</div>
-									<div class="time">
-										<p style="color: grey;">Friday 3:12 PM</p>
-										<p style="color: grey;">2 hours ago</p>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
-									<div class="response">
-										<p>
-											This is going to be an encouraging text we will send our customers so 
-											they keep working with us
-										</p>
+								</div>
+							</a>
+							<a href="notifications.html" class="notification_item unread_noti">
+								<div class="icon text_error">
+									<i class="fa-solid fa-credit-card"></i>
+								</div>
+								<div class="title_and_details">
+									<div class="title_and_status">
+										<p class="text_error">Payment failed</p>
+										<div class="unread_dot"></div>
+									</div>
+									<p class="detail">Your order #12345 has been shipped and it is on the way!</p>
+
+									<div class="time_section">
+										<p>Friday 3:12 PM</p>
+										<p>2h ago</p>
 									</div>
 								</div>
 							</a>
 						</div>
 
-						<a href="notifications.html" class="button">
-							View All Messages
-						</a>
+						<div class="notification_footer">
+							<a href="notifications.html">View all notifications</a>
+						</div>
 					</div>
 				</div>
 
@@ -156,7 +178,7 @@
 				<div class="tooltip">
 					<span class="tooltip_text">Log/Sign in</span>
 					<i class="fa-regular fa-circle-user show_more_nav_icon"></i>
-					<div class="notifications_container profile">
+					<div class="profile_settings_container">
 						<a href="profile.html" class="profile_option">
 							<i class="fa-duotone fa-solid fa-gear"></i>
 							<p>Settings</p>
@@ -186,19 +208,19 @@
 			</div>
 
 			<div class="nav_icon_container">
-	            <div class="show_search_form_button">
-	                <i class="fa-solid fa-magnifying-glass"></i>
-	            </div>
+				<div class="show_search_form_button">
+					<i class="fa-solid fa-magnifying-glass"></i>
+				</div>
 				<div>
 					<a href="notifications.html">
 						<i class="fa-solid fa-bell show_more_nav_icon"></i>
 					</a>
 				</div>
-	        </div>
+			</div>
 		</nav>
 		<form action="" class="second_form">
-            <input type="text" placeholder="What are you looking for" required>
-            <div class="form_options">
+			<input type="text" placeholder="What are you looking for" required>
+			<div class="form_options">
 				<i class="fa-solid fa-xmark clear_search"></i>
 				<label for="picture">
 					<i class="fa-solid fa-camera camera_upload"></i>
@@ -209,24 +231,24 @@
 				</button>
 			</div>
 			<input id="picture" type="file" accept="image/*" name="">
-            <div class="search_suggestions">
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Test2</p>
-                </a>
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Search2</p>
-                </a>
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Test2</p>
-                </a>
-                <a href="search.html">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>Search2</p>
-                </a>
-            </div>
+			<div class="search_suggestions">
+				<a href="search.html">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<p>Test2</p>
+				</a>
+				<a href="search.html">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<p>Search2</p>
+				</a>
+				<a href="search.html">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<p>Test2</p>
+				</a>
+				<a href="search.html">
+					<i class="fa-solid fa-magnifying-glass"></i>
+					<p>Search2</p>
+				</a>
+			</div>
 			<div class="search_ideas">
 				<h3>Ideas for you</h3>
 
@@ -240,7 +262,7 @@
 					
 				</div>
 			</div>
-        </form>
+		</form>
 	</header>
 
 	<div class="mobile_screen_sidebar">
@@ -416,43 +438,43 @@
 				<span style="margin-left: 5px;">Sign Out</span>
 			</a>
 		</div>
-    </div>
+  	</div>
 
 	<div class="drawer_overlay"></div>
 
-  <div class="mobile_filter_options">
-    <div class="option">
-      <p>Filter</p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z"></path></svg>
-    </div>
+	<div class="mobile_filter_options">
+		<div class="option">
+			<p>Filter</p>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 11h10v2H7zM4 7h16v2H4zm6 8h4v2h-4z"></path></svg>
+		</div>
 
-    <div class="option">
-      <p>Sort</p>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"></path></svg>
-    </div>
+		<div class="option">
+			<p>Sort</p>
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"></path></svg>
+		</div>
 
-    <div class="option">
-      <p>Color</p>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-    <div class="option">
-      <p>Price Range</p>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-    <div class="option">
-      <p>Gender</p>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-    <div class="option">
-      <p>Brand</p>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
-  </div>
+		<div class="option">
+			<p>Color</p>
+			<i class="fa-solid fa-chevron-down"></i>
+		</div>
+		<div class="option">
+			<p>Price Range</p>
+			<i class="fa-solid fa-chevron-down"></i>
+		</div>
+		<div class="option">
+			<p>Gender</p>
+			<i class="fa-solid fa-chevron-down"></i>
+		</div>
+		<div class="option">
+			<p>Brand</p>
+			<i class="fa-solid fa-chevron-down"></i>
+		</div>
+	</div>
 
-  <div class="bottom_filter_options_container">
-    <h2 style="text-align: center; font-weight: normal; padding-top: 30px;">Filter Option</h2>
-    <i class="fa-solid fa-xmark close_filter"></i>
-  </div>
+	<div class="bottom_filter_options_container">
+		<h2 style="text-align: center; font-weight: normal; padding-top: 30px;">Filter Option</h2>
+		<i class="fa-solid fa-xmark close_filter"></i>
+	</div>
 
   <div class="category_classifications">
     <a href="#">
