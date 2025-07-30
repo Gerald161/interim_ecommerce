@@ -187,6 +187,11 @@
     .featured_products .product .discount_section{
         gap: 5px;
     }
+
+    .featured_products .product .price_and_discount p,
+    .featured_products .product .price_and_discount .discount_price{
+        font-size: 0.8em;
+    }
 }
 
 @media (prefers-color-scheme: dark){
