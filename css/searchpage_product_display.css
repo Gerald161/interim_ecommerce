@@ -185,7 +185,6 @@
     }
 
     .featured_products .product .discount_section{
-        gap: 5px;
         flex-direction: column;
         align-items: flex-start;
     }
