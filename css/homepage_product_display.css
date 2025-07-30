@@ -89,10 +89,10 @@
 	height: 100%;
 	object-fit: cover;
 	transition: all 0.5s;
-}
 
-.featured_products .product:hover img{
-    transform: scale(1.2);
+    &:hover{
+        transform: scale(1.2);
+    }
 }
 
 .featured_products .product .badge{
@@ -187,12 +187,12 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-}
 
-.featured_products .product .add_container:hover{
-    background-color: #4a90e2;
-    color: white;
-    border-color: #3a80d2;
+    &:hover{
+        background-color: #4a90e2;
+        color: white;
+        border-color: #3a80d2;
+    }
 }
 
 .featured_products .product .add_container .add_cart_button{
@@ -249,7 +249,6 @@
     }
 
     .featured_products .product{
-        /* min-width: max-content; */
         min-width: 200px;
     }
 
