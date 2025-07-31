@@ -190,13 +190,13 @@
     .featured_products .product .discount_section p,
     .featured_products .product .price_and_discount .discount_price
     {
-        font-size: 0.85em;
+        font-size: 0.80em;
     }
 
     .featured_products .product .discount_section .discount{
         background: linear-gradient(135deg, #48bb78, #38a169);
-        padding: 0.20rem 0.40rem;
-        font-size: 0.70rem;
+        padding: 0.15rem 0.35rem;
+        font-size: 0.60rem;
         /* font-weight: 600; */
     }
 }
