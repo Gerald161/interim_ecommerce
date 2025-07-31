@@ -68,8 +68,15 @@ function capture() {
             return;
         }
         
-        // Choose capture time (1 second or 10% of duration, whichever is smaller)
-        const captureTime = Math.min(1, video.duration * 0.1);
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                         window.innerWidth <= 768 ||
+                         ('ontouchstart' in window);
+        
+        // Choose capture time (be more conservative on mobile)
+        const captureTime = isMobile ? 
+            Math.min(0.5, video.duration * 0.05) : // Mobile: 0.5s or 5% of duration
+            Math.min(1, video.duration * 0.1);     // Desktop: 1s or 10% of duration
         
         // Store original time to restore later
         const originalTime = video.currentTime;
@@ -85,26 +92,40 @@ function capture() {
                 
                 ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
                 
-                // Restore original time
-                video.currentTime = originalTime;
+                // Restore original time (with delay on mobile)
+                if (isMobile) {
+                    setTimeout(() => {
+                        video.currentTime = originalTime;
+                    }, 100);
+                } else {
+                    video.currentTime = originalTime;
+                }
+                
                 resolve();
             } catch (error) {
                 reject(new Error(`Failed to draw image: ${error.message}`));
             }
         };
         
-        // If video is already at the desired time (within 0.1s), capture immediately
-        if (Math.abs(video.currentTime - captureTime) < 0.1) {
-            doCapture();
+        // If video is already at the desired time (within 0.2s on mobile, 0.1s on desktop), capture immediately
+        const tolerance = isMobile ? 0.2 : 0.1;
+        if (Math.abs(video.currentTime - captureTime) < tolerance) {
+            // Add small delay on mobile to ensure frame is rendered
+            const delay = isMobile ? 200 : 0;
+            setTimeout(doCapture, delay);
             return;
         }
         
         let timeoutId;
         let hasResolved = false;
         
+        // Mobile-specific timeout (longer for mobile devices)
+        const timeoutDuration = isMobile ? 8000 : 3000; // 8s for mobile, 3s for desktop
+        
         // Function to clean up event listeners and timeout
         const cleanup = () => {
             video.removeEventListener('seeked', onSeeked);
+            video.removeEventListener('canplaythrough', onCanPlayThrough);
             video.removeEventListener('error', onError);
             video.removeEventListener('loadeddata', onLoadedData);
             if (timeoutId) {
@@ -118,10 +139,22 @@ function capture() {
             hasResolved = true;
             cleanup();
             
-            // Small delay to ensure frame is ready
+            // Longer delay on mobile to ensure frame is ready
+            const delay = isMobile ? 300 : 50;
             setTimeout(() => {
                 doCapture();
-            }, 50);
+            }, delay);
+        };
+        
+        // Handle when enough data is loaded for smooth playback (better for mobile)
+        const onCanPlayThrough = () => {
+            if (hasResolved) return;
+            hasResolved = true;
+            cleanup();
+            
+            setTimeout(() => {
+                doCapture();
+            }, isMobile ? 200 : 50);
         };
         
         // Handle seek/load errors
@@ -135,18 +168,19 @@ function capture() {
         // Handle case where video needs more loading
         const onLoadedData = () => {
             if (hasResolved) return;
-            // Video loaded more data, try capture again
+            // Video loaded more data, try capture again with mobile-friendly delay
             setTimeout(() => {
                 if (!hasResolved) {
                     hasResolved = true;
                     cleanup();
                     doCapture();
                 }
-            }, 100);
+            }, isMobile ? 300 : 100);
         };
         
-        // Add event listeners
+        // Add event listeners (including canplaythrough for better mobile support)
         video.addEventListener('seeked', onSeeked);
+        video.addEventListener('canplaythrough', onCanPlayThrough);
         video.addEventListener('error', onError);
         video.addEventListener('loadeddata', onLoadedData);
         
@@ -158,15 +192,23 @@ function capture() {
             
             // Try to capture at current time as fallback
             try {
+                console.warn('Capture timed out, attempting fallback capture at current time');
                 doCapture();
             } catch (error) {
-                reject(new Error('Seek operation timed out and fallback capture failed'));
+                reject(new Error(`Seek operation timed out after ${timeoutDuration}ms and fallback capture failed`));
             }
-        }, 3000); // Reduced from 5s to 3s
+        }, timeoutDuration);
         
-        // Attempt to seek
+        // Attempt to seek (with mobile-specific handling)
         try {
-            video.currentTime = captureTime;
+            if (isMobile) {
+                // On mobile, sometimes seeking works better with a small delay
+                setTimeout(() => {
+                    video.currentTime = captureTime;
+                }, 50);
+            } else {
+                video.currentTime = captureTime;
+            }
         } catch (error) {
             if (!hasResolved) {
                 hasResolved = true;
@@ -177,9 +219,16 @@ function capture() {
     });
 }
 
-// Enhanced usage with retry logic
+// Enhanced usage with mobile-aware retry logic
 async function captureWithRetry(maxRetries = 3) {
-    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                     window.innerWidth <= 768 ||
+                     ('ontouchstart' in window);
+    
+    // More retries on mobile due to hardware variability
+    const actualMaxRetries = isMobile ? Math.max(maxRetries, 4) : maxRetries;
+    
+    for (let attempt = 1; attempt <= actualMaxRetries; attempt++) {
         try {
             await capture();
             console.log(`Thumbnail captured successfully on attempt ${attempt}`);
@@ -187,14 +236,72 @@ async function captureWithRetry(maxRetries = 3) {
         } catch (error) {
             console.warn(`Capture attempt ${attempt} failed:`, error.message);
             
-            if (attempt === maxRetries) {
-                throw new Error(`Failed to capture thumbnail after ${maxRetries} attempts: ${error.message}`);
+            if (attempt === actualMaxRetries) {
+                throw new Error(`Failed to capture thumbnail after ${actualMaxRetries} attempts: ${error.message}`);
             }
             
-            // Wait before retry (exponential backoff)
-            await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt - 1) * 200));
+            // Longer wait between retries on mobile
+            const baseDelay = isMobile ? 500 : 200;
+            await new Promise(resolve => setTimeout(resolve, Math.pow(2, attempt - 1) * baseDelay));
         }
     }
+}
+
+// Mobile-optimized video ready check
+function waitForVideoReady() {
+    return new Promise((resolve, reject) => {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                         window.innerWidth <= 768 ||
+                         ('ontouchstart' in window);
+        
+        // On mobile, wait for more comprehensive loading
+        const requiredReadyState = isMobile ? 3 : 2; // HAVE_FUTURE_DATA on mobile, HAVE_CURRENT_DATA on desktop
+        
+        if (video.readyState >= requiredReadyState) {
+            resolve();
+            return;
+        }
+        
+        const timeout = isMobile ? 10000 : 5000; // 10s timeout on mobile
+        let timeoutId;
+        
+        const cleanup = () => {
+            video.removeEventListener('canplay', onCanPlay);
+            video.removeEventListener('canplaythrough', onCanPlayThrough);
+            video.removeEventListener('error', onError);
+            if (timeoutId) clearTimeout(timeoutId);
+        };
+        
+        const onCanPlay = () => {
+            if (isMobile && video.readyState < 3) return; // Wait for more data on mobile
+            cleanup();
+            resolve();
+        };
+        
+        const onCanPlayThrough = () => {
+            cleanup();
+            resolve();
+        };
+        
+        const onError = () => {
+            cleanup();
+            reject(new Error('Video failed to load'));
+        };
+        
+        video.addEventListener('canplay', onCanPlay);
+        video.addEventListener('canplaythrough', onCanPlayThrough);
+        video.addEventListener('error', onError);
+        
+        // Timeout fallback
+        timeoutId = setTimeout(() => {
+            cleanup();
+            if (video.readyState >= 2) {
+                resolve(); // Accept current state if we have some data
+            } else {
+                reject(new Error('Video loading timed out'));
+            }
+        }, timeout);
+    });
 }
 
 // Usage examples:
@@ -204,38 +311,38 @@ capture()
     .then(() => console.log('Thumbnail captured successfully'))
     .catch(error => console.error('Failed to capture thumbnail:', error));
 
-// With retry logic
+// With retry logic (recommended for mobile)
 captureWithRetry()
     .then(() => console.log('Thumbnail captured with retries'))
     .catch(error => console.error('All capture attempts failed:', error));
 
-// Wait for video to be ready before capturing
-function waitForVideoReady() {
-    return new Promise((resolve, reject) => {
-        if (video.readyState >= 2) {
-            resolve();
-            return;
-        }
-        
-        const onCanPlay = () => {
-            video.removeEventListener('canplay', onCanPlay);
-            video.removeEventListener('error', onError);
-            resolve();
-        };
-        
-        const onError = () => {
-            video.removeEventListener('canplay', onCanPlay);
-            video.removeEventListener('error', onError);
-            reject(new Error('Video failed to load'));
-        };
-        
-        video.addEventListener('canplay', onCanPlay);
-        video.addEventListener('error', onError);
-    });
-}
-
-// Usage with video ready check
+// Complete mobile-optimized workflow (recommended)
 waitForVideoReady()
     .then(() => captureWithRetry())
     .then(() => console.log('Thumbnail captured after ensuring video is ready'))
     .catch(error => console.error('Failed:', error));
+
+// Alternative: Capture at current position (fallback for problematic videos)
+function captureCurrentFrame() {
+    return new Promise((resolve, reject) => {
+        const canvas = document.getElementById("canvas");
+        if (!video || !canvas) {
+            reject(new Error('Video or canvas element not found'));
+            return;
+        }
+        
+        const ctx = canvas.getContext("2d");
+        
+        try {
+            if (canvas.width === 0 || canvas.height === 0) {
+                canvas.width = video.videoWidth || 320;
+                canvas.height = video.videoHeight || 240;
+            }
+            
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            resolve();
+        } catch (error) {
+            reject(new Error(`Failed to capture current frame: ${error.message}`));
+        }
+    });
+}

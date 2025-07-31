@@ -19,7 +19,6 @@
 
 .featured_products .product h3{
     font-weight: normal;
-    /* word-break: break-all; */
 }
 
 .featured_products .product .image_container{
@@ -178,15 +177,27 @@
         gap: 7px;
     }
 
+    .featured_products .product h3{
+        font-size: 1.1rem;
+    }
+
     .featured_products .product .product_desc .product_rating{
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
 
-    .featured_products .product .discount_section{
-        flex-direction: column;
-        align-items: flex-start;
+    .featured_products .product .discount_section p,
+    .featured_products .product .price_and_discount .discount_price
+    {
+        font-size: 0.85em;
+    }
+
+    .featured_products .product .discount_section .discount{
+        background: linear-gradient(135deg, #48bb78, #38a169);
+        padding: 0.25rem 0.45rem;
+        font-size: 0.70rem;
+        /* font-weight: 600; */
     }
 }
 

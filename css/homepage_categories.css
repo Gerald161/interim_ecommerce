@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     padding: 0 15px;
-    margin-top: 76px;
 }
 
 .nav_categories_container{
@@ -145,14 +144,6 @@
 }
 
 @media(max-width: 700px){
-    /* .nav_categories_container{
-        margin-top: 65px;
-    }
-
-    .nav_categories_container .vertical_categories_container{
-        display: none;
-    } */
-
     .nav_categories_container{
         display: none;
     }

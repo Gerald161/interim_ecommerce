@@ -1,8 +1,3 @@
-:root {
-    --margin-top-big: 76px;
-    --margin-top-small: 70px;
-}
-
 *{
 	margin: 0;
 	padding: 0;
@@ -23,7 +18,6 @@ a{
 }
 
 main{
-    margin-top: var(--margin-top-big);
     padding: 20px 10px;
     min-height: 60vh;
 }
@@ -55,12 +49,6 @@ select{
 
 input:focus, textarea:focus, select:focus{
     border-color: #007bff;
-}
-
-@media(max-width: 700px){
-    main{
-        margin-top: var(--margin-top-small);
-    }
 }
 
 @media (prefers-color-scheme: dark){

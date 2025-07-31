@@ -1,10 +1,4 @@
-:root {
-  --margin-top-big: 76px;
-  --margin-top-small: 70px;
-}
-
 .mobile_filter_options{
-  margin-top: var(--margin-top-small);
   align-items: center;
   gap: 20px;
   padding: 20px;
@@ -65,7 +59,6 @@
   border-bottom: solid 1px #ccc;
   justify-content: space-around;
   text-align: center;
-  margin-top: var(--margin-top-big);
 }
 
 .category_classifications img{
@@ -96,12 +89,10 @@ main .filter_options_section{
   justify-content: space-between;
   gap: 20px;
   height: 68vh;
+  top: 76px;
   position: sticky;
   overflow-y: auto;
-  /* padding-left: 1px; */
   overflow-x: hidden;
-  /* below is for the fixed top spacing */
-  top: 76px;
 }
 
 main .filter_results_section{
@@ -391,7 +382,6 @@ main .filter_results_section .search_results .search_result h4{
     justify-content: normal;
     width: 100%;
     overflow-x: auto;
-    margin-top: 0;
   }
 
   main{

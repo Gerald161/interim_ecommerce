@@ -8,7 +8,6 @@ main h2{
     position: relative;
     height: 70vh;
     width: 100%;
-    /* margin-top: 76px; */
 }
 
 .welcome_container .overlay{
@@ -108,7 +107,6 @@ main h2{
 @media(max-width: 700px){
     .welcome_container{
         height: 63vh;
-        margin-top: var(--margin-top-small);
     }
 
     .welcome_container .overlay .welcome_description{
