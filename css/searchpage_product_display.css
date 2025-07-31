@@ -178,7 +178,7 @@
     }
 
     .featured_products .product h3{
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
 
     .featured_products .product .product_desc .product_rating{
@@ -195,7 +195,7 @@
 
     .featured_products .product .discount_section .discount{
         background: linear-gradient(135deg, #48bb78, #38a169);
-        padding: 0.15rem 0.35rem;
+        padding: 0.20rem 0.40rem;
         font-size: 0.60rem;
         /* font-weight: 600; */
     }
