@@ -195,7 +195,7 @@
 
     .featured_products .product .discount_section .discount{
         background: linear-gradient(135deg, #48bb78, #38a169);
-        padding: 0.25rem 0.45rem;
+        padding: 0.20rem 0.40rem;
         font-size: 0.70rem;
         /* font-weight: 600; */
     }
