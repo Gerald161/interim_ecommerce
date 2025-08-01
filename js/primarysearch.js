@@ -101,9 +101,11 @@ show_search_form_button.addEventListener("click", (e)=>{
 var categories_containers = document.querySelectorAll(".categories_container");
 
 var all_categories = [
-    ["Clothes", "Bags", "Jewelry"], ["Shoes",
-    "Cars", "Spare Parts", "Electronics",
-    "Used Items", "Beads and Bead Designs", "Gold", "Diamonds"]
+    ["Clothes", "Bags", "Jewelry", "PCs"], 
+    [
+        "Shoes","Cars", "Spare Parts", "Electronics",
+        "Used Items", "Beads and Bead Designs", "Gold", "Diamonds"
+    ]
 ]
 
 categories_containers.forEach((category_container, index)=>{
