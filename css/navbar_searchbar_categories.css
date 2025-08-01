@@ -56,7 +56,7 @@
     }
 
     .search_ideas{
-        padding-bottom: 70px;
+        padding-bottom: 30px;
     }
     
     .categories_container .category .representation{
@@ -93,6 +93,6 @@
     }
 
     .search_ideas{
-        background-color: #333333;
+        background-color: #1a1a1a;
     }
 }
