@@ -111,8 +111,10 @@ categories_containers.forEach((category_container, index)=>{
         all_categories[0].forEach((category)=>{
             category_container.innerHTML += `
                 <a href="search.html" class="category">
-                    <div class="representation"></div>
-                    <p>${category}</p>
+                    <img src="../images/avatar.jpg" class="representation" alt="Representation">
+                    <div class="label_container">
+                        <p>${category}</p>
+                    </div>
                 </a>
             `
         })
@@ -120,8 +122,10 @@ categories_containers.forEach((category_container, index)=>{
         all_categories[1].forEach((category)=>{
             category_container.innerHTML += `
                 <a href="search.html" class="category">
-                    <div class="representation"></div>
-                    <p>${category}</p>
+                    <img src="../images/avatar.jpg" class="representation" alt="Representation">
+                    <div class="label_container">
+                        <p>${category}</p>
+                    </div>
                 </a>
             `
         })
