@@ -151,12 +151,30 @@ nav .nav_icon_container div{
     cursor: pointer;
 }
 
+nav .nav_icon_container .mobile_notification_container{
+    position: relative;
+}
+
+nav .nav_icon_container .mobile_notification_container .number_of_notifications{
+    position: absolute;
+    right: -12px;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    pointer-events: none;
+    font-size: 14px;
+}
+
 .nav_icon{
-    /* below is the hamburger thingy */
     font-size: 20px;
-    /* ends here */
     cursor: pointer;
-    /* display: none; */
     transition: background-color 0.5s;
     padding: 5px 10px;
     border-radius: 50%;
