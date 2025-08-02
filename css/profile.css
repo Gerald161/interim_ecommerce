@@ -1,13 +1,36 @@
-main .filter_results_section{
-    border-left: none;
+main{
+    display: flex;
+    padding: 20px 0;
 }
 
-main .filter_options_section .filter_section .filter_options_section_option{
-    border-bottom: none;
+.settings_nav_section{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
 }
 
-main .filter_options_section .filter_section .filter_options_section_option:nth-child(1) p{
-    color: dodgerblue; 
+.settings_nav_section .selected_nav{
+    background: #e0e0e0;
+}
+
+.settings_nav_section a{
+    transition: all 0.5s;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.settings_nav_section a:hover{
+    background-color: #e0e0e0;
+}
+
+.settings_config_section{
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
 }
 
 .profile_change_container{
@@ -17,11 +40,40 @@ main .filter_options_section .filter_section .filter_options_section_option:nth-
 }
 
 .profile_change_container .profile_pic{
-    min-width: 100px;
-    min-height: 100px;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.profile_change_container .profile_pic img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 50%;
-    align-self: flex-start;
-    background: url(../images/avatar.jpg) no-repeat center/cover;
+}
+
+.profile_change_container .profile_pic .icon_cont{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.profile_change_container .profile_pic .icon_cont:hover{
+    opacity: 1;
+}
+
+.profile_change_container .profile_pic .icon_cont i{
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    /* margin-left: auto; */
 }
 
 .profile_change_container input[type='file']{
@@ -31,43 +83,28 @@ main .filter_options_section .filter_section .filter_options_section_option:nth-
 
 .profile_change_container label{
     cursor: pointer;
-	color: white;
-	height: 50px;
-	width: 120px;
-	background-color: #f5af09;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.2em;
-	font-family: "Monserrat", sans-serif;
-    transition: all 0.5s;
-    border-radius: 20px;
 }
 
-.profile_change_container label:hover{
-    background-color: orangered;
-}
-
-.filter_results_section form{
+.settings_config_section form{
     max-width: 500px;
 }
 
-.filter_results_section form, .label_plus_input{
+.settings_config_section form, .settings_config_section form .label_plus_input{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.all_names{
+.settings_config_section form .all_names{
     display: flex;
     gap: 10px;
 }
 
-.label_plus_input input{
+.settings_config_section form .label_plus_input input{
     width: 100%;
 }
 
-.filter_results_section form button{
+.settings_config_section form button{
     cursor: pointer;
     padding: 10px 20px;
     max-width: fit-content;
@@ -76,9 +113,36 @@ main .filter_options_section .filter_section .filter_options_section_option:nth-
     color: white;
     transition: background-color 0.5s;
     pointer-events: initial;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
-.filter_results_section form button:hover{
+.settings_config_section form button:hover{
 	background-color: orangered;
+}
+
+@media(max-width: 768px){
+    .settings_nav_section{
+        display: none;
+    }
+
+    .settings_config_section{
+        align-items: center;
+    }
+
+    .settings_config_section form .button_cont{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+@media (prefers-color-scheme: dark){
+    .settings_nav_section a:hover{
+        background: #2a2a2a;
+    }
+
+    .settings_nav_section .selected_nav{
+        background: #333333;
+    }
 }
