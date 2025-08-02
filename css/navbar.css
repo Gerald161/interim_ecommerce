@@ -322,6 +322,10 @@ header form button i{
 }
 
 @media(max-width: 700px){
+    nav{
+        padding: 7px;
+    }
+
     nav .ham_and_icon{
         flex: 1;
         justify-content: space-between;
@@ -339,7 +343,7 @@ header form button i{
 	}
 
 	nav .nav_icon_container{
-        margin-right: 5px;
+        margin-right: 7px;
 		display: flex !important;
 	}
 
