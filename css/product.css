@@ -20,6 +20,11 @@ main .images_container{
   border-radius: 20px;
   width: var(--image_width);
   overflow: hidden;
+  cursor: grab;
+}
+
+main .images_container:active{
+  cursor: grabbing;
 }
 
 main .images_container .all_images{
@@ -38,24 +43,17 @@ main .images_container .all_images video{
   object-fit: cover;
 }
 
-/* main .images_container .all_images video{
-  z-index: 20000;
-} */
-
 .prev,
 .next {
   position: absolute;
   cursor: pointer;
   top: 50%;
-  width: auto;
+  transform: translateY(-50%);
   padding: 16px;
-  margin-top: -50px;
   color: white;
   font-weight: bold;
-  font-size: 20px;
   border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
+  backdrop-filter: blur(10px);
 }
 
 .prev{
@@ -99,7 +97,6 @@ main .additional_images{
   width: 120px;
   flex-direction: column;
   height: 100%;
-  /* overflow-y: hidden; */
   overflow-y: auto;
   gap: 10px;
 }
@@ -503,6 +500,10 @@ i:hover ~ i
 
 .show_more:hover{
   background-color: rgba(0,0,0,0.1);
+}
+
+video{
+  pointer-events: none;
 }
 
 @media(max-width: 900px){
