@@ -1,8 +1,24 @@
+:root {
+    --background: var(--bg-secondary);
+    --border: #e5e7eb;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #262626;
+        --border: #404040;
+    }
+}
+
 .progress_tab{
     text-align: left;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding: 12px 16px;
+    background: var(--background);
+    border-radius: 5px;
+    border: 1px solid var(--border);
 }
 
 .progress_tab .all_progress_container{
@@ -138,6 +154,10 @@
 }
 
 @media(prefers-color-scheme: dark){
+    /* .progress_tab{
+        border: none;
+    } */
+
     .progress_tab .all_progress .checkpoint .point_and_progress .progress_bar{
         background-color: #3a3a3a;
     }
