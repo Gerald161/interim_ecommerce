@@ -12,6 +12,8 @@
 	<link rel="stylesheet" href="./css/navbar_notifications.css">
 	<!-- Page specific css links below -->
 	<link rel="stylesheet" href="./css/orders.css">
+	<link rel="stylesheet" href="./css/order_details.css">
+	<link rel="stylesheet" href="./css/client_order_details.css">
 	<link rel="shortcut icon" type="image/png" href="./images/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Your Orders</title>
@@ -440,121 +442,142 @@
 	<div class="drawer_overlay"></div>
 
     <main>
-		<h2 style="font-weight: normal; text-align: left; margin-bottom: 15px;">Order Summary</h2>
+		<div class="progress_tab">
+			<h2 style="font-weight: normal;">Order Progress</h2>
 
-		<div class="stats-grid">
-			<div class="stat-card">
-				<h3>2</h3>
-				<p>Active Orders</p>
-			</div>
-			<div class="stat-card">
-				<h3>5</h3>
-				<p>Processing</p>
-			</div>
-			<div class="stat-card">
-				<h3>3</h3>
-				<p>Shipped</p>
-			</div>
-			<div class="stat-card">
-				<h3>1</h3>
-				<p>Pending Orders</p>
-			</div>
-		</div>
-
-		<div class="filter_orders_container">
-			<h3>Filter Orders</h3>
-
-			<div class="filters_container">
-				<div class="filter_group">
-					<label class="filter-label">Search Orders</label>
-					<input type="text" class="filter-input" placeholder="Order ID..." id="searchFilter">
+			<div class="all_progress_container">
+				<div class="all_progress">
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill"></div>
+							</div>
+						</div>
+						<p>Order Confirming</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill"></div>
+							</div>
+						</div>
+						<p>Packaging</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="point">
+								<i class="fa-solid fa-check" style="opacity: 0;"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill" style="width: 60%;"></div>
+							</div>
+						</div>
+						<p class="ongoing">Shipping</p>
+					</div>
+					<div class="checkpoint">
+						<div class="point_and_progress">
+							<div class="pointless">
+								<i class="fa-solid fa-check"></i>
+							</div>
+							<div class="progress_bar">
+								<div class="progress_fill" style="width: 0;"></div>
+							</div>
+							<div class="pointless">
+								<i class="fa-solid fa-check"></i>
+							</div>
+						</div>
+						<div class="both">
+							<p class="unfulfilled">Delivery</p>
+							<p class="unfulfilled">Done</p>
+						</div>
+					</div>
 				</div>
+			</div>
 
-				<div class="filter_group">
-					<label class="filter-label">Status</label>
-					<select name="" id="">
-						<option value="">All Statuses</option>
-						<option value="">Pending</option>
-						<option value="">Fulfilled</option>
-						<option value="">Unfulfilled</option>
-					</select>
+			<div class="bottom_section">
+				<div class="bottom_double_text">
+					<p>Status:</p>
+					<p id="packaging">Shipping</p>
 				</div>
-
-				<div class="filter_group">
-					<label class="filter-label">Date</label>
-					<select name="" id="">
-						<option value="">All time</option>
-						<option value="">Last 7 days</option>
-						<option value="">Last 30 days</option>
-						<option value="">Last 60 days</option>
-						<option value="">Last 3 months</option>
-						<option value="">Last 6 months</option>
-						<option value="">Last year</option>
-					</select>
+				<div class="bottom_double_text">
+					<p>Estimated Completion:</p>
+					<p id="estimate">9 July 2025</p>
 				</div>
 			</div>
 		</div>
 	
-		<div class="table_container">
-			<h3>Order History</h3>
-
+		<div class="table_container" style="margin: 20px 0; margin-bottom: 30px;">
 			<table>
-				<thead>
+				<thead style="border-top: none;">
 					<tr>
-						<th>Order ID</th>
-						<th>Date</th>
-						<!-- <th>Customer</th> -->
+						<th>Item</th>
+						<th>Quantity</th>
 						<th>Status</th>
+						<th>Discount</th>
+						<th>Tax</th>
 						<th>Total</th>
-						<th>Order Type</th>
-						<th>Items</th>
-						<th>Fulfillment</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-href="client_order_details.html">
-						<td>#1002</td>
-						<td>11 Feb, 2024</td>
-						<!-- <td>Wade Warren</td> -->
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/1.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>2</td>
 						<td><span class="status-badge status-pending">Pending</span></td>
 						<td>$200.00</td>
-						<td>Standard</td>
-						<td>2 items</td>
-						<td><span class="status-badge status-unfulfilled">Unfulfilled</span></td>
+						<td>3$</td>
+						<td>70$</td>
 					</tr>
-					<tr data-href="client_order_details.html">
-						<td>#1004</td>
-						<td>13 Feb, 2024</td>
-						<!-- <td>Esther Howard</td> -->
-						<td><span class="status-badge status-success">Success</span></td>
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/3.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>4</td>
+						<td><span class="status-badge status-success">Ready</span></td>
 						<td>$220.00</td>
-						<td>Express</td>
-						<td>3 items</td>
-						<td><span class="status-badge status-success">Fulfilled</span></td>
+						<td>2$</td>
+						<td>200$</td>
 					</tr>
-					<tr data-href="client_order_details.html">
-						<td>#1007</td>
-						<td>15 Feb, 2024</td>
-						<!-- <td>Jenny Wilson</td> -->
-						<td><span class="status-badge status-pending">Pending</span></td>
+					<tr data-href="product.html">
+						<td>
+							<div class="image_container">
+								<img src="./images/2.jpg" alt="">
+								<div class="desc">
+									<p>Product Name</p>
+									<p class="optional_desc">Some Optional</p>
+								</div>
+							</div>
+						</td>
+						<td>1</td>
+						<td><span class="status-badge status-pending">Packaging</span></td>
 						<td>$250.00</td>
-						<td>Pickup</td>
-						<td>1 item</td>
-						<td><span class="status-badge status-unfulfilled">Unfulfilled</span></td>
+						<td>9$</td>
+						<td>100$</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
-		<div class="navigation_container" style="justify-content: center;">
-			<div class="pagination_container" style="gap: 15px;">
-				<a href=""><i class="fa-solid fa-chevron-left"></i></a>
-				<a href="">1</a>
-				<a href="">2</a>
-				<a href="" class="active_page">3</a>
-				<a href=""><i class="fa-solid fa-chevron-right"></i></a>
-			</div>
-		</div>
+		<a href="order_tracking.html" class="show_more">Track Order</a>
     </main>
 
     <footer>

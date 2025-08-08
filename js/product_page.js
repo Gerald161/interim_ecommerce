@@ -98,9 +98,7 @@ if(window.innerWidth <= '900'){
 }
 
 
-
-
-//modify this code with js exports later for the swiper.js
+// here is where swiper begins
 var images_container = document.querySelector(".images_container")
 
 var startX = 0;
@@ -158,28 +156,23 @@ const handleEnd = (e) => {
 
     const threshold = images_container.offsetWidth * 0.2;
 
-    //take note of code right below when exporting
     document.querySelector(".active").classList.remove("active");
     
     if(Math.abs(deltaX) > threshold) {
         if(deltaX > 0 && selected_index > 0) {
             slider.style.left = `-${current_slider_value * (selected_index - 1)}vw`;
             selected_index--;
-            //take note of code right below when exporting
             additional_images[selected_index].classList.add("active");
         }else if(deltaX < 0 && selected_index < itemsLength) {
             slider.style.left = `-${current_slider_value * (selected_index + 1)}vw`;
             selected_index++; 
-            //take note of code right below when exporting
             additional_images[selected_index].classList.add("active");
         }else{
             slider.style.left = `-${current_slider_value * selected_index}vw`;
-            //take note of code right below when exporting
             additional_images[selected_index].classList.add("active");
         }
     }else{
         slider.style.left = `-${current_slider_value * selected_index}vw`;
-        //take note of code right below when exporting
         additional_images[selected_index].classList.add("active");
     }
 }

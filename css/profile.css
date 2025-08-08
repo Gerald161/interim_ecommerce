@@ -138,6 +138,15 @@ main{
 }
 
 @media (prefers-color-scheme: dark){
+    .settings_nav_section,
+    .settings_config_section {
+        background: #1e1e1e;
+    }
+
+    .settings_nav_section{
+        border-right: solid 1px #2a2a2a;
+    }
+
     .settings_nav_section a:hover{
         background: #2a2a2a;
     }
