@@ -117,13 +117,13 @@ footer{
     color: var(--text-footer-secondary);
 }
 
-.social-link:hover {
+.social_link:hover{
     background-color: var(--social-hover);
     transform: translateY(-2px);
     color: var(--text-footer);
 }
 
-.social-link i {
+.social_link i{
     font-size: 1.125rem;
     transition: color 0.3s ease;
 }

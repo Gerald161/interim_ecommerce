@@ -1,4 +1,8 @@
 /* from the categories css */
+main{
+    padding: 20px 10px;
+}
+
 main h2{
     margin-bottom: unset;
     text-align: unset;

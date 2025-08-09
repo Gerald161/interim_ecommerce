@@ -442,8 +442,17 @@
 	<div class="drawer_overlay"></div>
 
     <main>
+		<div class="order_overview">
+			<div class="order_plus_owner">
+				<h2 style="font-weight: normal;">Order #1002</h2>
+				<p>Wade Wilson</p>
+			</div>
+			
+			<h4>Shipping</h4>
+		</div>
+
 		<div class="progress_tab">
-			<h2 style="font-weight: normal;">Order Progress</h2>
+			<h2 style="font-weight: normal;">Order Progress (Click Point to Update)</h2>
 
 			<div class="all_progress_container">
 				<div class="all_progress">
@@ -512,7 +521,7 @@
 			</div>
 		</div>
 	
-		<div class="table_container" style="margin: 20px 0; margin-bottom: 30px;">
+		<div class="table_container" style="margin: 20px 0; margin-bottom: 10px;">
 			<table>
 				<thead style="border-top: none;">
 					<tr>
@@ -575,6 +584,59 @@
 					</tr>
 				</tbody>
 			</table>
+		</div>
+
+		<div class="notes_and_comments">
+			<div class="info_section">
+				<h4>Shipping & Delivery Info</h4>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Estimated Completion Date</label>
+                    <input type="date" id="estimatedDate" value="2025-07-09">
+                </div>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Delivery Address</label>
+                    <div class="address">
+						<p>123 Main Street</p>
+						<p>Apartment 4B</p>
+						<p>New York, NY 10001</p>
+						<p>United States </p>
+					</div>
+                </div>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Tracking Number</label>
+                    <input type="text" placeholder="Enter tracking number">
+                </div>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Delivery Notes</label>
+                    <textarea placeholder="Special delivery instructions"></textarea>
+                </div>
+
+				<div class="button_cont">
+					<button>Save Shipping Info</button>
+				</div>
+			</div>
+
+			<div class="info_section">
+				<h4>Admin Notes / Internal Comments</h4>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Internal Comments</label>
+                    <textarea placeholder="Add internal notes for team communication..."></textarea>
+                </div>
+
+				<div class="form_group">
+                    <label for="estimatedDate">Team Updates</label>
+                    <textarea placeholder="Recent updates or changes..."></textarea>
+                </div>
+
+				<div class="button_cont">
+					<button>Save Notes</button>
+				</div>
+			</div>
 		</div>
 
 		<a href="order_tracking.html" class="show_more">Track Order</a>
